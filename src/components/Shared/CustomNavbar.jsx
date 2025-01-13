@@ -119,13 +119,7 @@ function NavListMenu() {
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
+      <Typography variant="small" color="blue-gray" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           <NavLink>Home</NavLink>
         </ListItem>
@@ -161,15 +155,10 @@ export function CustomNavbar() {
   return (
     <Navbar className="mx-auto px-4 py-2">
       <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="/"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
-        >
-          <span className="flex items-center gap-1">
+        <Typography variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2">
+          <NavLink to="/" className="flex items-center gap-1">
             <HiOutlineHomeModern /> EliteEstate
-          </span>
+          </NavLink>
         </Typography>
 
         <div className="hidden lg:block">
@@ -177,12 +166,16 @@ export function CustomNavbar() {
         </div>
 
         <div className="hidden gap-2 lg:flex">
-          <Button variant="text" size="sm" color="blue-gray">
-            <NavLink to="/login">Log In</NavLink>
-          </Button>
-          <Button variant="gradient" size="sm">
-            Sign In
-          </Button>
+          <NavLink to="/login">
+            <Button variant="text" size="sm" color="blue-gray">
+              Log In
+            </Button>
+          </NavLink>
+          <NavLink to="/signup">
+            <Button variant="gradient" size="sm">
+              Sign Up
+            </Button>
+          </NavLink>
         </div>
         <IconButton
           variant="text"
@@ -200,12 +193,16 @@ export function CustomNavbar() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-            <NavLink to="/login">Log In</NavLink>
-          </Button>
-          <Button variant="gradient" size="sm" fullWidth>
-            Sign In
-          </Button>
+          <NavLink to="/login">
+            <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+              Log In
+            </Button>
+          </NavLink>
+          <NavLink to="/signup">
+            <Button variant="gradient" size="sm" fullWidth>
+              Sign Up
+            </Button>
+          </NavLink>
         </div>
       </Collapse>
     </Navbar>
