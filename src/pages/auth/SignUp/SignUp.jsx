@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-hot-toast";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import useAuth from "../../../hooks/useAuth";
+import { imageUpload, saveUser } from "../../../api/utils";
+import { useState } from "react";
 
-export default function SignUp() {
+const SignUp = () => {
   const {
     createUser,
     updateUserProfile,
@@ -9,130 +14,156 @@ export default function SignUp() {
     loading,
     setLoading,
   } = useAuth();
+  const navigate = useNavigate();
+  const [passwordError, setPasswordError] = useState("");
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const [errors, setErrors] = useState({});
-
+  // Password validation function
   const validatePassword = (password) => {
-    const errors = {};
-    if (password.length < 6) {
-      errors.length = "Password must be at least 6 characters long.";
-    }
-    if (!/[A-Z]/.test(password)) {
-      errors.capital = "Password must contain at least one capital letter.";
-    }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      errors.special = "Password must contain at least one special character.";
-    }
+    const errors = [];
+    if (password.length < 6)
+      errors.push("Password must be at least 6 characters long.");
+    if (!/[A-Z]/.test(password))
+      errors.push("Password must include at least one uppercase letter.");
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password))
+      errors.push("Password must include at least one special character.");
     return errors;
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // Form submit handler
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = form.image.files[0];
+
+    // Validate password
+    const errors = validatePassword(password);
+    if (errors.length > 0) {
+      setPasswordError(errors.join(" "));
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    // 1. Upload the image
+    const photoURL = await imageUpload(image);
+
+    try {
+      // 2. Create user
+      const result = await createUser(email, password);
+      console.log(result?.user);
+
+      // 3. Update user profile
+      await updateUserProfile(name, photoURL);
+
+      // 4. Save user info in the database
+      //   await saveUser({ ...result?.user, displayName: name, photoURL });
+
+      navigate("/");
+      toast.success("Signup Successful");
+    } catch (err) {
+      setLoading(false);
+      toast.error(err.message);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const passwordErrors = validatePassword(formData.password);
-
-    if (Object.keys(passwordErrors).length > 0) {
-      setErrors(passwordErrors);
-    } else {
-      setErrors({});
-      // Handle successful form submission logic
-      console.log(formData);
+  // Google Sign-in handler
+  const handleGoogleSignIn = async () => {
+    try {
+      const data = await signInWithGoogle();
+      //   await saveUser(data?.user);
+      //   navigate("/");
+      console.log(data?.user);
+      toast.success("Signup Successful");
+    } catch (err) {
+      setLoading(false);
+      toast.error(err.message);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-8">
-      <Card color="transparent" shadow={false}>
+    <div className="flex justify-center items-center min-h-screen p-4">
+      <Card className="max-w-lg p-6 rounded-lg bg-white">
         <Typography variant="h4" color="blue-gray" className="text-center">
           Sign Up
         </Typography>
-        <Typography color="gray" className="mt-1 font-normal text-center">
-          Nice to meet you! Enter your details to register.
+        <Typography color="gray" className="text-center mt-1">
+          Welcome to EliteEstate
         </Typography>
-        <form
-          className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-          onSubmit={handleSubmit}
-        >
-          <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Your Name
+        <form onSubmit={handleSubmit} className="mt-6 space-y-6">
+          {/* Name Input */}
+          <Input type="text" name="name" label="Your Name" size="lg" required />
+          {/* Image Input */}
+          <div>
+            <Typography variant="small" className="block mb-2">
+              Select Image
             </Typography>
-            <Input
-              size="lg"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your name"
-              className="!border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
+            <input
+              required
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              className="w-full border rounded-md p-2"
             />
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Your Email
-            </Typography>
-            <Input
-              size="lg"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="name@mail.com"
-              className="!border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="********"
-              className="!border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
-            {errors.length && (
-              <Typography color="red" className="text-sm">
-                {errors.length}
-              </Typography>
-            )}
-            {errors.capital && (
-              <Typography color="red" className="text-sm">
-                {errors.capital}
-              </Typography>
-            )}
-            {errors.special && (
-              <Typography color="red" className="text-sm">
-                {errors.special}
-              </Typography>
-            )}
           </div>
-
-          <Button className="mt-6" fullWidth type="submit">
+          {/* Email Input */}
+          <Input
+            type="email"
+            name="email"
+            label="Your Email"
+            size="lg"
+            required
+          />
+          {/* Password Input */}
+          <Input
+            type="password"
+            name="password"
+            label="Password"
+            size="lg"
+            required
+          />
+          {passwordError && (
+            <Typography variant="small" color="red" className="mt-2 w-80">
+              {passwordError}
+            </Typography>
+          )}
+          {/* Submit Button */}
+          <Button type="submit" className="w-full">
             Sign Up
           </Button>
-          <Typography color="gray" className="mt-4 text-center font-normal">
-            Already have an account?{" "}
-            <a href="#" className="font-medium text-gray-900">
-              Sign In
-            </a>
-          </Typography>
         </form>
+
+        {/* Social Login */}
+        <Typography
+          className="px-3 text-gray-400 text-center my-3"
+          variant="small"
+        >
+          Or sign up with
+        </Typography>
+
+        <Button
+          variant="outlined"
+          size="lg"
+          className="flex h-12 border-blue-gray-200 items-center justify-center gap-2"
+          fullWidth
+          onClick={handleGoogleSignIn}
+        >
+          <FcGoogle size={24} />
+          Continue with Google
+        </Button>
+        {/* Login Link */}
+        <Typography className="text-center mt-4 text-sm text-gray-500">
+          Already have an account?{" "}
+          <Link to="/login" className="font-medium hover:underline">
+            Login
+          </Link>
+        </Typography>
       </Card>
     </div>
   );
-}
+};
+
+export default SignUp;
