@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
-import { imageUpload, saveUser } from "../../../api/utils";
+import { imageUpload } from "../../../api/utils";
 import { useState } from "react";
 
 const SignUp = () => {
@@ -11,7 +11,7 @@ const SignUp = () => {
     createUser,
     updateUserProfile,
     signInWithGoogle,
-    loading,
+
     setLoading,
   } = useAuth();
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
-      <Card className="max-w-lg p-6 rounded-lg bg-white">
+      <Card className="max-w-lg p-6 rounded-lg bg-white shadow-none">
         <Typography variant="h4" color="blue-gray" className="text-center">
           Sign Up
         </Typography>

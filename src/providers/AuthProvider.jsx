@@ -10,7 +10,6 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import axios from "axios";
 import { app } from "../firebase/firebase.init";
 
 // eslint-disable-next-line react-refresh/only-export-components

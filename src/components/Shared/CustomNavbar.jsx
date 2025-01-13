@@ -11,6 +11,7 @@ import {
   MenuHandler,
   MenuList,
   MenuItem,
+  Avatar,
 } from "@material-tailwind/react";
 import {
   ChevronDownIcon,
@@ -20,6 +21,7 @@ import {
 import { SquaresPlusIcon } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
 import { HiOutlineHomeModern } from "react-icons/hi2";
+import useAuth from "../../hooks/useAuth";
 
 const navListMenuItems = [
   {
@@ -143,6 +145,7 @@ function NavList() {
 }
 
 export function CustomNavbar() {
+  const { user } = useAuth();
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -165,18 +168,29 @@ export function CustomNavbar() {
           <NavList />
         </div>
 
-        <div className="hidden gap-2 lg:flex">
-          <NavLink to="/login">
-            <Button variant="text" size="sm" color="blue-gray">
-              Log In
-            </Button>
-          </NavLink>
-          <NavLink to="/signup">
-            <Button variant="gradient" size="sm">
-              Sign Up
-            </Button>
-          </NavLink>
-        </div>
+        {!user ? (
+          <div className="hidden gap-2 lg:flex">
+            <NavLink to="/login">
+              <Button variant="text" size="sm" color="blue-gray">
+                Log In
+              </Button>
+            </NavLink>
+            <NavLink to="/signup">
+              <Button variant="gradient" size="sm">
+                Sign Up
+              </Button>
+            </NavLink>
+          </div>
+        ) : (
+          <Avatar
+            variant="circular"
+            size="sm"
+            alt="tania andrew"
+            className="border border-gray-900 p-0.5 hidden xl:block"
+            src={user?.displayURL}
+          />
+        )}
+
         <IconButton
           variant="text"
           color="blue-gray"
