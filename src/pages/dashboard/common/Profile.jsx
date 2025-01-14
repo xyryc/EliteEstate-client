@@ -7,10 +7,12 @@ import {
 } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useRole from "../../../hooks/useRole";
 
 function Profile() {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
+  const [role] = useRole();
 
   return (
     <section className="container mx-auto sm:py-10">
@@ -43,7 +45,7 @@ function Profile() {
                 variant="outlined"
                 className="border-gray-300 flex items-center gap-2"
               >
-                Role: Customer
+                Role: {role}
               </Button>
               <Button
                 onClick={() => {

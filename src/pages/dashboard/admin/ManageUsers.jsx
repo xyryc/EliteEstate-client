@@ -1,11 +1,18 @@
-import { Card, Typography } from "@material-tailwind/react";
+import { Button, Card, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 
-const TABLE_HEAD = ["Name", "Role", "Email", "Created At"];
-
+const TABLE_HEAD = [
+  "Name",
+  "Role",
+  "Email",
+  "Created At",
+  "Update Role",
+  "Delete User",
+  "Mark as Fraud",
+];
 
 export default function ManageUsers() {
   const { user } = useAuth();
@@ -14,7 +21,7 @@ export default function ManageUsers() {
   const {
     data: users = [],
     isLoading,
-    refetch,
+    // refetch,
   } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
@@ -91,6 +98,28 @@ export default function ManageUsers() {
                       className="font-normal text-gray-600"
                     >
                       {timestamp}
+                    </Typography>
+                  </td>
+
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      className="font-normal text-gray-600"
+                    >
+                      <Button size="sm">Edit</Button>
+                    </Typography>
+                  </td>
+
+                  <td className={classes}>
+                    <Button size="sm">Delete</Button>
+                  </td>
+
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      className="font-normal text-gray-600"
+                    >
+                      Mark
                     </Typography>
                   </td>
                 </tr>

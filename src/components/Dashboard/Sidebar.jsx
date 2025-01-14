@@ -8,7 +8,7 @@ const Sidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
   const [role] = useRole();
-  console.log(role)
+  console.log(role);
 
   return (
     <div className="flex sm:h-screen">
@@ -40,36 +40,72 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            <li>
-              <Link to="/dashboard/wishlist">
-                <Button fullWidth variant="text" className="text-white">
-                  Wishlist
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/propertyBought">
-                <Button fullWidth variant="text" className="text-white">
-                  Property Bought
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/reviews">
-                <Button fullWidth variant="text" className="text-white">
-                  My Reviews
-                </Button>
-              </Link>
-            </li>
+            {role === "customer" && (
+              <>
+                <li>
+                  <Link to="/dashboard/wishlist">
+                    <Button fullWidth variant="text" className="text-white">
+                      Wishlist
+                    </Button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/propertyBought">
+                    <Button fullWidth variant="text" className="text-white">
+                      Property Bought
+                    </Button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/reviews">
+                    <Button fullWidth variant="text" className="text-white">
+                      My Reviews
+                    </Button>
+                  </Link>
+                </li>
+              </>
+            )}
 
-            {/* admin */}
-            <li>
-              <Link to="/dashboard/manageUsers">
-                <Button fullWidth variant="text" className="text-white">
-                  Manage Users
-                </Button>
-              </Link>
-            </li>
+            {role === "agent" && (
+              <>
+                <li>
+                  <Link to="/dashboard/addProperty">
+                    <Button fullWidth variant="text" className="text-white">
+                      Add Property
+                    </Button>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/dashboard/addedProperties">
+                    <Button fullWidth variant="text" className="text-white">
+                      Added Properties
+                    </Button>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/dashboard/soldProperties">
+                    <Button fullWidth variant="text" className="text-white">
+                      Sold Properties
+                    </Button>
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {role === "admin" && (
+              <>
+                {/* admin */}
+                <li>
+                  <Link to="/dashboard/manageUsers">
+                    <Button fullWidth variant="text" className="text-white">
+                      Manage Users
+                    </Button>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </aside>
