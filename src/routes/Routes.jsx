@@ -12,6 +12,8 @@ import ManageUsers from "../pages/dashboard/admin/ManageUsers";
 import AddProperty from "../pages/dashboard/agent/AddProperty";
 import AddedProperties from "../pages/dashboard/agent/AddedProperties";
 import SoldProperties from "../pages/dashboard/agent/SoldProperties";
+import ManageProperties from "../pages/dashboard/admin/ManageProperties";
+import ManageReviews from "../pages/dashboard/admin/ManageReviews";
 
 export const router = createBrowserRouter([
   {
@@ -57,7 +59,7 @@ export const router = createBrowserRouter([
         element: <MyReviews />,
       },
 
-      // agent role
+      // agent routes
       {
         path: "addProperty",
         element: <AddProperty />,
@@ -71,10 +73,18 @@ export const router = createBrowserRouter([
         element: <SoldProperties />,
       },
 
-      // admin role
+      // admin routes
+      {
+        path: "manageProperties",
+        element: <ManageProperties />,
+      },
       {
         path: "manageUsers",
         element: <ManageUsers />,
+      },
+      {
+        path: "manageReviews",
+        element: <ManageReviews />,
       },
     ],
   },

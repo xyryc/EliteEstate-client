@@ -75,7 +75,6 @@ const Sidebar = () => {
                     </Button>
                   </Link>
                 </li>
-
                 <li>
                   <Link to="/dashboard/addedProperties">
                     <Button fullWidth variant="text" className="text-white">
@@ -83,7 +82,6 @@ const Sidebar = () => {
                     </Button>
                   </Link>
                 </li>
-
                 <li>
                   <Link to="/dashboard/soldProperties">
                     <Button fullWidth variant="text" className="text-white">
@@ -98,9 +96,23 @@ const Sidebar = () => {
               <>
                 {/* admin */}
                 <li>
+                  <Link to="/dashboard/manageProperties">
+                    <Button fullWidth variant="text" className="text-white">
+                      Manage Properties
+                    </Button>
+                  </Link>
+                </li>
+                <li>
                   <Link to="/dashboard/manageUsers">
                     <Button fullWidth variant="text" className="text-white">
                       Manage Users
+                    </Button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/manageReviews">
+                    <Button fullWidth variant="text" className="text-white">
+                      Manage Reviews
                     </Button>
                   </Link>
                 </li>
