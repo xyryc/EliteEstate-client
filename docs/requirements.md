@@ -181,18 +181,18 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - update button (if the verification status is “rejected” then the update button will disappear, which means the agent won't be able to update the property). 
 - delete button ✅
 
-\-Clicking on the \`Update button\` will redirect the user to a form page where the form will have the following fields:
+\-Clicking on the \`Update button\` will redirect the user to a form page where the form will have the following fields: ✅
 
-- Property image.
-- Property title.
-- property location.
-- Agent name.(readonly)
-- Agent email.(readonly)
-- Price range.
+- Property image. ✅
+- Property title. ✅
+- property location. ✅
+- Agent name.(readonly) ✅
+- Agent email.(readonly) ✅
+- Price range. ✅
 
-\-Initially these fields will be filled up by previous values but the agent can modify these values.If the user clicks the submit button then the data will be updated in the database.
+\-Initially these fields will be filled up by previous values but the agent can modify these values.If the user clicks the submit button then the data will be updated in the database. ✅
 
-\-clicking the delete button will remove the property from the “My added properties” and also from the database.
+\-clicking the delete button will remove the property from the “My added properties” and also from the database. 
 
 **My sold properties:** On this page all the sold properties of the specific agent will be shown.Only the properties for which the buyer has paid for will be shown here.Show these data in a tabular format.Each data will contain-\>
 

@@ -23,7 +23,17 @@ export default function AddProperty() {
     const min_price = parseFloat(form.min_price.value);
     const max_price = parseFloat(form.max_price.value);
     const image = form.image.files[0];
-    const image_url = await imageUpload(image);
+
+    let image_url;
+
+    if (image) {
+      // Upload the image if provided
+      image_url = await imageUpload(image);
+    } else {
+      // Handle the case where no image is selected
+      image_url = "https://i.ibb.co.com/BnpMZ64/g1-4.webp"; // Replace with a valid default image URL if necessary
+      toast("No image selected. Using a default image.");
+    }
 
     // agent info
     const agent = {

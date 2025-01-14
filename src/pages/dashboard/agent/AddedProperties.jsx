@@ -12,6 +12,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function AddedProperties() {
   const { user } = useAuth();
@@ -20,7 +21,7 @@ export default function AddedProperties() {
   const {
     data: properties = [],
     isLoading,
-    // refetch,
+    refetch,
   } = useQuery({
     queryKey: ["properties", user?.email],
     queryFn: async () => {
@@ -29,7 +30,34 @@ export default function AddedProperties() {
     },
   });
 
-  console.log(properties);
+  const handleDeleteProperty = async (id) => {
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <p>Are you sure you want to delete this item?</p>
+        <div className="space-x-4">
+          <Button
+            className="btn btn-error btn-xs text-white"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const res = await axiosSecure.delete(`/properties/${id}`);
+              if (res.data.deletedCount > 0) {
+                toast.success("Item deleted!");
+                refetch();
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            className="btn btn-success btn-xs text-white"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -65,7 +93,9 @@ export default function AddedProperties() {
             <Link to={`/dashboard/addedProperties/update/${item._id}`}>
               <Button>Update</Button>
             </Link>
-            <Button>Delete</Button>
+            <Button onClick={() => handleDeleteProperty(item._id)}>
+              Delete
+            </Button>
           </CardFooter>
         </Card>
       ))}
