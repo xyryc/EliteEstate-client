@@ -40,6 +40,7 @@ export default function AddProperty() {
       max_price,
       image: image_url,
       agent,
+      status: "Pending",
     };
 
     console.table(propertyData);

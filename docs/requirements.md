@@ -143,6 +143,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 \-If the user clicks the delete button then the review will be deleted from the my reviews page and also from the database.
 
 <!-- Agent Dashboard -->
+
 7. **Agent Dashboard🔒( Agent Only ):**  
    \-When an agent clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
 
@@ -156,29 +157,29 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 
 **Add Property:** Create an \`Add Property\` page where there will be a form for the agent to add a property. The form will have:
 
-- Property title.
-- Property location.
-- Property image (agents will be able to upload images from their local pc or mobile).
-- Agent name (readonly). (Agent name will be the current logged in user’s displayName)
-- Agent email(readonly). (Agent email will be the current logged in user’s email)
-- Price range.
-- Add a property button.
+- Property title. ✅
+- Property location. ✅
+- Property image (agents will be able to upload images from their local pc or mobile). ✅
+- Agent name (readonly). (Agent name will be the current logged in user’s displayName) ✅
+- Agent email(readonly). (Agent email will be the current logged in user’s email) ✅
+- Price range. ✅
+- Add a property button. ✅
 
-\-On clicking the “Add property” button the property will be saved into the database.
+\-On clicking the “Add property” button the property will be saved into the database. ✅
 
 **My added properties:** On this page an agent will see all his/her added properties.each card will contain
 
-- Property image.
-- Property title.
-- property location.
-- Agent name.
-- Agent image.
+- Property image. ✅
+- Property title. ✅
+- property location. ✅
+- Agent name. ✅
+- Agent image. ✅
 - verification status.(by default the status will be “pending”.This verification status will be modified by the admin.if the admin verifies the property then the verification status will be “verified” and if the admin rejects then the verification status will be “rejected”)
 - Price range.
-  - Minimum Price
-  - Maximum Price
-- update button (if the verification status is “rejected” then the update button will disappear, which means the agent won't be able to update the property).
-- delete button
+  - Minimum Price ✅
+  - Maximum Price ✅
+- update button (if the verification status is “rejected” then the update button will disappear, which means the agent won't be able to update the property). 
+- delete button ✅
 
 \-Clicking on the \`Update button\` will redirect the user to a form page where the form will have the following fields:
 
