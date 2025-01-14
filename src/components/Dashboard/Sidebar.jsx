@@ -8,7 +8,6 @@ const Sidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
   const [role] = useRole();
-  console.log(role);
 
   return (
     <div className="flex md:h-screen">

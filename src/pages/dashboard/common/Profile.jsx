@@ -17,13 +17,12 @@ function Profile() {
   return (
     <section className="container mx-auto sm:py-10">
       <Card shadow={false} className="border border-gray-300 rounded-2xl">
-        {/* <CardHeader shadow={false} className="h-60 !rounded-lg">
-          <image
-            src="https://i.ibb.co.com/1RnRLJv/Creative-Problem-Solving.jpg"
-            alt="dark"
-            className="w-full h-full object-center"
-          />
-        </CardHeader> */}
+        <img
+          className="h-44 object-cover w-full rounded-t-2xl"
+          src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
+          alt=""
+        />
+
         <CardBody>
           <div className="flex lg:gap-0 gap-6 flex-wrap justify-between items-center">
             <div className="flex items-center gap-3">
@@ -41,12 +40,16 @@ function Profile() {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <Button
-                variant="outlined"
-                className="border-gray-300 flex items-center gap-2"
-              >
-                Role: {role}
-              </Button>
+              {role === "customer" ? (
+                ""
+              ) : (
+                <Button
+                  variant="outlined"
+                  className="border-gray-300 flex items-center gap-2"
+                >
+                  Role: {role}
+                </Button>
+              )}
               <Button
                 onClick={() => {
                   logOut();

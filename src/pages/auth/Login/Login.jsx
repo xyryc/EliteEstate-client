@@ -62,7 +62,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center py-10">
       <Card className="max-w-lg rounded-lg shadow-none">
         <Typography variant="h4" color="blue-gray" className="text-center">
           Log In

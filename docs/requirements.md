@@ -142,7 +142,6 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 
 \-If the user clicks the delete button then the review will be deleted from the my reviews page and also from the database.
 
-
 <!-- Agent Dashboard -->
 7. **Agent Dashboard🔒( Agent Only ):**  
    \-When an agent clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
@@ -153,7 +152,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - My sold properties.
 - Requested properties.
 
-**Agent Profile:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish.
+**Agent Profile:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
 
 **Add Property:** Create an \`Add Property\` page where there will be a form for the agent to add a property. The form will have:
 
@@ -218,6 +217,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
  **💡Hint:** use updateMany with $ne operator
 
 <!-- Admin Dashboard -->
+
 8. **Admin Dashboard🔒(Admin only ):**
 
 Private Route and only the users who has the admin role will be able to see these routes & When an admin clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
@@ -227,7 +227,8 @@ Private Route and only the users who has the admin role will be able to see thes
 - Manage Users.
 - Manage reviews.
 
-**Admin Profile:** in this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish.  
+**Admin Profile:** in this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
+
 **Manage properties:** All the properties which the agents have added will be shown here in a tabular format.each data will have
 
 - property title.

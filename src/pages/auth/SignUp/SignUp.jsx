@@ -87,8 +87,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-4">
-      <Card className="max-w-lg p-6 rounded-lg bg-white shadow-none">
+    <div className="flex justify-center items-center py-10">
+      <Card className="max-w-lg rounded-lg bg-white shadow-none">
         <Typography variant="h4" color="blue-gray" className="text-center">
           Sign Up
         </Typography>
