@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Typography, Button, IconButton } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import useRole from "../../hooks/useRole";
 
 const Sidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
+  const [role] = useRole();
+  console.log(role)
 
   return (
     <div className="flex sm:h-screen">
@@ -28,6 +31,7 @@ const Sidebar = () => {
         </div>
         <nav>
           <ul className="space-y-4">
+            {/* common */}
             <li>
               <Link to="/dashboard/myProfile">
                 <Button fullWidth variant="text" className="text-white">
@@ -35,6 +39,7 @@ const Sidebar = () => {
                 </Button>
               </Link>
             </li>
+
             <li>
               <Link to="/dashboard/wishlist">
                 <Button fullWidth variant="text" className="text-white">
@@ -53,6 +58,15 @@ const Sidebar = () => {
               <Link to="/dashboard/reviews">
                 <Button fullWidth variant="text" className="text-white">
                   My Reviews
+                </Button>
+              </Link>
+            </li>
+
+            {/* admin */}
+            <li>
+              <Link to="/dashboard/manageUsers">
+                <Button fullWidth variant="text" className="text-white">
+                  Manage Users
                 </Button>
               </Link>
             </li>

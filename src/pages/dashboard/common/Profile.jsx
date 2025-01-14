@@ -6,9 +6,11 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <section className="container mx-auto sm:py-10">
@@ -41,22 +43,17 @@ function Profile() {
                 variant="outlined"
                 className="border-gray-300 flex items-center gap-2"
               >
-                <i className="fa fa-github text-base" />
-                Github
+                Role: Customer
               </Button>
               <Button
-                variant="outlined"
+                onClick={() => {
+                  logOut();
+                  navigate("/");
+                }}
+                variant="gradient"
                 className="border-gray-300 flex items-center gap-2"
               >
-                <i className="fa-brands fa-twitter" />
-                Twitter
-              </Button>
-              <Button
-                variant="outlined"
-                className="border-gray-300 flex items-center gap-2"
-              >
-                <i className="fa-brands fa-medium" />
-                Medium
+                Log Out
               </Button>
             </div>
           </div>

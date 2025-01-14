@@ -6,6 +6,7 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { FcGoogle } from "react-icons/fc";
+import { saveUser } from "../../../api/utils";
 
 const Login = () => {
   const { signIn, signInWithGoogle, loading, setLoading } = useAuth();
@@ -29,7 +30,7 @@ const Login = () => {
       console.log(data?.user);
 
       // save user info in db if user is new
-      //   await saveUser(data?.user);
+      await saveUser(data?.user);
 
       navigate(from, { replace: true });
       toast.success("Login Successful");
@@ -47,8 +48,9 @@ const Login = () => {
       //User Registration using google
       const data = await signInWithGoogle();
       console.log(data?.user);
+
       // save user info in db if user is new
-      //   await saveUser(data?.user);
+      await saveUser(data?.user);
 
       navigate(from, { replace: true });
       toast.success("Login Successful");

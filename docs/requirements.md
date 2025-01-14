@@ -147,7 +147,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 7. **Agent Dashboard🔒( Agent Only ):**  
    \-When an agent clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
 
-- Agent Profile .
+- Agent Profile.
 - Add Property.
 - My added properties.
 - My sold properties.
