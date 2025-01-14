@@ -1,8 +1,8 @@
 import { Button, Card, Typography } from "@material-tailwind/react";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const TABLE_HEAD = [
   "Title",
@@ -10,8 +10,8 @@ const TABLE_HEAD = [
   "Agent Name",
   "Agent Email",
   "Price Range",
-  "Verify",
-  "Reject",
+  "Status",
+  "Action",
 ];
 
 export default function ManageProperties() {
@@ -20,7 +20,7 @@ export default function ManageProperties() {
   const {
     data: properties = [],
     isLoading,
-    // refetch,
+    refetch,
   } = useQuery({
     queryKey: ["properties"],
     queryFn: async () => {
@@ -31,7 +31,38 @@ export default function ManageProperties() {
 
   if (isLoading) return <LoadingSpinner />;
 
-  console.log(properties);
+  const handleVerify = (id, status) => {
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <Typography>Confirm verify this property?</Typography>
+        <div className="space-x-4">
+          <Button
+            size="sm"
+            className="bg-green-500"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const res = await axiosSecure.patch(`/all-properties/${id}`, {
+                status,
+              });
+              if (res.data.modifiedCount > 0) {
+                toast.success("Property status updated!");
+                refetch();
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            size="sm"
+            className="bg-red-500"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <section className="w-full bg-white">
@@ -63,7 +94,10 @@ export default function ManageProperties() {
           </thead>
           <tbody>
             {properties.map(
-              ({ agent, title, location, max_price, min_price }, index) => {
+              (
+                { agent, title, location, max_price, min_price, _id, status },
+                index
+              ) => {
                 const isLast = index === properties.length - 1;
                 const classes = isLast
                   ? "py-4"
@@ -104,7 +138,6 @@ export default function ManageProperties() {
                         {agent?.email}
                       </Typography>
                     </td>
-
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -113,19 +146,43 @@ export default function ManageProperties() {
                         ${min_price} - ${max_price}
                       </Typography>
                     </td>
-
-                    <td className={classes}>
-                      <Button size="sm">Verify</Button>
-                    </td>
-
-                    <td className={classes}>
+                    <td>
                       <Button
                         size="sm"
-                        className="bg-red-500 text-white border-none"
+                        className={`${
+                          status === "Verified" && "bg-green-500"
+                        } ${status === "Rejected" && "bg-red-500"}
+                        ${status === "Pending" && "bg-deep-purple-600"}
+                        `}
                       >
-                        Reject
+                        {status}
                       </Button>
                     </td>
+
+                    {status === "Pending" ? (
+                      <>
+                        <td className={classes}>
+                          <Button
+                            size="sm"
+                            onClick={() => handleVerify(_id, "Verified")}
+                          >
+                            Verify
+                          </Button>
+                          <Button
+                            size="sm"
+                            className="ml-2 bg-red-500"
+                            onClick={() => handleVerify(_id, "Rejected")}
+                          >
+                            Reject
+                          </Button>
+                        </td>
+                      </>
+                    ) : (
+                      <td>
+                        {" "}
+                        <Typography>-</Typography>
+                      </td>
+                    )}
                   </tr>
                 );
               }
