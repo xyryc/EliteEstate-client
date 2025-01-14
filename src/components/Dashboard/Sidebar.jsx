@@ -11,7 +11,7 @@ const Sidebar = () => {
   console.log(role);
 
   return (
-    <div className="flex sm:h-screen">
+    <div className="flex md:h-screen">
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 h-full bg-black text-white p-6 transition-transform transform z-50 ${
@@ -123,7 +123,7 @@ const Sidebar = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-3 bg-white sm:hidden">
+      <main className="flex-1 p-3 bg-white md:hidden">
         {/* Top Header */}
         <div className="flex justify-between items-center mb-6">
           <IconButton

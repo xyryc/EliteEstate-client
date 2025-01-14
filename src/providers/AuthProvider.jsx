@@ -11,6 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.init";
+import axios from "axios";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
@@ -57,18 +58,18 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
 
         // Get JWT token
-        //     await axios.post(
-        //       `${import.meta.env.VITE_API_URL}/jwt`,
-        //       {
-        //         email: currentUser?.email,
-        //       },
-        //       { withCredentials: true }
-        //     );
-        //   } else {
-        //     setUser(currentUser);
-        //     await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-        //       withCredentials: true,
-        //     });
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          {
+            email: currentUser?.email,
+          },
+          { withCredentials: true }
+        );
+      } else {
+        setUser(currentUser);
+        await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+          withCredentials: true,
+        });
       }
       setLoading(false);
     });
