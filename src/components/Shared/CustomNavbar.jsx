@@ -145,7 +145,7 @@ function NavList() {
 }
 
 export function CustomNavbar() {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -154,6 +154,11 @@ export function CustomNavbar() {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
+
+  const handleLogout = () => {
+    logOut();
+  };
+
 
   return (
     <Navbar className="mx-auto px-4 py-2">
@@ -168,7 +173,22 @@ export function CustomNavbar() {
           <NavList />
         </div>
 
-        {!user ? (
+        {user ? (
+          <div className="flex gap-2">
+            <Avatar
+              title={user?.displayName}
+              variant="circular"
+              size="sm"
+              alt={user?.displayName}
+              className="border border-gray-900 p-0.5"
+              src={user?.photoURL}
+              referrerPolicy="no-referrer"
+            />
+            <Button size="sm" onClick={() => handleLogout()}>
+              Log Out
+            </Button>
+          </div>
+        ) : (
           <div className="hidden gap-2 lg:flex">
             <NavLink to="/login">
               <Button variant="text" size="sm" color="blue-gray">
@@ -181,14 +201,6 @@ export function CustomNavbar() {
               </Button>
             </NavLink>
           </div>
-        ) : (
-          <Avatar
-            variant="circular"
-            size="sm"
-            alt="tania andrew"
-            className="border border-gray-900 p-0.5 hidden xl:block"
-            src={user?.displayURL}
-          />
         )}
 
         <IconButton
@@ -207,16 +219,25 @@ export function CustomNavbar() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <NavLink to="/login">
-            <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-              Log In
-            </Button>
-          </NavLink>
-          <NavLink to="/signup">
-            <Button variant="gradient" size="sm" fullWidth>
-              Sign Up
-            </Button>
-          </NavLink>
+          {!user && (
+            <>
+              <NavLink to="/login">
+                <Button
+                  variant="outlined"
+                  size="sm"
+                  color="blue-gray"
+                  fullWidth
+                >
+                  Log In
+                </Button>
+              </NavLink>
+              <NavLink to="/signup">
+                <Button variant="gradient" size="sm" fullWidth>
+                  Sign Up
+                </Button>
+              </NavLink>
+            </>
+          )}
         </div>
       </Collapse>
     </Navbar>

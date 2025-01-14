@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     setLoading(true);
+    setUser(null);
     return signOut(auth);
   };
 
