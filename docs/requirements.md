@@ -192,7 +192,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 
 \-Initially these fields will be filled up by previous values but the agent can modify these values.If the user clicks the submit button then the data will be updated in the database. ✅
 
-\-clicking the delete button will remove the property from the “My added properties” and also from the database. 
+\-clicking the delete button will remove the property from the “My added properties” and also from the database. ✅
 
 **My sold properties:** On this page all the sold properties of the specific agent will be shown.Only the properties for which the buyer has paid for will be shown here.Show these data in a tabular format.Each data will contain-\>
 
@@ -223,7 +223,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 
 Private Route and only the users who has the admin role will be able to see these routes & When an admin clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
 
-- Admin Profile.
+- Admin Profile. ✅
 - Manage Properties.
 - Manage Users.
 - Manage reviews.
@@ -232,13 +232,13 @@ Private Route and only the users who has the admin role will be able to see thes
 
 **Manage properties:** All the properties which the agents have added will be shown here in a tabular format.each data will have
 
-- property title.
-- Property location.
-- Agent name
-- agent email
-- price range.
-- verify button
-- reject button.
+- property title. ✅
+- Property location. ✅
+- Agent name ✅
+- agent email ✅
+- price range. ✅
+- verify button ✅
+- reject button. ✅
 
 \-if the admin clicks the verify button then that property will be added to the “All properties” page with the verified status also verify button and reject button will disappear and a status “verified” will be shown there.If the admin clicks the reject button then the property will not be added to the all properties page and “rejected” status will be shown in place of verify and reject button.
 

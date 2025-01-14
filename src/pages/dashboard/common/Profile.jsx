@@ -43,10 +43,7 @@ function Profile() {
               {role === "customer" ? (
                 ""
               ) : (
-                <Button
-                  variant="outlined"
-                  className="border-gray-300 flex items-center gap-2"
-                >
+                <Button variant="outlined" className="border-gray-300">
                   Role: {role}
                 </Button>
               )}
@@ -56,7 +53,7 @@ function Profile() {
                   navigate("/");
                 }}
                 variant="gradient"
-                className="border-gray-300 flex items-center gap-2"
+                className="border-gray-300"
               >
                 Log Out
               </Button>
@@ -66,9 +63,12 @@ function Profile() {
             variant="small"
             className="font-normal text-gray-600 mt-6"
           >
-            Passionate UI/UX designer focused on creating intuitive and engaging
-            digital experiences. <br /> Driven by design thinking, creativity,
-            and a love for problem-solving.
+            Welcome to EliteEstate, your trusted destination for seamless real
+            estate management. Explore properties, manage listings, and find
+            your dream space—all in one place! Whether you are buying, selling,
+            or managing properties, we make the process simple and efficient.
+            Let us help you turn your real estate goals into reality with ease
+            and confidence!
           </Typography>
         </CardBody>
       </Card>
