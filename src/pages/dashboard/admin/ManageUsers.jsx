@@ -3,13 +3,15 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const TABLE_HEAD = [
   "Name",
-  "Role",
   "Email",
   "Created At",
-  "Update Role",
+  "Role",
+  "Make Admin",
+  "Make Agent",
   "Delete User",
   "Mark as Fraud",
 ];
@@ -21,7 +23,7 @@ export default function ManageUsers() {
   const {
     data: users = [],
     isLoading,
-    // refetch,
+    refetch,
   } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
@@ -31,6 +33,39 @@ export default function ManageUsers() {
   });
 
   if (isLoading) return <LoadingSpinner />;
+
+  const handleRole = (id, role) => {
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <Typography>{`Make ${role}?`}</Typography>
+        <div className="space-x-2">
+          <Button
+            size="sm"
+            className="bg-green-500"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const res = await axiosSecure.patch(`/users/${id}`, {
+                role,
+              });
+              if (res.data.modifiedCount > 0) {
+                toast.success("Role updated!");
+                refetch();
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            size="sm"
+            className="bg-red-500"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <section className="w-full bg-white">
@@ -44,7 +79,7 @@ export default function ManageUsers() {
         </Typography>
       </div>
       <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
-        <table className="w-full min-w-max table-auto text-left">
+        <table className="w-full min-w-max table-auto text-left ">
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
@@ -61,7 +96,7 @@ export default function ManageUsers() {
             </tr>
           </thead>
           <tbody>
-            {users.map(({ name, role, email, timestamp }, index) => {
+            {users.map(({ name, role, email, timestamp, _id }, index) => {
               const isLast = index === users.length - 1;
               const classes = isLast ? "py-4" : "py-4 border-b border-gray-300";
 
@@ -76,14 +111,7 @@ export default function ManageUsers() {
                       {name}
                     </Typography>
                   </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      className="font-normal text-gray-600"
-                    >
-                      {role}
-                    </Typography>
-                  </td>
+
                   <td className={classes}>
                     <Typography
                       variant="small"
@@ -106,21 +134,40 @@ export default function ManageUsers() {
                       variant="small"
                       className="font-normal text-gray-600"
                     >
-                      <Button size="sm">Edit</Button>
+                      {role}
                     </Typography>
                   </td>
 
                   <td className={classes}>
-                    <Button size="sm">Delete</Button>
-                  </td>
-
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      className="font-normal text-gray-600"
+                    <Button
+                      size="sm"
+                      className="bg-purple-500"
+                      onClick={() => handleRole(_id, "admin")}
                     >
+                      Edit
+                    </Button>
+                  </td>
+
+                  <td className={classes}>
+                    <Button
+                      size="sm"
+                      className="bg-blue-gray-500"
+                      onClick={() => handleRole(_id, "agent")}
+                    >
+                      Edit
+                    </Button>
+                  </td>
+
+                  <td className={classes}>
+                    <Button size="sm" className="bg-red-500">
+                      Delete
+                    </Button>
+                  </td>
+
+                  <td className={classes}>
+                    <Button size="sm" className="bg-amber-500">
                       Mark
-                    </Typography>
+                    </Button>
                   </td>
                 </tr>
               );

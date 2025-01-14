@@ -11,7 +11,8 @@ const TABLE_HEAD = [
   "Agent Email",
   "Price Range",
   "Status",
-  "Action",
+  "Verify",
+  "Reject",
 ];
 
 export default function ManageProperties() {
@@ -31,7 +32,7 @@ export default function ManageProperties() {
 
   if (isLoading) return <LoadingSpinner />;
 
-  const handleVerify = (id, status) => {
+  const handleStatus = (id, status) => {
     toast((t) => (
       <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
         <Typography>Confirm verify this property?</Typography>
@@ -159,29 +160,27 @@ export default function ManageProperties() {
                       </Button>
                     </td>
 
-                    {status === "Pending" ? (
+                    {status === "Pending" && (
                       <>
-                        <td className={classes}>
+                        <td>
                           <Button
                             size="sm"
-                            onClick={() => handleVerify(_id, "Verified")}
+                            onClick={() => handleStatus(_id, "Verified")}
                           >
                             Verify
                           </Button>
+                        </td>
+
+                        <td>
                           <Button
                             size="sm"
-                            className="ml-2 bg-red-500"
-                            onClick={() => handleVerify(_id, "Rejected")}
+                            className=" bg-red-500"
+                            onClick={() => handleStatus(_id, "Rejected")}
                           >
                             Reject
                           </Button>
                         </td>
                       </>
-                    ) : (
-                      <td>
-                        {" "}
-                        <Typography>-</Typography>
-                      </td>
                     )}
                   </tr>
                 );

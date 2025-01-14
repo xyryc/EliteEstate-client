@@ -83,7 +83,7 @@ This page should display detailed information about the property. What you will 
 
 When a user clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
 
-- My Profile.  ✅
+- My Profile. ✅
 - Wishlist. ✅
 - Property bought. ✅
 - My reviews. ✅
@@ -178,7 +178,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - Price range.
   - Minimum Price ✅
   - Maximum Price ✅
-- update button (if the verification status is “rejected” then the update button will disappear, which means the agent won't be able to update the property). 
+- update button (if the verification status is “rejected” then the update button will disappear, which means the agent won't be able to update the property).
 - delete button ✅
 
 \-Clicking on the \`Update button\` will redirect the user to a form page where the form will have the following fields: ✅
@@ -240,11 +240,11 @@ Private Route and only the users who has the admin role will be able to see thes
 - verify button ✅
 - reject button. ✅
 
-\-if the admin clicks the verify button then that property will be added to the “All properties” page with the verified status also verify button and reject button will disappear and a status “verified” will be shown there.If the admin clicks the reject button then the property will not be added to the all properties page and “rejected” status will be shown in place of verify and reject button.
+\-if the admin clicks the verify button then that property will be added to the “All properties” page with the verified status also verify button and reject button will disappear and a status “verified” will be shown there.If the admin clicks the reject button then the property will not be added to the all properties page and “rejected” status will be shown in place of verify and reject button. ✅
 
 **Manage users:** Show all the users in a tabular format where each row will have:
 
-- User name
+- User name 
 - User email
 - Make admin button
 - Make agent button
@@ -264,28 +264,28 @@ Private Route and only the users who has the admin role will be able to see thes
 
 **Manage reviews:** All the user reviews for all the properties will be shown here.Each card will contain reviewer image,reviewer email,reviewer name,review and a delete button.If the admin clicks the delete button of any review card then that review will be removed from this page and also from the users page who has made this review.
 
-9. ## **Authentication System**
+9. ## **Authentication System** ✅
 
-You Must implement Email and password-based Authentication. This means you will have to implement the Registration and the login page. Users should be able to toggle between Login and Registration view.Also you need to implement at least one social login system.  
-\> \`**Note**:\` Do not enforce the \`forget or reset password feature\` and the \`email verification method\`, as it will inconvenience the examiner. If you want, you can add email verification/forget the password after receiving the assignment result.
+You Must implement Email and password-based Authentication. This means you will have to implement the Registration and the login page. Users should be able to toggle between Login and Registration view.Also you need to implement at least one social login system.  ✅
+\> \`**Note**:\` Do not enforce the \`forget or reset password feature\` and the \`email verification method\`, as it will inconvenience the examiner. If you want, you can add email verification/forget the password after receiving the assignment result. ✅
 
 On the Registration page, display errors when:
 
      The password
 
-     \- is less than 6 characters
-     \- don't have a capital letter
-     \- don't have a special character
+     \- is less than 6 characters ✅
+     \- don't have a capital letter ✅
+     \- don't have a special character ✅
 
 On the Login page, display errors when:
 
-    \- password doesn't match
-    \- email doesn't match
-    You can take the error message from Firebase. You can show the error below the input fields or via alert/toast. If you use alert/toast, do not implement the browser alert.
+    \- password doesn't match ✅
+    \- email doesn't match ✅
+    You can take the error message from Firebase. You can show the error below the input fields or via alert/toast. If you use alert/toast, do not implement the browser alert. ✅
 
 10. ## **Use Tanstack query**
 
-Use Tanstack Query forwith mutation for data fetching and posting.
+Use Tanstack Query forwith mutation for data fetching and posting. 
 
 11. ## **Others**
 
