@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 export default function AddedProperties() {
   const { user } = useAuth();
@@ -33,7 +34,7 @@ export default function AddedProperties() {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center place-items-center gap-6 px-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 justify-items-center place-items-center gap-6 px-4">
       {properties?.map((item) => (
         <Card className="mt-6" key={item._id}>
           <CardHeader color="blue-gray" className="relative h-56 min-w-80">
@@ -61,7 +62,9 @@ export default function AddedProperties() {
             <Typography>Status: {item.status}</Typography>
           </CardBody>
           <CardFooter className="flex gap-2">
-            <Button>Update</Button>
+            <Link to={`/dashboard/addedProperties/update/${item._id}`}>
+              <Button>Update</Button>
+            </Link>
             <Button>Delete</Button>
           </CardFooter>
         </Card>

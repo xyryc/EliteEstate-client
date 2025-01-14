@@ -14,6 +14,7 @@ import AddedProperties from "../pages/dashboard/agent/AddedProperties";
 import SoldProperties from "../pages/dashboard/agent/SoldProperties";
 import ManageProperties from "../pages/dashboard/admin/ManageProperties";
 import ManageReviews from "../pages/dashboard/admin/ManageReviews";
+import UpdateProperty from "../pages/dashboard/agent/UpdateProperty";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
       {
         path: "addedProperties",
         element: <AddedProperties />,
+      },
+      {
+        path: "addedProperties/update/:id",
+        element: <UpdateProperty />,
       },
       {
         path: "soldProperties",
