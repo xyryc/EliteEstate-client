@@ -34,7 +34,7 @@ const navListMenuItems = [
     title: "Dashboard",
     description: "Find the perfect solution for your needs.",
     icon: SquaresPlusIcon,
-    url: "/dashboard",
+    url: "/dashboard/myProfile",
   },
 ];
 
@@ -158,7 +158,6 @@ export function CustomNavbar() {
   const handleLogout = () => {
     logOut();
   };
-
 
   return (
     <Navbar className="mx-auto px-4 py-2">
