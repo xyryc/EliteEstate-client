@@ -15,36 +15,34 @@ const UpdateProperty = () => {
 
   const axiosSecure = useAxiosSecure();
 
-  const {
-    data: singleProp = [],
-    // refetch,
-  } = useQuery({
-    queryKey: ["singleProp"],
+  const { data: singleProp = [] } = useQuery({
+    queryKey: ["singleProp", id],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/properties/${id}`);
       return data;
     },
   });
-  console.log(singleProp);
 
   // handle format submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     const form = e.target;
+
     const title = form.title.value;
     const location = form.location.value;
     const min_price = parseFloat(form.min_price.value);
     const max_price = parseFloat(form.max_price.value);
     const image = form.image.files[0];
-    const image_url = await imageUpload(image);
 
-    // agent info
-    const agent = {
-      name: user?.displayName,
-      image: user?.photoURL,
-      email: user?.email,
-    };
+    let image_url;
+    if (image) {
+      // Only upload if a new image is selected
+      image_url = await imageUpload(image);
+    } else {
+      // If no new image is selected, retain the existing image URL
+      image_url = singleProp.image; // Assume singleProp.image holds the current image URL
+    }
 
     // create plant data object
     const propertyData = {
@@ -53,19 +51,22 @@ const UpdateProperty = () => {
       min_price,
       max_price,
       image: image_url,
-      agent,
     };
 
     console.table(propertyData);
 
     // save data in db
     try {
-      const { data } = await axiosSecure.post(`/properties`, propertyData);
+      const { data } = await axiosSecure.patch(
+        `/properties/${id}`,
+        propertyData
+      );
       console.log(data);
-      toast.success("Data added successfully!");
+      toast.success("Data updated successfully!");
       navigate("/dashboard/addedProperties");
     } catch (err) {
       console.log(err);
+      toast.error("Failed to update data!");
     } finally {
       setLoading(false);
     }

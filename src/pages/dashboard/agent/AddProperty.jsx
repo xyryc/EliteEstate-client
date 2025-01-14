@@ -53,6 +53,7 @@ export default function AddProperty() {
       navigate("/dashboard/addedProperties");
     } catch (err) {
       console.log(err);
+      toast.error("Failed to add data!");
     } finally {
       setLoading(false);
     }
