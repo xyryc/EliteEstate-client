@@ -15,6 +15,7 @@ import SoldProperties from "../pages/dashboard/agent/SoldProperties";
 import ManageProperties from "../pages/dashboard/admin/ManageProperties";
 import ManageReviews from "../pages/dashboard/admin/ManageReviews";
 import UpdateProperty from "../pages/dashboard/agent/UpdateProperty";
+import RequestedProperties from "../pages/dashboard/agent/RequestedProperties";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
       {
         path: "soldProperties",
         element: <SoldProperties />,
+      },
+      {
+        path: "requestedProperties",
+        element: <RequestedProperties />,
       },
 
       // admin routes

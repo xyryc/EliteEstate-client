@@ -239,19 +239,23 @@ export default function ManageUsers() {
                       )}
                     </td>
 
-                    <td className={classes}>
-                      {fraud ? (
-                        "Fraud"
-                      ) : (
-                        <Button
-                          size="sm"
-                          className="bg-amber-500"
-                          onClick={() => handleFraud(email)}
-                        >
-                          Mark
-                        </Button>
-                      )}
-                    </td>
+                    {role === "agent" ? (
+                      <td className={classes}>
+                        {fraud ? (
+                          "Fraud"
+                        ) : (
+                          <Button
+                            size="sm"
+                            className="bg-amber-500"
+                            onClick={() => handleFraud(email)}
+                          >
+                            Mark
+                          </Button>
+                        )}
+                      </td>
+                    ) : (
+                      <td>-</td>
+                    )}
 
                     <td className={classes}>
                       <Button

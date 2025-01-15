@@ -123,11 +123,9 @@ function NavList() {
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
       <Typography variant="small" color="blue-gray" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <NavLink>Home</NavLink>
+          <NavLink to="/">Home</NavLink>
         </ListItem>
       </Typography>
-
-      <NavListMenu />
 
       <Typography
         as="a"
@@ -137,7 +135,7 @@ function NavList() {
         className="font-medium"
       >
         <ListItem className="flex items-center gap-2 py-2 pr-4">
-          Contact Us
+          <NavLink to="/dashboard/myProfile">Dashboard</NavLink>
         </ListItem>
       </Typography>
     </List>

@@ -90,9 +90,11 @@ export default function AddedProperties() {
             <Typography>Status: {item.status}</Typography>
           </CardBody>
           <CardFooter className="flex gap-2">
-            <Link to={`/dashboard/addedProperties/update/${item._id}`}>
-              <Button>Update</Button>
-            </Link>
+            {item.status === "Verified" && (
+              <Link to={`/dashboard/addedProperties/update/${item._id}`}>
+                <Button>Update</Button>
+              </Link>
+            )}
             <Button onClick={() => handleDeleteProperty(item._id)}>
               Delete
             </Button>

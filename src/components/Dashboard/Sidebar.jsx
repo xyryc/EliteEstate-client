@@ -17,8 +17,8 @@ const Sidebar = () => {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:static w-64`}
       >
-        <div className="flex justify-between items-center mb-8">
-          <Typography variant="h5">Dashboard</Typography>
+        <div className="flex justify-between items-center mb-8 text-center">
+          <Typography variant="h4">EliteEstate Dashboard</Typography>
           <IconButton
             size="sm"
             color="white"
@@ -88,6 +88,14 @@ const Sidebar = () => {
                     </Button>
                   </Link>
                 </li>
+
+                <li>
+                  <Link to="/dashboard/requestedProperties">
+                    <Button fullWidth variant="text" className="text-white">
+                      Requested Properties
+                    </Button>
+                  </Link>
+                </li>
               </>
             )}
 
@@ -117,6 +125,16 @@ const Sidebar = () => {
                 </li>
               </>
             )}
+
+
+
+            <li className="border-t-2 pt-4">
+              <Link to="/">
+                <Button fullWidth variant="text" className="text-white">
+                  Home
+                </Button>
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -134,7 +152,7 @@ const Sidebar = () => {
             <HiMenuAlt3 size={24} />
           </IconButton>
           <Typography variant="h4" className="font-semibold">
-            Welcome Back
+            EliteEstate
           </Typography>
           <Button variant="outlined" className="border-black text-black">
             Logout

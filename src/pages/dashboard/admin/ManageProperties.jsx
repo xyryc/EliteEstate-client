@@ -10,7 +10,7 @@ const TABLE_HEAD = [
   "Agent Name",
   "Agent Email",
   "Price Range",
-  "Status",
+
   "Verify",
   "Reject",
 ];
@@ -147,20 +147,8 @@ export default function ManageProperties() {
                         ${min_price} - ${max_price}
                       </Typography>
                     </td>
-                    <td>
-                      <Button
-                        size="sm"
-                        className={`${
-                          status === "Verified" && "bg-green-500"
-                        } ${status === "Rejected" && "bg-red-500"}
-                        ${status === "Pending" && "bg-deep-purple-600"}
-                        `}
-                      >
-                        {status}
-                      </Button>
-                    </td>
 
-                    {status === "Pending" && (
+                    {status === "Pending" ? (
                       <>
                         <td>
                           <Button
@@ -178,6 +166,34 @@ export default function ManageProperties() {
                             onClick={() => handleStatus(_id, "Rejected")}
                           >
                             Reject
+                          </Button>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td>
+                          <Button
+                            size="sm"
+                            className={`${
+                              status === "Verified" && "bg-green-500"
+                            } ${status === "Rejected" && "bg-red-500"}
+                 
+                        `}
+                          >
+                            {status}
+                          </Button>
+                        </td>
+
+                        <td>
+                          <Button
+                            size="sm"
+                            className={`${
+                              status === "Verified" && "bg-green-500"
+                            } ${status === "Rejected" && "bg-red-500"}
+                 
+                        `}
+                          >
+                            {status}
                           </Button>
                         </td>
                       </>

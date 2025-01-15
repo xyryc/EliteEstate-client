@@ -12,14 +12,14 @@ You must develop a **Real estate Platform (an online platform where people can a
 
 **Key Rules:**
 
-- Include a minimum of 20 notable GitHub commits on the client side
-- Include a minimum of 12 notable GitHub commits on the server side
+- Include a minimum of 20 notable GitHub commits on the client side ✅
+- Include a minimum of 12 notable GitHub commits on the server side ✅
 - Add a meaningful readme.md file with the name of your website, Admin username, password and live site URL. Include a minimum of 10 bullet points to feature your website.
-- Make it responsive for all devices. You need to make it responsive for mobile, tablet and desktop views. Make the dashboard responsive as well.
+- Make it responsive for all devices. You need to make it responsive for mobile, tablet and desktop views. Make the dashboard responsive as well. ✅
 - After reloading the page of a private route, the user should not be redirected to the login page.
-- Use the Environment variable to hide the Firebase config keys and Mongodb credentials.
+- Use the Environment variable to hide the Firebase config keys and Mongodb credentials. ✅
 - Don’t use any Lorem ipsum text in your website.
-- Show sweet alert/toast/notification for all the crud operations, successful authentication login, and sign-up. Don’t use the default browser alert.
+- Show sweet alert/toast/notification for all the crud operations, successful authentication login, and sign-up. Don’t use the default browser alert. ✅
 
 **Main Tasks**
 
@@ -145,17 +145,17 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 <!-- Agent Dashboard -->
 
 7. **Agent Dashboard🔒( Agent Only ):**  
-   \-When an agent clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
+   \-When an agent clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes: ✅
 
-- Agent Profile.
-- Add Property.
-- My added properties.
-- My sold properties.
+- Agent Profile. ✅
+- Add Property. ✅
+- My added properties. ✅
+- My sold properties. ✅
 - Requested properties.
 
 **Agent Profile:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
 
-**Add Property:** Create an \`Add Property\` page where there will be a form for the agent to add a property. The form will have:
+**Add Property:** Create an \`Add Property\` page where there will be a form for the agent to add a property. The form will have: ✅
 
 - Property title. ✅
 - Property location. ✅
@@ -174,11 +174,11 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - property location. ✅
 - Agent name. ✅
 - Agent image. ✅
-- verification status.(by default the status will be “pending”.This verification status will be modified by the admin.if the admin verifies the property then the verification status will be “verified” and if the admin rejects then the verification status will be “rejected”)
+- verification status.(by default the status will be “pending”.This verification status will be modified by the admin.if the admin verifies the property then the verification status will be “verified” and if the admin rejects then the verification status will be “rejected”) ✅
 - Price range.
   - Minimum Price ✅
   - Maximum Price ✅
-- update button (if the verification status is “rejected” then the update button will disappear, which means the agent won't be able to update the property).
+- update button (if the verification status is “rejected” then the update button will disappear, which means the agent won't be able to update the property). ✅
 - delete button ✅
 
 \-Clicking on the \`Update button\` will redirect the user to a form page where the form will have the following fields: ✅
@@ -224,7 +224,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 Private Route and only the users who has the admin role will be able to see these routes & When an admin clicks on the Dashboard, he/she will be redirected to a page where there will be the following routes:
 
 - Admin Profile. ✅
-- Manage Properties.
+- Manage Properties. ✅
 - Manage Users.
 - Manage reviews.
 
@@ -244,29 +244,29 @@ Private Route and only the users who has the admin role will be able to see thes
 
 **Manage users:** Show all the users in a tabular format where each row will have:
 
-- User name 
-- User email
-- Make admin button
-- Make agent button
-- Mark as fraud button (This button will only appear if the user is an agent)
-- Delete user
+- User name ✅
+- User email ✅
+- Make admin button ✅
+- Make agent button ✅
+- Mark as fraud button (This button will only appear if the user is an agent) ✅
+- Delete user ✅
 
 - admin can make a user admin by clicking on the Make Admin button, ✅
 - admin can make a user “agent” by clicking the make agent button ✅
 - admin can delete a user from the database by clicking the delete user button. ✅
 - You don't need to delete all the properties the user has added. ✅
-- You have to delete the user from firebase also. 
+- You have to delete the user from firebase also.
 
 - If the admin clicks the **“Mark as fraud”** button for any agent then ✅
   - that specific agent will be marked as fraud and a “Fraud” status will be shown in place of “Make admin” , “Make agent” . ✅
-  - All the properties that the agent has added will be removed from the All properties 
-  - Agents with fraud will not be able to add any properties in the future.
+  - All the properties that the agent has added will be removed from the All properties ✅
+  - Agents with fraud will not be able to add any properties in the future. ✅
 
 **Manage reviews:** All the user reviews for all the properties will be shown here.Each card will contain reviewer image,reviewer email,reviewer name,review and a delete button.If the admin clicks the delete button of any review card then that review will be removed from this page and also from the users page who has made this review.
 
 9. ## **Authentication System** ✅
 
-You Must implement Email and password-based Authentication. This means you will have to implement the Registration and the login page. Users should be able to toggle between Login and Registration view.Also you need to implement at least one social login system.  ✅
+You Must implement Email and password-based Authentication. This means you will have to implement the Registration and the login page. Users should be able to toggle between Login and Registration view.Also you need to implement at least one social login system. ✅
 \> \`**Note**:\` Do not enforce the \`forget or reset password feature\` and the \`email verification method\`, as it will inconvenience the examiner. If you want, you can add email verification/forget the password after receiving the assignment result. ✅
 
 On the Registration page, display errors when:
@@ -285,11 +285,11 @@ On the Login page, display errors when:
 
 10. ## **Use Tanstack query**
 
-Use Tanstack Query forwith mutation for data fetching and posting. 
+Use Tanstack Query forwith mutation for data fetching and posting.
 
 11. ## **Others**
 
-- Once logged in, the user name, profile picture and the logout button should appear on the navbar. If the user clicks on the logout button, make sure to log him/her out.
+- Once logged in, the user name, profile picture and the logout button should appear on the navbar. If the user clicks on the logout button, make sure to log him/her out. ✅
 - Add a 404 page (not found page)
 
 **Challenges task:**
@@ -316,7 +316,7 @@ You can try to implement these features:
 
 3. Add a route called “selling statistics” on the Agent dashboard where you have to visualize a chart about an agent's selling record. You can show the chart based on the property title and sold price.This chart can be of any type. [recharts](https://recharts.org/en-US/examples).
 
-4. Implement Axios interceptor.
+4. Implement Axios interceptor. ✅
 
 5. Implement a price based filtering system on “All properties page”.
 
