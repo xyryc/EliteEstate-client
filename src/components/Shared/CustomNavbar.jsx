@@ -68,7 +68,7 @@ export function CustomNavbar() {
         </div>
 
         {user ? (
-          <div className="flex gap-2">
+          <div className="space-x-2">
             <Avatar
               title={user?.displayName}
               variant="circular"

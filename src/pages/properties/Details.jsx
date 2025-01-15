@@ -1,13 +1,17 @@
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { LuHeart } from "react-icons/lu";
 import { IoLocationOutline } from "react-icons/io5";
 import { Button } from "@material-tailwind/react";
+import { toast } from "react-hot-toast";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+import useAuth from "../../hooks/useAuth";
 
 const Details = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   const { data: singleProp = {} } = useQuery({
     queryKey: ["singleProp"],
@@ -23,9 +27,26 @@ const Details = () => {
   const { agent, image, title, location, max_price, min_price, status } =
     singleProp;
 
-  const addToWishList = () => {
-    
+  // wishlist
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: async (wishlistData) => {
+      await axiosSecure.post(`/wishlist`, wishlistData);
+    },
+    onSuccess: () => {
+      toast.success("Added to wishlist!");
+      // navigate("/my-orders");
+    },
+    onError: () => {
+      toast.error("Add to wishlist failed!");
+    },
+  });
+
+  const addToWishList = async () => {
+    const wishlistData = { ...singleProp, email: user?.email };
+    await mutateAsync(wishlistData);
   };
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="container mx-auto p-4 sm:p-6">

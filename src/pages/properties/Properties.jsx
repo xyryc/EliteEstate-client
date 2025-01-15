@@ -19,8 +19,6 @@ const Properties = () => {
     },
   });
 
-  console.log(verifiedProperties);
-
   return (
     <>
       {isLoading ? (
