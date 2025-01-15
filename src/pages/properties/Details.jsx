@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { LuHeart } from "react-icons/lu";
@@ -12,14 +12,13 @@ const Details = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const { data: singleProp = {} } = useQuery({
     queryKey: ["singleProp"],
     queryFn: async () => {
       // fetch a specific verified property data
-      const { data } = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/verifiedProperties/${id}`
-      );
+      const { data } = await axiosSecure.get(`/verifiedProperties/${id}`);
       return data;
     },
   });
@@ -34,7 +33,7 @@ const Details = () => {
     },
     onSuccess: () => {
       toast.success("Added to wishlist!");
-      // navigate("/my-orders");
+      navigate("/dashboard/wishlist");
     },
     onError: () => {
       toast.error("Add to wishlist failed!");
