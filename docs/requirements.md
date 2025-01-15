@@ -63,7 +63,7 @@ This page will contain all the properties added by all the real estate agents (*
 - Agent image. ✅
 - Verification status. ✅
 - Price range. ✅
-- Details button.(clicking on the details button will redirect the user to the property details page.See **req. 5**)
+- Details button.(clicking on the details button will redirect the user to the property details page.See **req. 5**) ✅
 
 * This will be a private/protected route.
 
@@ -86,7 +86,7 @@ When a user clicks on the Dashboard, he/she will be redirected to a page where t
 - My Profile. ✅
 - Wishlist. ✅
 - Property bought. ✅
-- My reviews. ✅
+- My reviews. 
 
 **My Profile page:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
 

@@ -3,7 +3,7 @@ import { CustomNavbar } from "../components/Shared/CustomNavbar";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="font-poppins">
       <CustomNavbar />
 
       <Outlet />
