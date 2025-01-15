@@ -67,6 +67,37 @@ export default function ManageUsers() {
     ));
   };
 
+  const handleDeleteUser = (id) => {
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <Typography>Delete user?</Typography>
+        <div className="space-x-2">
+          <Button
+            size="sm"
+            className="bg-green-500"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const res = await axiosSecure.delete(`/users/${id}`);
+              if (res.data.deletedCount > 0) {
+                toast.success("User deleted!");
+                refetch();
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            size="sm"
+            className="bg-red-500"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <section className="w-full bg-white">
       <div className="p-6">
@@ -159,7 +190,11 @@ export default function ManageUsers() {
                   </td>
 
                   <td className={classes}>
-                    <Button size="sm" className="bg-red-500">
+                    <Button
+                      size="sm"
+                      className="bg-red-500"
+                      onClick={() => handleDeleteUser(_id)}
+                    >
                       Delete
                     </Button>
                   </td>

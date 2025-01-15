@@ -251,11 +251,11 @@ Private Route and only the users who has the admin role will be able to see thes
 - Mark as fraud button (This button will only appear if the user is an agent)
 - Delete user
 
-- admin can make a user admin by clicking on the Make Admin button,
-- admin can make a user “agent” by clicking the make agent button
-- admin can delete a user from the database by clicking the delete user button.
-- You don't need to delete all the properties the user has added.
-- You have to delete the user from firebase also.
+- admin can make a user admin by clicking on the Make Admin button, ✅
+- admin can make a user “agent” by clicking the make agent button ✅
+- admin can delete a user from the database by clicking the delete user button. ✅
+- You don't need to delete all the properties the user has added. ✅
+- You have to delete the user from firebase also. 
 
 - If the admin clicks the **“Mark as fraud”** button for any agent then
   - that specific agent will be marked as fraud and a “Fraud” status will be shown in place of “Make admin” , “Make agent” .
