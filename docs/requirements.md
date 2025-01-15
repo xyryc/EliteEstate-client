@@ -71,7 +71,7 @@ This page will contain all the properties added by all the real estate agents (*
 
 This page should display detailed information about the property. What you will include in the detailed information is entirely up to you but make sure to add property title, description, price range and agent name. ✅
 
-- There will be a button on the details page called “Add to wishlist”.Clicking this button will add the property on the wishlist page and also the information will be saved to the database. 
+- There will be a button on the details page called “Add to wishlist”.Clicking this button will add the property on the wishlist page and also the information will be saved to the database. ✅
 
 - There will be a review section at the bottom of the details page where you have to show all the reviews for that specific property which are made by the users.
 

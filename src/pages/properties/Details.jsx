@@ -41,7 +41,9 @@ const Details = () => {
   });
 
   const addToWishList = async () => {
-    const wishlistData = { ...singleProp, email: user?.email };
+    // eslint-disable-next-line no-unused-vars
+    const { _id, ...rest } = singleProp;
+    const wishlistData = { ...rest, email: user?.email };
     await mutateAsync(wishlistData);
   };
 
