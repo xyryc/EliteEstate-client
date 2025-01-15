@@ -56,7 +56,7 @@ Add two extra sections to the home page in addition to the sections mentioned ab
 
 This page will contain all the properties added by all the real estate agents (**Req. 7**\>\> addProperty ) which are verified by admin (**Req.8** \> manage property ) Each card will contain the following informations:
 
-- Property image.  ✅
+- Property image. ✅
 - Property title. ✅
 - Property location. ✅
 - Agent name. ✅
@@ -86,7 +86,7 @@ When a user clicks on the Dashboard, he/she will be redirected to a page where t
 - My Profile. ✅
 - Wishlist. ✅
 - Property bought. ✅
-- My reviews. 
+- My reviews.
 
 **My Profile page:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
 
@@ -150,7 +150,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - Agent Profile. ✅
 - Add Property. ✅
 - My added properties. ✅
-- My sold properties. 
+- My sold properties.
 - Requested properties.
 
 **Agent Profile:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
@@ -211,7 +211,6 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - offered price.
 - accept button
 - reject button
-
 
 \-by default status will be pending.After clicking the accept button this status will be changed to “accepted” and both the accept and reject button will disappear and the status will be shown there.This will also happen for the reject button and “rejected” status will be shown.
 
