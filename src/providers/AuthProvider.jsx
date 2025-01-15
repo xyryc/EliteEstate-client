@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const logOut = async () => {
+  const logOut = () => {
     setLoading(true);
     setUser(null);
     return signOut(auth);
@@ -52,26 +52,26 @@ const AuthProvider = ({ children }) => {
 
   // onAuthStateChange
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      console.log("CurrentUser-->", currentUser);
-      if (currentUser?.email) {
-        setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("CurrentUser-->", currentUser?.email);
+      setUser(currentUser);
 
-        // Get JWT token
-        await axios.post(
-          `${import.meta.env.VITE_API_URL}/jwt`,
-          {
-            email: currentUser?.email,
-          },
-          { withCredentials: true }
-        );
+      if (currentUser) {
+        // get token and store to local storage
+        const userInfo = { email: currentUser?.email };
+        axios
+          .post(`${import.meta.env.VITE_API_URL}/jwt`, userInfo)
+          .then((res) => {
+            if (res.data.token) {
+              localStorage.setItem("access-token", res.data.token);
+              setLoading(false);
+            }
+          });
       } else {
-        setUser(currentUser);
-        await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-          withCredentials: true,
-        });
+        // logout user + remove token
+        localStorage.removeItem("access-token");
+        setLoading(false);
       }
-      setLoading(false);
     });
     return () => {
       return unsubscribe();

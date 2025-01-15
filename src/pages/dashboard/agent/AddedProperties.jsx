@@ -25,7 +25,7 @@ export default function AddedProperties() {
   } = useQuery({
     queryKey: ["properties", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/properties`);
+      const { data } = await axiosSecure.get(`/properties/${user?.email}`);
       return data;
     },
   });

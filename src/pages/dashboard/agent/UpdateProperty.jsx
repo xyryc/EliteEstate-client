@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Button, Card, Input, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { imageUpload } from "../../../api/utils";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const UpdateProperty = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const UpdateProperty = () => {
   const { data: singleProp = [] } = useQuery({
     queryKey: ["singleProp", id],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/properties/${id}`);
+      const { data } = await axiosSecure.get(`/properties/update/${id}`);
       return data;
     },
   });
@@ -52,8 +52,6 @@ const UpdateProperty = () => {
       max_price,
       image: image_url,
     };
-
-    console.table(propertyData);
 
     // save data in db
     try {

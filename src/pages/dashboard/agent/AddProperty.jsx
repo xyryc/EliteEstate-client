@@ -53,11 +53,14 @@ export default function AddProperty() {
       status: "Pending",
     };
 
-    console.table(propertyData);
+    // console.table(propertyData);
 
     // save data in db
     try {
-      const { data } = await axiosSecure.post(`/properties`, propertyData);
+      const { data } = await axiosSecure.post(
+        `/properties/${user?.email}`,
+        propertyData
+      );
       console.log(data);
       toast.success("Data added successfully!");
       navigate("/dashboard/addedProperties");

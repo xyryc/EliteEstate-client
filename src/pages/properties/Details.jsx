@@ -22,7 +22,10 @@ const Details = () => {
 
   const { agent, image, title, location, max_price, min_price, status } =
     singleProp;
-  console.log(singleProp);
+
+  const addToWishList = () => {
+    
+  };
 
   return (
     <div className="container mx-auto p-4 sm:p-6">
@@ -76,7 +79,10 @@ const Details = () => {
             ${min_price} - ${max_price}
           </p>
 
-          <Button className="mt-2 flex items-center gap-2">
+          <Button
+            className="mt-2 flex items-center gap-2"
+            onClick={() => addToWishList()}
+          >
             <LuHeart />
             Wishlist
           </Button>
