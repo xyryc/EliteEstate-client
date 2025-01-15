@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 const TABLE_HEAD = [
   "Name",
@@ -12,8 +13,8 @@ const TABLE_HEAD = [
   "Role",
   "Make Admin",
   "Make Agent",
-  "Delete User",
   "Mark as Fraud",
+  "Delete User",
 ];
 
 export default function ManageUsers() {
@@ -98,6 +99,44 @@ export default function ManageUsers() {
     ));
   };
 
+  const handleFraud = (email) => {
+    const fraud = true;
+
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <Typography>Mark as fraud?</Typography>
+        <div className="space-x-2">
+          <Button
+            size="sm"
+            className="bg-green-500"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const res = await axiosSecure.patch(`/users/fraud/${email}`, {
+                fraud,
+              });
+
+              if (res.data?.deletedCount > 0) {
+                toast.success(
+                  "User marked as fraud and their properties removed!"
+                );
+                refetch();
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            size="sm"
+            className="bg-red-500"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <section className="w-full bg-white">
       <div className="p-6">
@@ -127,86 +166,106 @@ export default function ManageUsers() {
             </tr>
           </thead>
           <tbody>
-            {users.map(({ name, role, email, timestamp, _id }, index) => {
-              const isLast = index === users.length - 1;
-              const classes = isLast ? "py-4" : "py-4 border-b border-gray-300";
+            {users.map(
+              ({ name, role, email, timestamp, _id, fraud }, index) => {
+                const isLast = index === users.length - 1;
+                const classes = isLast
+                  ? "py-4"
+                  : "py-4 border-b border-gray-300";
 
-              return (
-                <tr key={name} className="hover:bg-gray-50">
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-bold"
-                    >
-                      {name}
-                    </Typography>
-                  </td>
+                return (
+                  <tr key={name} className="hover:bg-gray-50">
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-bold"
+                      >
+                        {name}
+                      </Typography>
+                    </td>
 
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      className="font-normal text-gray-600"
-                    >
-                      {email}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      className="font-normal text-gray-600"
-                    >
-                      {timestamp}
-                    </Typography>
-                  </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="font-normal text-gray-600"
+                      >
+                        {email}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="font-normal text-gray-600"
+                      >
+                        {moment(timestamp).format("DD/MM/YY")}
+                      </Typography>
+                    </td>
 
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      className="font-normal text-gray-600"
-                    >
-                      {role}
-                    </Typography>
-                  </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="font-normal text-gray-600"
+                      >
+                        {role}
+                      </Typography>
+                    </td>
 
-                  <td className={classes}>
-                    <Button
-                      size="sm"
-                      className="bg-purple-500"
-                      onClick={() => handleRole(_id, "admin")}
-                    >
-                      Edit
-                    </Button>
-                  </td>
+                    <td className={classes}>
+                      {fraud ? (
+                        "Fraud"
+                      ) : (
+                        <Button
+                          size="sm"
+                          className="bg-purple-500"
+                          onClick={() => handleRole(_id, "admin")}
+                        >
+                          Edit
+                        </Button>
+                      )}
+                    </td>
 
-                  <td className={classes}>
-                    <Button
-                      size="sm"
-                      className="bg-blue-gray-500"
-                      onClick={() => handleRole(_id, "agent")}
-                    >
-                      Edit
-                    </Button>
-                  </td>
+                    <td className={classes}>
+                      {fraud ? (
+                        "Fraud"
+                      ) : (
+                        <Button
+                          size="sm"
+                          className="bg-blue-gray-500"
+                          onClick={() => handleRole(_id, "agent")}
+                        >
+                          Edit
+                        </Button>
+                      )}
+                    </td>
 
-                  <td className={classes}>
-                    <Button
-                      size="sm"
-                      className="bg-red-500"
-                      onClick={() => handleDeleteUser(_id)}
-                    >
-                      Delete
-                    </Button>
-                  </td>
+                    <td className={classes}>
+                      {fraud ? (
+                        "Fraud"
+                      ) : (
+                        <Button
+                          size="sm"
+                          className="bg-amber-500"
+                          onClick={() => handleFraud(email)}
+                        >
+                          Mark
+                        </Button>
+                      )}
+                    </td>
 
-                  <td className={classes}>
-                    <Button size="sm" className="bg-amber-500">
-                      Mark
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
+                    <td className={classes}>
+                      <Button
+                        size="sm"
+                        className="bg-red-500"
+                        onClick={() => handleDeleteUser(_id)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
         </table>
       </Card>
