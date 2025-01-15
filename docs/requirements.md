@@ -107,16 +107,16 @@ Clicking the **“Make an offer”** button will navigate the user to a new page
 - Property title (readonly). ✅
 - Property location (readonly). ✅
 - Agent name (readonly). ✅
-- Offer amount. (User can not add an amount which is not in range of the price which was specified by the agent of that property)
+- Offer amount. (User can not add an amount which is not in range of the price which was specified by the agent of that property) ✅
 - buyer email(readonly) ✅
 - buyer name (readonly) ✅
-- buying date.
+- buying date. ✅
 - offer button ✅
 
 By clicking the offer button
 
-- the user can offer an amount. ( This amount must be in between the agent specified price range.If the price is not in between the price range then the offer will not be completed and an error message will be shown) to the agent for that specific property.
-- This information will be saved to the database and also it will be added to users “Property bought” page with the status “pending”.
+- the user can offer an amount. ( This amount must be in between the agent specified price range.If the price is not in between the price range then the offer will not be completed and an error message will be shown) to the agent for that specific property. ✅
+- This information will be saved to the database and also it will be added to users “Property bought” page with the status “pending”. 
 
 **Only users can buy property. Agent and admin can not buy property. Add a Validation.**
 
@@ -211,6 +211,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - offered price.
 - accept button
 - reject button
+
 
 \-by default status will be pending.After clicking the accept button this status will be changed to “accepted” and both the accept and reject button will disappear and the status will be shown there.This will also happen for the reject button and “rejected” status will be shown.
 

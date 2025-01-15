@@ -2,10 +2,17 @@ import { Button, Card, Input, Typography } from "@material-tailwind/react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
+import { useState } from "react";
+import useAuth from "../../../hooks/useAuth";
+import moment from "moment";
 
 const MakeOffer = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
 
   const { data: property = {} } = useQuery({
     queryKey: ["property", id],
@@ -15,16 +22,50 @@ const MakeOffer = () => {
     },
   });
 
-  const handleOfferSubmit = (e) => {
+  const handleOfferSubmit = async (e) => {
     e.preventDefault();
 
     const form = e.target;
     const minOffered = form.min_price_offered.value;
     const maxOffered = form.max_price_offered.value;
 
-    console.log(minOffered, maxOffered);
+    const offeredPrice = { minOffered, maxOffered };
+    const buyer = { email: user?.email, name: user?.displayName };
 
-    
+    const offerData = {
+      propertyId: property.propertyId,
+      propertyTitle: property.title,
+      propertyLocation: property.location,
+      propertyImage: property.image,
+      agent: property.agent,
+      buyer,
+      buyingDate: Date.now(),
+      offeredPrice,
+      offerStatus: "pending",
+    };
+
+    if (
+      minOffered < property.min_price ||
+      maxOffered > property.max_price ||
+      maxOffered < property.min_price ||
+      minOffered > property.max_price ||
+      maxOffered < minOffered
+    ) {
+      toast.error("Please offer an amount within range and in correct order");
+    } else {
+      // save data in db
+      try {
+        const { data } = await axiosSecure.post(`/offer`, offerData);
+        console.log(data);
+        toast.success("Offered successfully!");
+        navigate("/dashboard/propertyBought");
+      } catch (err) {
+        console.log(err);
+        toast.error("Failed to offer, Try again!");
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   return (
@@ -154,6 +195,7 @@ const MakeOffer = () => {
             </div>
           </div>
 
+          {/* agent info */}
           <div className="flex items-center gap-2">
             <Typography variant="h6" color="blue-gray">
               Agent Name & Email:
@@ -162,11 +204,16 @@ const MakeOffer = () => {
               {property?.agent?.name} ({property?.agent?.email})
             </Typography>
           </div>
-          <Button
-            className="mt-6"
-            type="submit"
-            //   loading={loading && true}
-          >
+
+          <div className="flex items-center gap-2">
+            <Typography variant="h6" color="blue-gray">
+              Buying Date:
+            </Typography>
+            <Typography variant="paragraph">
+              {moment().format("MMMM Do YYYY")}
+            </Typography>
+          </div>
+          <Button className="mt-6" type="submit" loading={loading && true}>
             Offer
           </Button>
         </form>
