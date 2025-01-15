@@ -90,28 +90,28 @@ When a user clicks on the Dashboard, he/she will be redirected to a page where t
 
 **My Profile page:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
 
-**Wishlist:** This page will contain all the properties which the user have wishlisted by clicking the “Add to wishlist” button on the details page.Each card will contain the following informations:
+**Wishlist:** This page will contain all the properties which the user have wishlisted by clicking the “Add to wishlist” button on the details page.Each card will contain the following informations: ✅
 
-- Property image.
-- Property title.
-- property location.
-- Agent name.
-- Agent image.
-- verification status.
-- Price range.
+- Property image. ✅
+- Property title.✅
+- property location.✅
+- Agent name.✅
+- Agent image.✅
+- verification status.✅
+- Price range.✅
 - Make an offer button.
 - remove button.
 
-Clicking the **“Make an offer”** button will navigate the user to a new page where there will be a form which will have some input fields.
+Clicking the **“Make an offer”** button will navigate the user to a new page where there will be a form which will have some input fields. ✅
 
-- Property title (readonly).
-- Property location (readonly).
-- Agent name (readonly).
+- Property title (readonly). ✅
+- Property location (readonly). ✅
+- Agent name (readonly). ✅
 - Offer amount. (User can not add an amount which is not in range of the price which was specified by the agent of that property)
-- buyer email(readonly)
-- buyer name (readonly)
+- buyer email(readonly) ✅
+- buyer name (readonly) ✅
 - buying date.
-- offer button
+- offer button ✅
 
 By clicking the offer button
 
@@ -150,7 +150,7 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 - Agent Profile. ✅
 - Add Property. ✅
 - My added properties. ✅
-- My sold properties. ✅
+- My sold properties. 
 - Requested properties.
 
 **Agent Profile:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅

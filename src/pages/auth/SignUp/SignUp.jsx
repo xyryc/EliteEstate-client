@@ -5,13 +5,14 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload, saveUser } from "../../../api/utils";
 import { useState } from "react";
+import { TbFidgetSpinner } from "react-icons/tb";
 
 const SignUp = () => {
   const {
     createUser,
     updateUserProfile,
     signInWithGoogle,
-
+    loading,
     setLoading,
   } = useAuth();
   const navigate = useNavigate();
@@ -135,7 +136,11 @@ const SignUp = () => {
           )}
           {/* Submit Button */}
           <Button type="submit" className="w-full">
-            Sign Up
+            {loading ? (
+              <TbFidgetSpinner className="animate-spin m-auto" />
+            ) : (
+              "Continue"
+            )}
           </Button>
         </form>
 

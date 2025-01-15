@@ -6,7 +6,7 @@ module.exports = withMT({
     extend: {
       fontFamily: {
         poppins: ['"Poppins", serif'],
-        ibm: ['"IBM Plex Sans", serif'],
+        inter: ['"Inter", serif'],
       },
     },
   },

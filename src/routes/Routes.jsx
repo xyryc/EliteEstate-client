@@ -18,6 +18,7 @@ import UpdateProperty from "../pages/dashboard/agent/UpdateProperty";
 import RequestedProperties from "../pages/dashboard/agent/RequestedProperties";
 import Properties from "../pages/properties/Properties";
 import Details from "../pages/properties/Details";
+import MakeOffer from "../pages/dashboard/customer/MakeOffer";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "wishlist",
         element: <Wishlist />,
+      },
+      {
+        path: "wishlist/offer/:id",
+        element: <MakeOffer />,
       },
       {
         path: "propertyBought",

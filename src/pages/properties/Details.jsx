@@ -36,14 +36,14 @@ const Details = () => {
       navigate("/dashboard/wishlist");
     },
     onError: () => {
-      toast.error("Add to wishlist failed!");
+      toast.error("Failed to Wishlist!");
     },
   });
 
   const addToWishList = async () => {
     // eslint-disable-next-line no-unused-vars
     const { _id, ...rest } = singleProp;
-    const wishlistData = { ...rest, email: user?.email };
+    const wishlistData = { ...rest, propertyId: id, email: user?.email };
     await mutateAsync(wishlistData);
   };
 

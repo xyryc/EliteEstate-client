@@ -4,7 +4,6 @@ import { TbFidgetSpinner } from "react-icons/tb";
 // import { saveUser } from "../../api/utils";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
-import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { FcGoogle } from "react-icons/fc";
 import { saveUser } from "../../../api/utils";
 
@@ -14,7 +13,7 @@ const Login = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
 
-  if (loading) return <LoadingSpinner />;
+  // if (loading) return <LoadingSpinner />;
   //   if (user) return <Navigate to={from} replace={true} />;
 
   // form submit handler

@@ -18,23 +18,28 @@ import useAuth from "../../hooks/useAuth";
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Typography variant="small" color="blue-gray" className="font-medium">
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <NavLink to="/">Home</NavLink>
-        </ListItem>
-      </Typography>
-
-      <Typography variant="small" color="blue-gray" className="font-medium">
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <NavLink to="/properties">Properties</NavLink>
-        </ListItem>
-      </Typography>
-
-      <Typography variant="small" color="blue-gray" className="font-medium">
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <NavLink to="/dashboard/myProfile">Dashboard</NavLink>
-        </ListItem>
-      </Typography>
+      {" "}
+      <NavLink to="/">
+        <Typography variant="small" color="blue-gray" className="font-medium">
+          <ListItem className="flex items-center gap-2 py-2 pr-4">
+            Home
+          </ListItem>
+        </Typography>
+      </NavLink>
+      <NavLink to="/properties">
+        <Typography variant="small" color="blue-gray" className="font-medium">
+          <ListItem className="flex items-center gap-2 py-2 pr-4">
+            Properties
+          </ListItem>
+        </Typography>
+      </NavLink>
+      <NavLink to="/dashboard/myProfile">
+        <Typography variant="small" color="blue-gray" className="font-medium">
+          <ListItem className="flex items-center gap-2 py-2 pr-4">
+            Dashboard
+          </ListItem>
+        </Typography>
+      </NavLink>
     </List>
   );
 }
