@@ -56,13 +56,13 @@ Add two extra sections to the home page in addition to the sections mentioned ab
 
 This page will contain all the properties added by all the real estate agents (**Req. 7**\>\> addProperty ) which are verified by admin (**Req.8** \> manage property ) Each card will contain the following informations:
 
-- Property image.
-- Property title.
-- Property location.
-- Agent name.
-- Agent image.
-- Verification status.
-- Price range.
+- Property image.  ✅
+- Property title. ✅
+- Property location. ✅
+- Agent name. ✅
+- Agent image. ✅
+- Verification status. ✅
+- Price range. ✅
 - Details button.(clicking on the details button will redirect the user to the property details page.See **req. 5**)
 
 * This will be a private/protected route.

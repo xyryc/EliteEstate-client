@@ -126,8 +126,6 @@ const Sidebar = () => {
               </>
             )}
 
-
-
             <li className="border-t-2 pt-4">
               <Link to="/">
                 <Button fullWidth variant="text" className="text-white">

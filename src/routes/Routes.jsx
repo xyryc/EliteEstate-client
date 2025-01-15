@@ -16,6 +16,8 @@ import ManageProperties from "../pages/dashboard/admin/ManageProperties";
 import ManageReviews from "../pages/dashboard/admin/ManageReviews";
 import UpdateProperty from "../pages/dashboard/agent/UpdateProperty";
 import RequestedProperties from "../pages/dashboard/agent/RequestedProperties";
+import Properties from "../pages/properties/Properties";
+import Details from "../pages/properties/Details";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomeLayout />,
+      },
+      {
+        path: "properties",
+        element: <Properties />,
+      },
+      {
+        path: "/properties/details/:id",
+        element: <Details />,
       },
 
       // login, sign up

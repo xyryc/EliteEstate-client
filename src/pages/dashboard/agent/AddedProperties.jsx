@@ -90,7 +90,9 @@ export default function AddedProperties() {
             <Typography>Status: {item.status}</Typography>
           </CardBody>
           <CardFooter className="flex gap-2">
-            {item.status === "Verified" && (
+            {item.status === "Rejected" ? (
+              ""
+            ) : (
               <Link to={`/dashboard/addedProperties/update/${item._id}`}>
                 <Button>Update</Button>
               </Link>
