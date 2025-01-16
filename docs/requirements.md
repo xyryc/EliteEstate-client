@@ -130,7 +130,7 @@ By clicking the offer button
 - status ✅
 
 \- There will be a status on each card.initially the status will be “pending”.If the offer is accepted by the agent then this status will be “accepted” (see **Requested/offered properties** section in agent dashboard) and a “Pay” button will appear on the card.  ✅
-Clicking the “Pay” button will redirect user to the payment page where the user can pay the offered amount through stripe or any other payment methods for that property.If the payment is completed then the status will be “bought” also payment transaction id will be shown in place of the pay button.
+Clicking the “Pay” button will redirect user to the payment page where the user can pay the offered amount through stripe or any other payment methods for that property.If the payment is completed then the status will be “bought” also payment transaction id will be shown in place of the pay button. ✅
 
 **My reviews:** In this page a logged in user will see only his/her reviews which he/she has given for any property.Each review card will contain
 
@@ -194,13 +194,13 @@ Clicking the “Pay” button will redirect user to the payment page where the u
 
 \-clicking the delete button will remove the property from the “My added properties” and also from the database. ✅
 
-**My sold properties:** On this page all the sold properties of the specific agent will be shown.Only the properties for which the buyer has paid for will be shown here.Show these data in a tabular format.Each data will contain-\>
+**My sold properties:** On this page all the sold properties of the specific agent will be shown.Only the properties for which the buyer has paid for will be shown here.Show these data in a tabular format.Each data will contain-\> ✅
 
-- property title.
-- Property location.
-- buyer email
-- buyer name
-- sold price.
+- property title. ✅
+- Property location. ✅
+- buyer email ✅
+- buyer name ✅
+- sold price. ✅
 
 **Requested/offered properties:** On this page all the offers which are made by the users for the properties that the agent has added will be shown.These data will be shown in a tabular format and each data will contain ✅
 

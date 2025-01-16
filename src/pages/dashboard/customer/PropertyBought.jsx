@@ -6,6 +6,7 @@ import { MdLocationOn, MdAttachMoney } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
 import { CgSearchLoading } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import { LuCreditCard } from "react-icons/lu";
 
 const PropertyBought = () => {
   const { user } = useAuth();
@@ -72,7 +73,7 @@ const PropertyBought = () => {
                 <div className="flex items-center text-sm text-gray-600">
                   <MdAttachMoney className="text-green-500 mr-2" />
                   <Typography>
-                    Offered Amount:{" "}
+                    Offered:{" "}
                     <span className="font-semibold text-blue-600">
                       ${property.offeredPrice}
                     </span>
@@ -87,6 +88,18 @@ const PropertyBought = () => {
                     Status: {property.offerStatus}
                   </Typography>
                 </div>
+
+                {property?.paymentInfo?.transactionId && (
+                  <div className="flex items-center text-sm text-gray-600">
+                    <LuCreditCard className="text-red-500 mr-2" />
+                    <Typography
+                      variant="small"
+                      className="font-medium capitalize"
+                    >
+                      Txn Id: {property?.paymentInfo?.transactionId}
+                    </Typography>
+                  </div>
+                )}
 
                 <div className="mt-2">
                   {/* Pay Button (if offer is accepted) */}
