@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import moment from "moment";
+import useRole from "../../../hooks/useRole";
 
 const MakeOffer = () => {
   const { id } = useParams();
@@ -13,6 +14,7 @@ const MakeOffer = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const [role] = useRole();
 
   const { data: property = {} } = useQuery({
     queryKey: ["property", id],
@@ -79,7 +81,7 @@ const MakeOffer = () => {
           Offer A Price
         </Typography>
         <Typography color="gray" className="mt-1 font-normal">
-          Nice to meet you! Enter your details to register.
+         Enter your offered price here. 
         </Typography>
         <form
           className="mt-8 mb-2 max-w-screen-lg space-y-3"
@@ -205,6 +207,16 @@ const MakeOffer = () => {
             </Typography>
           </div>
 
+           {/* agent info */}
+           <div className="flex items-center gap-2">
+            <Typography variant="h6" color="blue-gray">
+              Buyer Name & Email:
+            </Typography>
+            <Typography variant="paragraph">
+              {user?.displayName} ({user?.email})
+            </Typography>
+          </div>
+
           <div className="flex items-center gap-2">
             <Typography variant="h6" color="blue-gray">
               Buying Date:
@@ -213,7 +225,12 @@ const MakeOffer = () => {
               {moment().format("MMMM Do YYYY")}
             </Typography>
           </div>
-          <Button className="mt-6" type="submit" loading={loading && true}>
+          <Button
+            className="mt-6"
+            type="submit"
+            loading={loading && true}
+            disabled={role === "agent" || role === "admin"}
+          >
             Offer
           </Button>
         </form>

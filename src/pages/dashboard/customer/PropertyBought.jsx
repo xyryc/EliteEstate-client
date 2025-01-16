@@ -27,10 +27,16 @@ const PropertyBought = () => {
   });
 
   return (
-    <div className="p-6 max-w-screen-xl mx-auto">
-      <Typography variant="h3" className="font-extrabold text-center mb-8">
-        Properties You Have Offered
-      </Typography>
+    <div className="max-w-screen-xl mx-auto">
+      <div className="p-6">
+        <Typography variant="lead" color="blue-gray" className="font-bold">
+          Properties you have brought/offered
+        </Typography>
+        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
+          List of properties you have brought/offered
+        </Typography>
+      </div>
+
       {offered.length === 0 ? (
         <Typography color="gray" className="text-center text-lg">
           You have not offered on any properties yet.

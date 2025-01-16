@@ -116,18 +116,18 @@ Clicking the **“Make an offer”** button will navigate the user to a new page
 By clicking the offer button
 
 - the user can offer an amount. ( This amount must be in between the agent specified price range.If the price is not in between the price range then the offer will not be completed and an error message will be shown) to the agent for that specific property. ✅
-- This information will be saved to the database and also it will be added to users “Property bought” page with the status “pending”. 
+- This information will be saved to the database and also it will be added to users “Property bought” page with the status “pending”.
 
-**Only users can buy property. Agent and admin can not buy property. Add a Validation.**
+**Only users can buy property. Agent and admin can not buy property. Add a Validation.** ✅
 
-**Property bought:** All the properties which the user has offered for will be shown here.Each card will have the following information.
+**Property bought:** All the properties which the user has offered for will be shown here.Each card will have the following information. ✅
 
-- property location.
-- property title.
-- property image
-- Agent name
-- offered amount.
-- status
+- property location. ✅
+- property title. ✅
+- property image ✅
+- Agent name ✅
+- offered amount. ✅
+- status ✅
 
 \- There will be a status on each card.initially the status will be “pending”.If the offer is accepted by the agent then this status will be “accepted” (see **Requested/offered properties** section in agent dashboard) and a “Pay” button will appear on the card.  
 Clicking the “Pay” button will redirect user to the payment page where the user can pay the offered amount through stripe or any other payment methods for that property.If the payment is completed then the status will be “bought” also payment transaction id will be shown in place of the pay button.
@@ -292,13 +292,13 @@ Use Tanstack Query forwith mutation for data fetching and posting.
 - Once logged in, the user name, profile picture and the logout button should appear on the navbar. If the user clicks on the logout button, make sure to log him/her out. ✅
 - Add a 404 page (not found page)
 
-**Challenges task:**
+## **Challenges task:**
 
 1\. Add a search functionality on the “All properties” page based on the property location.
 
 2\. Implement a sort functionality based on the price range on the “All properties” page.
 
-3\. Implement JWT on login (Email/Password and social) and store the token (You must store the token in localStorage).
+3\. Implement JWT on login (Email/Password and social) and store the token (You must store the token in localStorage). ✅
 
 4\. Add a section on My sold properties page of the Agent dashboard where the total property sold amount of a specific agent will be shown.
 
@@ -306,7 +306,7 @@ Use Tanstack Query forwith mutation for data fetching and posting.
 
             \-On clicking the “Advertise" button an admin can advertise a specific property.This property will  be shown in the advertisement section on the homepage.
 
-**Optional Tasks**
+# **Optional Tasks**
 
 You can try to implement these features:
 
@@ -334,3 +334,10 @@ You can try to implement these features:
 6. **Front-end Live Site Link:**
 7. **Client Side Github Repository Link:**
 8. **Server Side Github Repository Link:**
+
+# TODO
+
+- stripe payment
+- review
+- homepage
+

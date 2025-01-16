@@ -7,12 +7,14 @@ import { Button } from "@material-tailwind/react";
 import { toast } from "react-hot-toast";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
 
 const Details = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [role] = useRole();
 
   const { data: singleProp = {} } = useQuery({
     queryKey: ["singleProp"],
@@ -53,7 +55,7 @@ const Details = () => {
     <div className="container mx-auto p-4 sm:p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-10">
         <div>
-          <h1 className="text-4xl font-bold">{title}</h1>
+          <h1 className="text-4xl font-bold capitalize">{title}</h1>
           <div className="flex mt-2 mb-4 gap-3 items-center">
             <p className="opacity-75 flex items-center gap-2">
               <IoLocationOutline />
@@ -104,6 +106,7 @@ const Details = () => {
           <Button
             className="mt-2 flex items-center gap-2"
             onClick={() => addToWishList()}
+            disabled={role === "agent" || role === "admin"}
           >
             <LuHeart />
             Wishlist
