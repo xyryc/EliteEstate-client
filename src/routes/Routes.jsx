@@ -20,6 +20,7 @@ import Properties from "../pages/properties/Properties";
 import Details from "../pages/properties/Details";
 import MakeOffer from "../pages/dashboard/customer/MakeOffer";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/dashboard/customer/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -97,6 +98,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PropertyBought />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "propertyBought/pay/:id",
+        element: (
+          <PrivateRoute>
+            <Payment />
           </PrivateRoute>
         ),
       },

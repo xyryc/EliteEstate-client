@@ -1,16 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
+import { Card, CardBody, Typography, Button } from "@material-tailwind/react";
 import { MdLocationOn, MdAttachMoney } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
 import { CgSearchLoading } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const PropertyBought = () => {
   const { user } = useAuth();
@@ -47,7 +42,7 @@ const PropertyBought = () => {
             <Card
               key={property._id}
               shadow={true}
-              className="rounded-lg border border-gray-200 hover:shadow-xl transition-all ease-in-out duration-300"
+              className="rounded-lg border border-gray-400 hover:shadow-xl transition-all ease-in-out duration-300"
             >
               {/* Image Section */}
               <div className="w-full h-40 bg-gray-100 rounded-t-lg overflow-hidden">
@@ -59,7 +54,7 @@ const PropertyBought = () => {
               </div>
 
               {/* Card Body Section */}
-              <CardBody className="space-y-4 py-6 px-4">
+              <CardBody className="p-4">
                 <Typography className="font-bold capitalize" variant="h5">
                   {property.propertyTitle}
                 </Typography>
@@ -93,21 +88,16 @@ const PropertyBought = () => {
                     Status: {property.offerStatus}
                   </Typography>
                 </div>
-              </CardBody>
 
-              {/* Pay Button (if offer is accepted) */}
-              {property.offerStatus === "accepted" && (
-                <CardFooter className="flex justify-center p-4">
-                  <Button
-                    color="green"
-                    size="lg"
-                    fullWidth
-                    className="transition-transform transform hover:scale-105 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-green-600"
-                  >
-                    Pay Now
-                  </Button>
-                </CardFooter>
-              )}
+                <div className="mt-2">
+                  {/* Pay Button (if offer is accepted) */}
+                  {property.offerStatus === "accepted" && (
+                    <Link to={`/dashboard/propertyBought/pay/${property._id}`} >
+                      <Button size="sm">Pay Now</Button>
+                    </Link>
+                  )}
+                </div>
+              </CardBody>
             </Card>
           ))}
         </div>

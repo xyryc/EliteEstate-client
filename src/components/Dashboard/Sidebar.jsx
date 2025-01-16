@@ -133,6 +133,13 @@ const Sidebar = () => {
                 </Button>
               </Link>
             </li>
+            <li >
+              <Link to="/properties">
+                <Button fullWidth variant="text" className="text-white">
+                  Properties
+                </Button>
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>

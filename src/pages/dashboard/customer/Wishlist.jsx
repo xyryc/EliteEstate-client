@@ -87,9 +87,7 @@ const Wishlist = () => {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2">
               <NavLink to={`/dashboard/wishlist/offer/${item._id}`}>
-                <Button color="blue" size="sm">
-                  Offer
-                </Button>
+                <Button size="sm">Offer</Button>
               </NavLink>
               <Button color="red" size="sm">
                 Remove
