@@ -2,24 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { Button, Card, Typography } from "@material-tailwind/react";
-import moment from "moment";
+import { toast } from "react-hot-toast";
 
 const RequestedProperties = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-
-  // Fetch offered properties
-  const { data: offered = [] } = useQuery({
-    queryKey: ["offered"],
-    enabled: !!user?.email,
-    queryFn: async () => {
-      const { data } = await axiosSecure.get(`/offered/${user?.email}`);
-      return data;
-    },
-  });
-
-  console.log(offered);
-
   const TABLE_HEAD = [
     "Title",
     "Location",
@@ -30,6 +17,50 @@ const RequestedProperties = () => {
     "Accept",
     "Reject",
   ];
+
+  // Fetch offered properties
+  const { data: offered = [], refetch } = useQuery({
+    queryKey: ["offered"],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/offered/${user?.email}`);
+      return data;
+    },
+  });
+
+  // accept / reject
+  const handleStatus = (id, status) => {
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <Typography className="capitalize">{`${status} offer?`}</Typography>
+        <div className="space-x-2">
+          <Button
+            size="sm"
+            className="bg-green-500"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const res = await axiosSecure.patch(`/offered/status/${id}`, {
+                status,
+              });
+              if (res.data.modifiedCount > 0) {
+                toast.success("Status updated!");
+                refetch();
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            size="sm"
+            className="bg-red-500"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <div>
@@ -62,7 +93,14 @@ const RequestedProperties = () => {
           <tbody>
             {offered.map(
               (
-                { propertyTitle, propertyLocation, offeredPrice, buyer, offerStatus },
+                {
+                  propertyTitle,
+                  propertyLocation,
+                  offeredPrice,
+                  buyer,
+                  offerStatus,
+                  _id,
+                },
                 index
               ) => {
                 const isLast = index === offered.length - 1;
@@ -127,13 +165,21 @@ const RequestedProperties = () => {
                     </td>
 
                     <td className={classes}>
-                      <Button size="sm"  color="green">
+                      <Button
+                        size="sm"
+                        color="green"
+                        onClick={() => handleStatus(_id, "accepted")}
+                      >
                         Accept
                       </Button>
                     </td>
 
                     <td className={classes}>
-                      <Button size="sm" color="red">
+                      <Button
+                        size="sm"
+                        color="red"
+                        onClick={() => handleStatus(_id, "rejected")}
+                      >
                         Reject
                       </Button>
                     </td>
