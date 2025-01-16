@@ -39,12 +39,19 @@ const RequestedProperties = () => {
             className="bg-green-500"
             onClick={async () => {
               toast.dismiss(t.id);
-              const res = await axiosSecure.patch(`/offered/status/${id}`, {
-                status,
-              });
-              if (res.data.modifiedCount > 0) {
-                toast.success("Status updated!");
+
+              // send req
+              try {
+                const res = await axiosSecure.patch(`/offered/status/${id}`, {
+                  status,
+                });
+
+                // Display success message
+                toast.success(res?.data?.message);
                 refetch();
+                // eslint-disable-next-line no-unused-vars
+              } catch (error) {
+                toast.error("Failed to update offer status.");
               }
             }}
           >
@@ -165,23 +172,41 @@ const RequestedProperties = () => {
                     </td>
 
                     <td className={classes}>
-                      <Button
-                        size="sm"
-                        color="green"
-                        onClick={() => handleStatus(_id, "accepted")}
-                      >
-                        Accept
-                      </Button>
+                      {offerStatus === "pending" ? (
+                        <Button
+                          size="sm"
+                          color="green"
+                          onClick={() => handleStatus(_id, "accepted")}
+                        >
+                          Accept
+                        </Button>
+                      ) : (
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600 capitalize"
+                        >
+                          {offerStatus}
+                        </Typography>
+                      )}
                     </td>
 
                     <td className={classes}>
-                      <Button
-                        size="sm"
-                        color="red"
-                        onClick={() => handleStatus(_id, "rejected")}
-                      >
-                        Reject
-                      </Button>
+                      {offerStatus === "pending" ? (
+                        <Button
+                          size="sm"
+                          color="red"
+                          onClick={() => handleStatus(_id, "rejected")}
+                        >
+                          Reject
+                        </Button>
+                      ) : (
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600 capitalize"
+                        >
+                          {offerStatus}
+                        </Typography>
+                      )}
                     </td>
                   </tr>
                 );
