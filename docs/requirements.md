@@ -340,4 +340,6 @@ You can try to implement these features:
 - stripe payment
 - review
 - homepage
+- delete user from firebase
+- add readme
 

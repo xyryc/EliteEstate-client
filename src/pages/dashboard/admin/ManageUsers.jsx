@@ -148,6 +148,7 @@ export default function ManageUsers() {
           geographical distribution.
         </Typography>
       </div>
+      
       <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
         <table className="w-full min-w-max table-auto text-left ">
           <thead>
