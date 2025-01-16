@@ -1,11 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { TbFidgetSpinner } from "react-icons/tb";
-// import { saveUser } from "../../api/utils";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { saveUser } from "../../../api/utils";
+import { AiOutlineLoading } from "react-icons/ai";
 
 const Login = () => {
   const { signIn, signInWithGoogle, loading, setLoading } = useAuth();
@@ -101,9 +100,12 @@ const Login = () => {
           {/* Submit Button */}
           <Button type="submit" className="w-full">
             {loading ? (
-              <TbFidgetSpinner className="animate-spin m-auto" />
+              <div className="flex items-center justify-center gap-2">
+                <AiOutlineLoading className="animate-spin" />
+                <p>Logging In...</p>
+              </div>
             ) : (
-              "Continue"
+              "Log In"
             )}
           </Button>
         </form>

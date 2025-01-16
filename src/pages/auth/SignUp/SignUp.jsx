@@ -5,7 +5,7 @@ import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload, saveUser } from "../../../api/utils";
 import { useState } from "react";
-import { TbFidgetSpinner } from "react-icons/tb";
+import { AiOutlineLoading } from "react-icons/ai";
 
 const SignUp = () => {
   const {
@@ -137,9 +137,12 @@ const SignUp = () => {
           {/* Submit Button */}
           <Button type="submit" className="w-full">
             {loading ? (
-              <TbFidgetSpinner className="animate-spin m-auto" />
+              <div className="flex items-center justify-center gap-2">
+                <AiOutlineLoading className="animate-spin" />
+                <p>Signin In...</p>
+              </div>
             ) : (
-              "Continue"
+              "Sign In"
             )}
           </Button>
         </form>

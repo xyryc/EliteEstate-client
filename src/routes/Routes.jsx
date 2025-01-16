@@ -19,6 +19,7 @@ import RequestedProperties from "../pages/dashboard/agent/RequestedProperties";
 import Properties from "../pages/properties/Properties";
 import Details from "../pages/properties/Details";
 import MakeOffer from "../pages/dashboard/customer/MakeOffer";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -31,11 +32,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "properties",
-        element: <Properties />,
+        element: (
+          <PrivateRoute>
+            <Properties />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/properties/details/:id",
-        element: <Details />,
+        element: (
+          <PrivateRoute>
+            <Details />
+          </PrivateRoute>
+        ),
       },
 
       // login, sign up
@@ -53,63 +62,119 @@ export const router = createBrowserRouter([
   // dashboard
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "myProfile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "wishlist",
-        element: <Wishlist />,
+        element: (
+          <PrivateRoute>
+            <Wishlist />
+          </PrivateRoute>
+        ),
       },
       {
         path: "wishlist/offer/:id",
-        element: <MakeOffer />,
+        element: (
+          <PrivateRoute>
+            <MakeOffer />
+          </PrivateRoute>
+        ),
       },
       {
         path: "propertyBought",
-        element: <PropertyBought />,
+        element: (
+          <PrivateRoute>
+            <PropertyBought />
+          </PrivateRoute>
+        ),
       },
       {
         path: "reviews",
-        element: <MyReviews />,
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
       },
 
       // agent routes
       {
         path: "addProperty",
-        element: <AddProperty />,
+        element: (
+          <PrivateRoute>
+            <AddProperty />
+          </PrivateRoute>
+        ),
       },
       {
         path: "addedProperties",
-        element: <AddedProperties />,
+        element: (
+          <PrivateRoute>
+            <AddedProperties />
+          </PrivateRoute>
+        ),
       },
       {
         path: "addedProperties/update/:id",
-        element: <UpdateProperty />,
+        element: (
+          <PrivateRoute>
+            <UpdateProperty />
+          </PrivateRoute>
+        ),
       },
       {
         path: "soldProperties",
-        element: <SoldProperties />,
+        element: (
+          <PrivateRoute>
+            <SoldProperties />
+          </PrivateRoute>
+        ),
       },
       {
         path: "requestedProperties",
-        element: <RequestedProperties />,
+        element: (
+          <PrivateRoute>
+            <RequestedProperties />
+          </PrivateRoute>
+        ),
       },
 
       // admin routes
       {
         path: "manageProperties",
-        element: <ManageProperties />,
+        element: (
+          <PrivateRoute>
+            <ManageProperties />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageUsers",
-        element: <ManageUsers />,
+        element: (
+          <PrivateRoute>
+            <ManageUsers />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageReviews",
-        element: <ManageReviews />,
+        element: (
+          <PrivateRoute>
+            <ManageReviews />
+          </PrivateRoute>
+        ),
       },
     ],
   },
