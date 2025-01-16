@@ -75,7 +75,7 @@ This page should display detailed information about the property. What you will 
 
 - There will be a review section at the bottom of the details page where you have to show all the reviews for that specific property which are made by the users. ✅
 
-- There will also be an “Add a review” button on this page.Clicking this button a user can add a review for this specific property through a modal.  ✅
+- There will also be an “Add a review” button on this page.Clicking this button a user can add a review for this specific property through a modal. ✅
 
 - This will be a private/protected route. ✅
 
@@ -129,7 +129,7 @@ By clicking the offer button
 - offered amount. ✅
 - status ✅
 
-\- There will be a status on each card.initially the status will be “pending”.If the offer is accepted by the agent then this status will be “accepted” (see **Requested/offered properties** section in agent dashboard) and a “Pay” button will appear on the card.  ✅
+\- There will be a status on each card.initially the status will be “pending”.If the offer is accepted by the agent then this status will be “accepted” (see **Requested/offered properties** section in agent dashboard) and a “Pay” button will appear on the card. ✅
 Clicking the “Pay” button will redirect user to the payment page where the user can pay the offered amount through stripe or any other payment methods for that property.If the payment is completed then the status will be “bought” also payment transaction id will be shown in place of the pay button. ✅
 
 **My reviews:** In this page a logged in user will see only his/her reviews which he/she has given for any property.Each review card will contain
@@ -340,7 +340,7 @@ You can try to implement these features:
 - stripe payment ✅
 - review
 - homepage
-- delete user from firebase 
+- delete user from firebase
 - add readme
 - wishlist remove button
 - update private route for admin, agent

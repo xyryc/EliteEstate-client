@@ -36,6 +36,8 @@ export default function AddedProperties() {
         <p>Are you sure you want to delete this item?</p>
         <div className="space-x-4">
           <Button
+            size="sm"
+          color="green"
             className="btn btn-error btn-xs text-white"
             onClick={async () => {
               toast.dismiss(t.id);
@@ -49,6 +51,8 @@ export default function AddedProperties() {
             Confirm
           </Button>
           <Button
+            size="sm"
+          color="red"
             className="btn btn-success btn-xs text-white"
             onClick={() => toast.dismiss(t.id)}
           >
