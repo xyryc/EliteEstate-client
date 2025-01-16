@@ -52,6 +52,7 @@ function Profile() {
                   logOut();
                   navigate("/");
                 }}
+                size="sm"
                 variant="gradient"
                 className="border-gray-300"
               >

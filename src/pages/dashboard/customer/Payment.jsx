@@ -1,10 +1,13 @@
 import { Typography } from "@material-tailwind/react";
+import { loadStripe } from "@stripe/stripe-js";  
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
-
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 
 const Payment = () => {
   return (
-    <div>
+    <div className="container mx-auto max-w-screen-sm border border-gray-400 rounded-xl px-4 py-16">
       <div className="p-6">
         <Typography variant="lead" color="blue-gray" className="font-bold">
           Payment
@@ -14,9 +17,10 @@ const Payment = () => {
         </Typography>
       </div>
 
-
-      <div>
-
+      <div className="max-w-sm mx-auto">
+        <Elements stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
       </div>
     </div>
   );
