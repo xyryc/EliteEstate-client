@@ -132,15 +132,15 @@ By clicking the offer button
 \- There will be a status on each card.initially the status will be “pending”.If the offer is accepted by the agent then this status will be “accepted” (see **Requested/offered properties** section in agent dashboard) and a “Pay” button will appear on the card. ✅
 Clicking the “Pay” button will redirect user to the payment page where the user can pay the offered amount through stripe or any other payment methods for that property.If the payment is completed then the status will be “bought” also payment transaction id will be shown in place of the pay button. ✅
 
-**My reviews:** In this page a logged in user will see only his/her reviews which he/she has given for any property.Each review card will contain
+**My reviews:** In this page a logged in user will see only his/her reviews which he/she has given for any property.Each review card will contain ✅
 
-- property title
-- agent name
-- review time
-- review description
-- delete button.
+- property title ✅
+- agent name ✅
+- review time ✅
+- review description ✅
+- delete button. ✅
 
-\-If the user clicks the delete button then the review will be deleted from the my reviews page and also from the database.
+\-If the user clicks the delete button then the review will be deleted from the my reviews page and also from the database. ✅
 
 <!-- Agent Dashboard -->
 

@@ -45,8 +45,8 @@ const MyReviews = () => {
         <p>Are you sure you want to delete this item?</p>
         <div className="space-x-4">
           <Button
-          size="sm"
-          color="green"
+            size="sm"
+            color="green"
             className="btn btn-error btn-xs text-white"
             onClick={async () => {
               toast.dismiss(t.id);
@@ -56,8 +56,8 @@ const MyReviews = () => {
             Confirm
           </Button>
           <Button
-          size="sm"
-          color="red"
+            size="sm"
+            color="red"
             className="btn btn-success btn-xs text-white"
             onClick={() => toast.dismiss(t.id)}
           >
@@ -76,19 +76,20 @@ const MyReviews = () => {
       {myReviews.length === 0 ? (
         <p>No reviews yet. Start adding reviews to see them here!</p>
       ) : (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {myReviews.map((review) => (
             <div
               key={review._id}
-              className="p-4 border rounded-lg shadow-sm bg-gray-50"
+              className="p-4 border rounded-xl shadow-sm border-gray-400"
             >
               <h3 className="font-bold text-lg">{review.propertyTitle}</h3>
               <p className="text-sm text-gray-600">Agent: {review.agentName}</p>
               <p className="text-xs text-gray-500">
-                Reviewed: {moment(review.reviewTime).fromNow()}
+                Reviewed: {moment(review.reviewTime).format("DD/MM/YY")}
               </p>
               <p className="mt-2">{review.reviewDescription}</p>
               <Button
+              size="sm"
                 color="red"
                 className="mt-3"
                 onClick={() => handleDelete(review._id)}
