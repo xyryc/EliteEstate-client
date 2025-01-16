@@ -6,10 +6,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
+import { toast } from "react-hot-toast";
+import moment from "moment";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -38,6 +41,7 @@ const CheckoutForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     if (!stripe || !elements) {
       return;
@@ -57,6 +61,7 @@ const CheckoutForm = () => {
     if (error) {
       console.log("Payment error", error);
       setError(error.message);
+      setLoading(false);
     } else {
       console.log("Payment method", paymentMethod);
       setError("");
@@ -75,12 +80,32 @@ const CheckoutForm = () => {
       });
 
     if (confirmError) {
+      setLoading(false);
       console.log("Confirm error");
     } else {
       console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+        setLoading(false);
+
+        // now change "offerStatus" to "bought" in db
+        const paymentInfo = {
+          transactionDate: moment().valueOf(),
+          transactionId: paymentIntent.id,
+        };
+
+        // send req to server
+        const response = await axiosSecure.patch(
+          `/offer/payment/${payableData?._id}`,
+          paymentInfo
+        );
+
+        if (response?.data?.modifiedCount > 0) {
+          toast.success("Payment successful and offer updated!");
+        } else {
+          toast.error("Failed to save transaction info");
+        }
       }
     }
   };
@@ -91,19 +116,12 @@ const CheckoutForm = () => {
         Payable Amount: ${payableData.offeredPrice}
       </p>
       {error && (
-        <p className="text-red-500 mb-6 text-sm font-medium flex items-center gap-2">
+        <p className="text-red-500 text-sm font-medium flex items-center gap-2">
           <LuCircleAlert /> {error}
         </p>
       )}
 
-      {transactionId && (
-        <p className="text-green-500 mb-6 text-sm font-medium flex items-center gap-2">
-          <LuCircleCheckBig /> Transaction Id:{" "}
-          <span className="font-bold">{transactionId}</span>
-        </p>
-      )}
-
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="mt-6">
         <CardElement
           options={{
             style: {
@@ -120,13 +138,22 @@ const CheckoutForm = () => {
             },
           }}
         />
-        <Button
-          type="submit"
-          disabled={!stripe || !clientSecret}
-          className="my-10"
-        >
-          Pay
-        </Button>
+        <div className="my-10">
+          {transactionId ? (
+            <p className="text-green-500 mb-6 text-sm font-medium flex items-center gap-2">
+              <LuCircleCheckBig /> Transaction Id:{" "}
+              <span className="font-bold">{transactionId}</span>
+            </p>
+          ) : (
+            <Button
+              type="submit"
+              disabled={!stripe || !clientSecret}
+              loading={loading && true}
+            >
+              Pay
+            </Button>
+          )}
+        </div>
       </form>
     </div>
   );

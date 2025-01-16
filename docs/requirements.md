@@ -116,7 +116,7 @@ Clicking the **“Make an offer”** button will navigate the user to a new page
 By clicking the offer button
 
 - the user can offer an amount. ( This amount must be in between the agent specified price range.If the price is not in between the price range then the offer will not be completed and an error message will be shown) to the agent for that specific property. ✅
-- This information will be saved to the database and also it will be added to users “Property bought” page with the status “pending”.
+- This information will be saved to the database and also it will be added to users “Property bought” page with the status “pending”. ✅
 
 **Only users can buy property. Agent and admin can not buy property. Add a Validation.** ✅
 
@@ -342,3 +342,4 @@ You can try to implement these features:
 - homepage
 - delete user from firebase
 - add readme
+- wishlist remove button
