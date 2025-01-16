@@ -111,16 +111,15 @@ export default function ManageUsers() {
             className="bg-green-500"
             onClick={async () => {
               toast.dismiss(t.id);
-              const res = await axiosSecure.patch(`/users/fraud/${email}`, {
+
+              await axiosSecure.patch(`/users/fraud/${email}`, {
                 fraud,
               });
 
-              if (res.data?.deletedCount > 0) {
-                toast.success(
-                  "User marked as fraud and their properties removed!"
-                );
-                refetch();
-              }
+              toast.success(
+                "User marked as fraud and their properties removed!"
+              );
+              refetch();
             }}
           >
             Confirm

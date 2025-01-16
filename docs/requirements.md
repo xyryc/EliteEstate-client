@@ -16,7 +16,7 @@ You must develop a **Real estate Platform (an online platform where people can a
 - Include a minimum of 12 notable GitHub commits on the server side ✅
 - Add a meaningful readme.md file with the name of your website, Admin username, password and live site URL. Include a minimum of 10 bullet points to feature your website.
 - Make it responsive for all devices. You need to make it responsive for mobile, tablet and desktop views. Make the dashboard responsive as well. ✅
-- After reloading the page of a private route, the user should not be redirected to the login page.
+- After reloading the page of a private route, the user should not be redirected to the login page. ✅
 - Use the Environment variable to hide the Firebase config keys and Mongodb credentials. ✅
 - Don’t use any Lorem ipsum text in your website.
 - Show sweet alert/toast/notification for all the crud operations, successful authentication login, and sign-up. Don’t use the default browser alert. ✅
@@ -73,11 +73,11 @@ This page should display detailed information about the property. What you will 
 
 - There will be a button on the details page called “Add to wishlist”.Clicking this button will add the property on the wishlist page and also the information will be saved to the database. ✅
 
-- There will be a review section at the bottom of the details page where you have to show all the reviews for that specific property which are made by the users.
+- There will be a review section at the bottom of the details page where you have to show all the reviews for that specific property which are made by the users. ✅
 
-- There will also be an “Add a review” button on this page.Clicking this button a user can add a review for this specific property through a modal.
+- There will also be an “Add a review” button on this page.Clicking this button a user can add a review for this specific property through a modal.  ✅
 
-- This will be a private/protected route.
+- This will be a private/protected route. ✅
 
 6. **User Dashboard 🔒( User Only ):**
 
@@ -337,9 +337,10 @@ You can try to implement these features:
 
 # TODO
 
-- stripe payment
+- stripe payment ✅
 - review
 - homepage
-- delete user from firebase
+- delete user from firebase 
 - add readme
 - wishlist remove button
+- update private route for admin, agent
