@@ -12,7 +12,7 @@ const RequestedProperties = () => {
     "Location",
     "Buyer Email",
     "Buyer Name",
-    "Offered Amount",
+    "Offered Price",
     "Status",
     "Accept",
     "Reject",
@@ -158,7 +158,7 @@ const RequestedProperties = () => {
                         variant="small"
                         className="font-normal text-gray-600"
                       >
-                        ${offeredPrice.minOffered} - ${offeredPrice.maxOffered}
+                        ${offeredPrice}
                       </Typography>
                     </td>
 

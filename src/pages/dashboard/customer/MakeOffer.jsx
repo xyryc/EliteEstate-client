@@ -28,10 +28,7 @@ const MakeOffer = () => {
     e.preventDefault();
 
     const form = e.target;
-    const minOffered = form.min_price_offered.value;
-    const maxOffered = form.max_price_offered.value;
-
-    const offeredPrice = { minOffered, maxOffered };
+    const offeredPrice = form.offered_price.value;
     const buyer = { email: user?.email, name: user?.displayName };
 
     const offerData = {
@@ -42,18 +39,15 @@ const MakeOffer = () => {
       agent: property.agent,
       buyer,
       buyingDate: Date.now(),
-      offeredPrice,
+      offeredPrice: parseFloat(offeredPrice),
       offerStatus: "pending",
     };
 
     if (
-      minOffered < property.min_price ||
-      maxOffered > property.max_price ||
-      maxOffered < property.min_price ||
-      minOffered > property.max_price ||
-      maxOffered < minOffered
+      offeredPrice < property.min_price ||
+      offeredPrice > property.max_price
     ) {
-      toast.error("Please offer an amount within range and in correct order");
+      toast.error("Please offer an amount within range!");
     } else {
       // save data in db
       try {
@@ -81,7 +75,7 @@ const MakeOffer = () => {
           Offer A Price
         </Typography>
         <Typography color="gray" className="mt-1 font-normal">
-         Enter your offered price here. 
+          Enter your offered price here.
         </Typography>
         <form
           className="mt-8 mb-2 max-w-screen-lg space-y-3"
@@ -164,37 +158,19 @@ const MakeOffer = () => {
           </div>
 
           {/* offered price */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div>
-              <Typography variant="h6" color="blue-gray">
-                Minimum Offered Price
-              </Typography>
-              <Input
-                defaultValue={property?.min_price}
-                name="min_price_offered"
-                size="lg"
-                placeholder="Minimum Price"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                labelProps={{
-                  className: "before:content-none after:content-none",
-                }}
-              />
-            </div>
-            <div>
-              <Typography variant="h6" color="blue-gray">
-                Maximum Offered Price
-              </Typography>
-              <Input
-                defaultValue={property?.max_price}
-                name="max_price_offered"
-                size="lg"
-                placeholder="Maximum Price"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                labelProps={{
-                  className: "before:content-none after:content-none",
-                }}
-              />
-            </div>
+          <div>
+            <Typography variant="h6" color="blue-gray">
+              Offer a price
+            </Typography>
+            <Input
+              name="offered_price"
+              size="lg"
+              placeholder="Minimum Price"
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              labelProps={{
+                className: "before:content-none after:content-none",
+              }}
+            />
           </div>
 
           {/* agent info */}
@@ -207,8 +183,8 @@ const MakeOffer = () => {
             </Typography>
           </div>
 
-           {/* agent info */}
-           <div className="flex items-center gap-2">
+          {/* agent info */}
+          <div className="flex items-center gap-2">
             <Typography variant="h6" color="blue-gray">
               Buyer Name & Email:
             </Typography>
@@ -217,6 +193,7 @@ const MakeOffer = () => {
             </Typography>
           </div>
 
+          {/* buying time */}
           <div className="flex items-center gap-2">
             <Typography variant="h6" color="blue-gray">
               Buying Date:
@@ -225,6 +202,7 @@ const MakeOffer = () => {
               {moment().format("MMMM Do YYYY")}
             </Typography>
           </div>
+
           <Button
             className="mt-6"
             type="submit"

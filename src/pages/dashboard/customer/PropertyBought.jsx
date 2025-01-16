@@ -74,8 +74,7 @@ const PropertyBought = () => {
                   <Typography>
                     Offered Amount:{" "}
                     <span className="font-semibold text-blue-600">
-                      ${property.offeredPrice.minOffered} - $
-                      {property.offeredPrice.maxOffered}
+                      ${property.offeredPrice}
                     </span>
                   </Typography>
                 </div>
@@ -92,7 +91,7 @@ const PropertyBought = () => {
                 <div className="mt-2">
                   {/* Pay Button (if offer is accepted) */}
                   {property.offerStatus === "accepted" && (
-                    <Link to={`/dashboard/propertyBought/pay/${property._id}`} >
+                    <Link to={`/dashboard/propertyBought/pay/${property._id}`}>
                       <Button size="sm">Pay Now</Button>
                     </Link>
                   )}
