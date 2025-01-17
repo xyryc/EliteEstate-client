@@ -2,6 +2,8 @@ import { Card, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import moment from "moment"
 
 const SoldProperties = () => {
   const { user } = useAuth();
@@ -45,15 +47,11 @@ const SoldProperties = () => {
 
   return (
     <div>
-      <div className="p-2 sm:p-6 flex flex-col sm:flex-row justify-between">
-        <div>
-          <Typography variant="lead" color="blue-gray" className="font-bold">
-            Sold Properties
-          </Typography>
-          <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-            List of properties sold by you
-          </Typography>
-        </div>
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center">
+        <DashboardHeader
+          title={"Sold Properties"}
+          description={"Keep track of all your sold properties in one place"}
+        />
 
         <Typography variant="lead" color="blue-gray" className="font-bold">
           Revenue: ${totalSoldAmount}
@@ -157,9 +155,7 @@ const SoldProperties = () => {
                         className="font-normal text-gray-600"
                       >
                         {paymentInfo?.transactionDate
-                          ? new Date(
-                              paymentInfo.transactionDate
-                            ).toLocaleString()
+                          ? moment(paymentInfo.transactionDate).format("DD/MM/yy, h:mm a")
                           : "N/A"}
                       </Typography>
                     </td>

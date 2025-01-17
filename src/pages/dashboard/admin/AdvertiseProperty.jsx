@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import toast from "react-hot-toast";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
 
 const AdvertiseProperty = () => {
   const axiosSecure = useAxiosSecure();
@@ -53,15 +54,13 @@ const AdvertiseProperty = () => {
 
   return (
     <section className="w-full bg-white">
-      <div className="p-6">
-        <Typography variant="lead" color="blue-gray" className="font-bold">
-          Advertise Property
-        </Typography>
-        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-          Overview of the key personnel involved in our project and their
-          geographical distribution.
-        </Typography>
-      </div>
+      <DashboardHeader
+        title={"Advertise Properties"}
+        description={
+          "Review and approve verified property listings submitted and by agents"
+        }
+      />
+
       <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

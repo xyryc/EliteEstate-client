@@ -15,8 +15,6 @@ const LatestReviews = () => {
     },
   });
 
-  console.log(reviews);
-
   if (isLoading) return <LoadingSpinner />;
 
   return (

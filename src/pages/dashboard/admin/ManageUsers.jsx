@@ -5,6 +5,7 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import moment from "moment";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
 
 const TABLE_HEAD = [
   "Name",
@@ -138,15 +139,7 @@ export default function ManageUsers() {
 
   return (
     <section className="w-full bg-white">
-      <div className="p-6">
-        <Typography variant="lead" color="blue-gray" className="font-bold">
-          Team members and roles
-        </Typography>
-        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-          Overview of the key personnel involved in our project and their
-          geographical distribution.
-        </Typography>
-      </div>
+     <DashboardHeader title={"Team Members and Roles"} description={"Administer user accounts and permissions effectively."}/>
 
       <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
         <table className="w-full min-w-max table-auto text-left ">

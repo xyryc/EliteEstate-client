@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import { toast } from "react-hot-toast";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
 
 const RequestedProperties = () => {
   const { user } = useAuth();
@@ -71,14 +72,9 @@ const RequestedProperties = () => {
 
   return (
     <div>
-      <div className="p-2 sm:p-6">
-        <Typography variant="lead" color="blue-gray" className="font-bold">
-          Requested Properties
-        </Typography>
-        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-          List of Properties that buyers have offered an amount
-        </Typography>
-      </div>
+  
+
+      <DashboardHeader title={"Requested Properties"} description={"Manage property inquiries and requests effortlessly"}/>
 
       <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
         <table className="w-full min-w-max table-auto text-left ">

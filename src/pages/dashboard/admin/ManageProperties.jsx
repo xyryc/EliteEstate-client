@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
 
 const TABLE_HEAD = [
   "Property Name",
@@ -66,15 +67,12 @@ export default function ManageProperties() {
 
   return (
     <section className="w-full bg-white">
-      <div className="p-6">
-        <Typography variant="lead" color="blue-gray" className="font-bold">
-          Property Verification and Approval
-        </Typography>
-        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-          Overview of the key personnel involved in our project and their
-          geographical distribution.
-        </Typography>
-      </div>
+      <DashboardHeader
+        title={"Manage Properties"}
+        description={"Oversee and maintain property listings on the platform."}
+      />
+
+      
       <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
@@ -153,7 +151,7 @@ export default function ManageProperties() {
 
                     {status === "Pending" ? (
                       <>
-                        <td>
+                        <td className={classes}>
                           <Button
                             size="sm"
                             color="teal"
@@ -163,7 +161,7 @@ export default function ManageProperties() {
                           </Button>
                         </td>
 
-                        <td>
+                        <td className={classes}>
                           <Button
                             size="sm"
                             className=" bg-red-500"
@@ -175,7 +173,7 @@ export default function ManageProperties() {
                       </>
                     ) : (
                       <>
-                        <td>
+                        <td className={classes}>
                           <Button
                             size="sm"
                             className={`${
@@ -188,7 +186,7 @@ export default function ManageProperties() {
                           </Button>
                         </td>
 
-                        <td>
+                        <td className={classes}>
                           <Button
                             size="sm"
                             className={`${
