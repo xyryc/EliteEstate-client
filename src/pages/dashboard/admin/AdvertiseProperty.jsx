@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
+import toast from "react-hot-toast";
 
 const AdvertiseProperty = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,7 +13,7 @@ const AdvertiseProperty = () => {
     "Advertise",
   ];
 
-  const { data: verifiedProps = [] } = useQuery({
+  const { data: verifiedProps = [], refetch } = useQuery({
     queryKey: ["verifiedProps"],
 
     queryFn: async () => {
@@ -21,6 +22,34 @@ const AdvertiseProperty = () => {
       return data;
     },
   });
+
+  //   advertise property
+  const handleAdvertisement = (id) => {
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <Typography>Advertise Property on the Homepage?</Typography>
+        <div className="space-x-4">
+          <Button
+            size="sm"
+            color="green"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              const res = await axiosSecure.patch(`/advertise/${id}`);
+              if (res.data.modifiedCount > 0) {
+                toast.success("Property status updated!");
+                refetch();
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button size="sm" color="red" onClick={() => toast.dismiss(t.id)}>
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <section className="w-full bg-white">
@@ -52,7 +81,10 @@ const AdvertiseProperty = () => {
           </thead>
           <tbody>
             {verifiedProps.map(
-              ({ agent, title, max_price, min_price, image }, index) => {
+              (
+                { agent, title, max_price, min_price, image, _id, advertise },
+                index
+              ) => {
                 const isLast = index === verifiedProps.length - 1;
                 const classes = isLast
                   ? "py-4"
@@ -96,11 +128,24 @@ const AdvertiseProperty = () => {
                       </Typography>
                     </td>
 
-                    <td className={classes}>
-                      <Button size="sm" variant="gradient" color="teal">
-                        Advertise
-                      </Button>
-                    </td>
+                    {advertise ? (
+                      <td className={classes}>
+                        <Button size="sm" variant="gradient" color="green">
+                          Advertising
+                        </Button>
+                      </td>
+                    ) : (
+                      <td className={classes}>
+                        <Button
+                          size="sm"
+                          variant="gradient"
+                          color="teal"
+                          onClick={() => handleAdvertisement(_id)}
+                        >
+                          Advertise
+                        </Button>
+                      </td>
+                    )}
                   </tr>
                 );
               }

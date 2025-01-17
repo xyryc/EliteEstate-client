@@ -218,7 +218,7 @@ export default function ManageUsers() {
                       ) : (
                         <Button
                           size="sm"
-                          className="bg-purple-500"
+                         color="green"
                           onClick={() => handleRole(_id, "admin")}
                         >
                           Edit
@@ -232,7 +232,7 @@ export default function ManageUsers() {
                       ) : (
                         <Button
                           size="sm"
-                          className="bg-blue-gray-500"
+                         color="teal"
                           onClick={() => handleRole(_id, "agent")}
                         >
                           Edit
