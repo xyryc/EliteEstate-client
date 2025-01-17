@@ -2,12 +2,17 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { Button } from "@material-tailwind/react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const ManageReviews = () => {
   const axiosSecure = useAxiosSecure();
 
   // Fetch all reviews
-  const { data: allReviews = [], refetch, isLoading } = useQuery({
+  const {
+    data: allReviews = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["allReviews"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/reviews`);
@@ -30,12 +35,35 @@ const ManageReviews = () => {
   });
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this review?")) {
-      await deleteReview(id);
-    }
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <p>Are you sure you want to delete this item?</p>
+        <div className="space-x-4">
+          <Button
+            size="sm"
+            color="green"
+            className="btn btn-error btn-xs text-white"
+            onClick={async () => {
+              toast.dismiss(t.id);
+              await deleteReview(id);
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            size="sm"
+            color="red"
+            className="btn btn-success btn-xs text-white"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="container mx-auto p-4">
@@ -51,7 +79,9 @@ const ManageReviews = () => {
             >
               <div className="flex items-center gap-4">
                 <img
-                  src={review.reviewerImage || "https://via.placeholder.com/150"}
+                  src={
+                    review.reviewerImage || "https://via.placeholder.com/150"
+                  }
                   alt={review.reviewerName || "Anonymous"}
                   className="w-12 h-12 rounded-full"
                 />
@@ -66,7 +96,7 @@ const ManageReviews = () => {
               </div>
               <p className="mt-4">{review.reviewDescription}</p>
               <Button
-              size="sm"
+                size="sm"
                 color="red"
                 className="mt-3"
                 onClick={() => handleDelete(review._id)}

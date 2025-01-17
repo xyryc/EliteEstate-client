@@ -262,7 +262,7 @@ Private Route and only the users who has the admin role will be able to see thes
   - All the properties that the agent has added will be removed from the All properties ✅
   - Agents with fraud will not be able to add any properties in the future. ✅
 
-**Manage reviews:** All the user reviews for all the properties will be shown here.Each card will contain reviewer image,reviewer email,reviewer name,review and a delete button.If the admin clicks the delete button of any review card then that review will be removed from this page and also from the users page who has made this review.
+**Manage reviews:** All the user reviews for all the properties will be shown here.Each card will contain reviewer image,reviewer email,reviewer name,review and a delete button.If the admin clicks the delete button of any review card then that review will be removed from this page and also from the users page who has made this review. ✅
 
 9. ## **Authentication System** ✅
 
@@ -338,7 +338,7 @@ You can try to implement these features:
 # TODO
 
 - stripe payment ✅
-- review
+- review ✅
 - homepage
 - delete user from firebase
 - add readme

@@ -1,7 +1,9 @@
+import Slider from "../pages/home/Slider";
+
 const HomeLayout = () => {
   return (
     <div>
-      <p>Home</p>
+      <Slider />
       <p>Card</p>
       <p>FAQ</p>
     </div>
