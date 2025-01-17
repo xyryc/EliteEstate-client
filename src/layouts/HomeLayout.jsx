@@ -1,3 +1,4 @@
+import { Footer } from "../components/Shared/Footer";
 import Slider from "../pages/home/Slider/Slider";
 
 const HomeLayout = () => {
@@ -6,6 +7,8 @@ const HomeLayout = () => {
       <Slider />
       <p>Card</p>
       <p>FAQ</p>
+
+      <Footer />
     </div>
   );
 };

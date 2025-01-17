@@ -179,7 +179,7 @@ const Details = () => {
 
       {/* Reviews Section */}
       <div className="my-10">
-        <Button onClick={handleOpen} className="mb-10">
+        <Button onClick={handleOpen} className="mb-10"  disabled={role === "agent" || role === "admin"}>
           Add a review
         </Button>
         <h3 className="text-2xl font-bold mb-4">Reviews</h3>

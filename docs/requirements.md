@@ -341,6 +341,6 @@ You can try to implement these features:
 - review ✅
 - homepage
 - delete user from firebase
-- add readme
+- add readme 
 - wishlist remove button
 - update private route for admin, agent ✅
