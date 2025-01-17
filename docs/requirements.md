@@ -343,4 +343,4 @@ You can try to implement these features:
 - delete user from firebase
 - add readme
 - wishlist remove button
-- update private route for admin, agent
+- update private route for admin, agent ✅

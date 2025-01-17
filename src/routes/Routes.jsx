@@ -22,6 +22,8 @@ import MakeOffer from "../pages/dashboard/customer/MakeOffer";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/dashboard/customer/Payment";
 import ErrorPage from "../pages/shared/ErrorPage";
+import AdminRoute from "./AdminRoute";
+import AgentRoute from "./AgentRoute";
 
 export const router = createBrowserRouter([
   {
@@ -121,41 +123,41 @@ export const router = createBrowserRouter([
       {
         path: "addProperty",
         element: (
-          <PrivateRoute>
+          <AgentRoute>
             <AddProperty />
-          </PrivateRoute>
+          </AgentRoute>
         ),
       },
       {
         path: "addedProperties",
         element: (
-          <PrivateRoute>
+          <AgentRoute>
             <AddedProperties />
-          </PrivateRoute>
+          </AgentRoute>
         ),
       },
       {
         path: "addedProperties/update/:id",
         element: (
-          <PrivateRoute>
+          <AgentRoute>
             <UpdateProperty />
-          </PrivateRoute>
+          </AgentRoute>
         ),
       },
       {
         path: "soldProperties",
         element: (
-          <PrivateRoute>
+          <AgentRoute>
             <SoldProperties />
-          </PrivateRoute>
+          </AgentRoute>
         ),
       },
       {
         path: "requestedProperties",
         element: (
-          <PrivateRoute>
+          <AgentRoute>
             <RequestedProperties />
-          </PrivateRoute>
+          </AgentRoute>
         ),
       },
 
@@ -163,25 +165,25 @@ export const router = createBrowserRouter([
       {
         path: "manageProperties",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <ManageProperties />
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "manageUsers",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <ManageUsers />
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "manageReviews",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <ManageReviews />
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
     ],
