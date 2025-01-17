@@ -156,6 +156,7 @@ export default function ManageProperties() {
                         <td>
                           <Button
                             size="sm"
+                            color="teal"
                             onClick={() => handleStatus(_id, "Verified")}
                           >
                             Verify

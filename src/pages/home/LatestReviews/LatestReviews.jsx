@@ -1,34 +1,40 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import Header from "../../../components/Shared/Header";
 
 const LatestReviews = () => {
-  const {
-    data: reviews = [],
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: reviews = [], isLoading } = useQuery({
     queryKey: ["latestReviews"],
     queryFn: async () => {
-      const { data } = await axios.get("/latestReviews");
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/reviews/latest`
+      );
       console.log(data);
       return data;
     },
   });
 
+  console.log(reviews);
+
   if (isLoading) return <LoadingSpinner />;
-  if (isError) return <p>Failed to load reviews.</p>;
 
   return (
     <div className="latest-reviews">
-      <h2 className="text-2xl font-bold mb-4">Latest User Reviews</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <Header
+        title={"Latest Reviews"}
+        description={
+          "Hear What Our Customers Have to Say About Their Experiences."
+        }
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         {reviews.map((review) => (
           <div
             key={review._id}
             className="review-card border p-4 rounded-lg shadow-sm"
           >
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex flex-col items-center justify-center">
               <img
                 src={review.reviewerImage}
                 alt={review.reviewerName}

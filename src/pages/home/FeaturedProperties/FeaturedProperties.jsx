@@ -3,9 +3,10 @@ import Header from "../../../components/Shared/Header";
 import { useQuery } from "@tanstack/react-query";
 import Card from "../../../components/Shared/Card";
 import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const FeaturedProperties = () => {
-  const { data: advertise = [], refetch } = useQuery({
+  const { data: advertise = [] } = useQuery({
     queryKey: ["advertise"],
     queryFn: async () => {
       // fetch all verified properties
@@ -29,9 +30,11 @@ const FeaturedProperties = () => {
         ))}
       </div>
 
-      <Button variant="gradient" className="mt-6 block mx-auto">
-        Sell All
-      </Button>
+      <Link to="/properties">
+        <Button variant="gradient" className="mt-6 block mx-auto">
+          Sell All
+        </Button>
+      </Link>
     </div>
   );
 };
