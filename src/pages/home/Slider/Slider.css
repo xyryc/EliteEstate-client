@@ -24,6 +24,17 @@
   background-position: center;
 }
 
+.parallax-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Black overlay with 50% opacity */
+  z-index: 1; /* Ensure the overlay is on top of the background image */
+}
+
 .swiper-slide .title {
   font-size: 41px;
   font-weight: 600;

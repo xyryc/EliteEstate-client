@@ -38,7 +38,7 @@ const Details = () => {
     },
   });
 
-  // fetch all reviw
+  // fetch all review
   const {
     data: reviews = [],
     isLoading: reviewsLoading,
@@ -175,7 +175,7 @@ const Details = () => {
         </div>
       </div>
 
-      {/* review */}
+
 
       {/* Reviews Section */}
       <div className="my-10">

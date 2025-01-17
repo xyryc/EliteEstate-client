@@ -102,7 +102,7 @@ const ManageReviews = () => {
                   </div>
                 </div>
 
-                <Typography className="mt-3">{review.reviewDescription}</Typography>
+                <Typography variant="small"  className="mt-3">{review.reviewDescription}</Typography>
               </div>
 
               {/* delete button */}

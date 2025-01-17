@@ -22,7 +22,7 @@ const Slider = () => {
         clickable: true,
       }}
       autoplay={{
-        delay: 2500,
+        delay: 3500,
         disableOnInteraction: false,
       }}
       navigation={true}
@@ -43,7 +43,7 @@ const Slider = () => {
           Discover Your Dream Home
         </div>
     
-        <div className="text" data-swiper-parallax="-100">
+        <div className="text font-inter" data-swiper-parallax="-100">
           <p>
             Find the perfect property in your desired location with options that
             cater to every lifestyle, budget, and future aspirations.

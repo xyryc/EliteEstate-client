@@ -10,7 +10,6 @@ const LatestReviews = () => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/reviews/latest`
       );
-      console.log(data);
       return data;
     },
   });
