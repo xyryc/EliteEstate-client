@@ -65,7 +65,7 @@ This page will contain all the properties added by all the real estate agents (*
 - Price range. ✅
 - Details button.(clicking on the details button will redirect the user to the property details page.See **req. 5**) ✅
 
-* This will be a private/protected route.
+* This will be a private/protected route. 
 
 5. ## **Property Details page 🔒:** ✅
 
@@ -339,8 +339,12 @@ You can try to implement these features:
 
 - stripe payment ✅
 - review ✅
-- homepage
-- delete user from firebase
-- add readme
-- wishlist remove button
 - update private route for admin, agent ✅
+- homepage reviews
+- advertisement section
+- wishlist remove button
+- delete user from firebase
+- fix private route issues
+- add readme
+- change favicon
+
