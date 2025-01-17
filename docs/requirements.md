@@ -296,7 +296,7 @@ Use Tanstack Query forwith mutation for data fetching and posting. ✅
 
 1\. Add a search functionality on the “All properties” page based on the property location.  ✅
 
-2\. Implement a sort functionality based on the price range on the “All properties” page.
+2\. Implement a sort functionality based on the price range on the “All properties” page. ✅
 
 3\. Implement JWT on login (Email/Password and social) and store the token (You must store the token in localStorage). ✅
 
@@ -318,7 +318,7 @@ You can try to implement these features:
 
 4. Implement Axios interceptor. ✅
 
-5. Implement a price based filtering system on “All properties page”.
+5. Implement a price based filtering system on “All properties page”. ✅
 
 6. Use swiper.js for any slider.
 

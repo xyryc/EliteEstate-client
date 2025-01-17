@@ -13,15 +13,16 @@ const Properties = () => {
   const [search, setSearch] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [sort, setSort] = useState("");
 
   const { data: verifiedProperties = [], isLoading } = useQuery({
-    queryKey: ["verifiedProperties", search, minPrice, maxPrice],
+    queryKey: ["verifiedProperties", search, minPrice, maxPrice, sort],
     queryFn: async () => {
       // fetch verified properties
       const { data } = await axiosSecure.get(
         `${
           import.meta.env.VITE_API_URL
-        }/verifiedProperties?search=${search}&min=${minPrice}&max=${maxPrice}`
+        }/verifiedProperties?search=${search}&min=${minPrice}&max=${maxPrice}&sort=${sort}`
       );
       return data;
     },
@@ -29,6 +30,9 @@ const Properties = () => {
 
   const handleReset = () => {
     setSearch("");
+    setMinPrice("");
+    setMaxPrice("");
+    setSort("");
   };
 
   console.log(minPrice, maxPrice);
@@ -46,6 +50,7 @@ const Properties = () => {
         <div className="flex flex-col sm:flex-row items-center gap-2 ">
           <input
             onChange={(e) => setMinPrice(e.target.value)}
+            value={minPrice}
             type="text"
             placeholder="Min Price"
             className="px-4 p-2 outline-1 outline rounded-lg w-36"
@@ -53,6 +58,7 @@ const Properties = () => {
 
           <input
             onChange={(e) => setMaxPrice(e.target.value)}
+            value={maxPrice}
             type="text"
             placeholder="Max Price"
             className="px-4 p-2 outline-1 outline rounded-lg w-36"
@@ -73,6 +79,25 @@ const Properties = () => {
             value={search}
           />
           <Button size="sm">Search</Button>
+        </div>
+
+        {/* price based sorting */}
+        <div>
+          <select
+            name="category"
+            id="category"
+            className="p-2 rounded-md outline-1 outline"
+            onChange={(e) => {
+              setSort(e.target.value);
+            }}
+            value={sort}
+          >
+            <option value="" disabled>
+              Sort By Price
+            </option>
+            <option value="dsc">Descending</option>
+            <option value="asc">Ascending</option>
+          </select>
         </div>
 
         <Button size="sm" onClick={handleReset}>
