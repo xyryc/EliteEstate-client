@@ -4,6 +4,7 @@ import { LuHeart } from "react-icons/lu";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Header from "../../components/Shared/Header";
 
 const Properties = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,7 +21,9 @@ const Properties = () => {
   });
 
   return (
-    <>
+    <div>
+      <Header title={"All Properties"} description={"Browse through all our best and verified properties"} />
+
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -76,7 +79,7 @@ const Properties = () => {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

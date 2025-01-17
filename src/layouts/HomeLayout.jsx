@@ -1,4 +1,4 @@
-import Slider from "../pages/home/Slider";
+import Slider from "../pages/home/Slider/Slider";
 
 const HomeLayout = () => {
   return (

@@ -21,11 +21,13 @@ import Details from "../pages/properties/Details";
 import MakeOffer from "../pages/dashboard/customer/MakeOffer";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/dashboard/customer/Payment";
+import ErrorPage from "../pages/shared/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -64,6 +66,7 @@ export const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <DashboardLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "myProfile",
