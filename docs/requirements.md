@@ -294,7 +294,7 @@ Use Tanstack Query forwith mutation for data fetching and posting. ✅
 
 ## **Challenges task:**
 
-1\. Add a search functionality on the “All properties” page based on the property location.  ✅
+1\. Add a search functionality on the “All properties” page based on the property location. ✅
 
 2\. Implement a sort functionality based on the price range on the “All properties” page. ✅
 
@@ -304,7 +304,7 @@ Use Tanstack Query forwith mutation for data fetching and posting. ✅
 
 5.Add another route on the admin dashboard called “Advertise property”.In this route all the admin verified properties will be shown in a tabular format.Each data will contain property image,property title,price range,Agent name “Advertise” button.
 
- \-On clicking the “Advertise" button an admin can advertise a specific property.This property will  be shown in the advertisement section on the homepage.
+\-On clicking the “Advertise" button an admin can advertise a specific property.This property will be shown in the advertisement section on the homepage.
 
 # **Optional Tasks**
 
@@ -341,6 +341,6 @@ You can try to implement these features:
 - review ✅
 - homepage
 - delete user from firebase
-- add readme 
+- add readme
 - wishlist remove button
 - update private route for admin, agent ✅

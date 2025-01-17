@@ -5,12 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const TABLE_HEAD = [
-  "Title",
+  "Property Name",
   "Location",
   "Agent Name",
   "Agent Email",
   "Price Range",
-
   "Verify",
   "Reject",
 ];
@@ -115,6 +114,7 @@ export default function ManageProperties() {
                         {title}
                       </Typography>
                     </td>
+
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -123,6 +123,7 @@ export default function ManageProperties() {
                         {location}
                       </Typography>
                     </td>
+
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -131,6 +132,7 @@ export default function ManageProperties() {
                         {agent?.name}
                       </Typography>
                     </td>
+
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -139,6 +141,7 @@ export default function ManageProperties() {
                         {agent?.email}
                       </Typography>
                     </td>
+
                     <td className={classes}>
                       <Typography
                         variant="small"

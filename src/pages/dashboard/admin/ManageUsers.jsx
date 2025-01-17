@@ -193,6 +193,7 @@ export default function ManageUsers() {
                         {email}
                       </Typography>
                     </td>
+
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -254,7 +255,7 @@ export default function ManageUsers() {
                         )}
                       </td>
                     ) : (
-                      <td>-</td>
+                      <td className={classes}>-</td>
                     )}
 
                     <td className={classes}>

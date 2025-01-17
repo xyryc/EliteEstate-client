@@ -24,6 +24,7 @@ import Payment from "../pages/dashboard/customer/Payment";
 import ErrorPage from "../pages/shared/ErrorPage";
 import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
+import AdvertiseProperty from "../pages/dashboard/admin/AdvertiseProperty";
 
 export const router = createBrowserRouter([
   {
@@ -68,7 +69,7 @@ export const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <DashboardLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "myProfile",
@@ -183,6 +184,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageReviews />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "advertiseProperty",
+        element: (
+          <AdminRoute>
+            <AdvertiseProperty />
           </AdminRoute>
         ),
       },

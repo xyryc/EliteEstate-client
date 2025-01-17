@@ -123,6 +123,13 @@ const Sidebar = () => {
                     </Button>
                   </Link>
                 </li>
+                <li>
+                  <Link to="/dashboard/advertiseProperty">
+                    <Button fullWidth variant="text" className="text-white">
+                      Advertise Property
+                    </Button>
+                  </Link>
+                </li>
               </>
             )}
 
@@ -133,7 +140,7 @@ const Sidebar = () => {
                 </Button>
               </Link>
             </li>
-            <li >
+            <li>
               <Link to="/properties">
                 <Button fullWidth variant="text" className="text-white">
                   Properties
@@ -147,21 +154,21 @@ const Sidebar = () => {
       {/* Main Content */}
       <main className="flex-1 p-3 bg-white md:hidden">
         {/* Top Header */}
-        <div className="flex justify-between items-center mb-6">
-          <IconButton
-            size="sm"
-            color="black"
-            className="md:hidden"
-            onClick={toggleSidebar}
-          >
-            <HiMenuAlt3 size={24} />
-          </IconButton>
-          <Typography variant="h4" className="font-semibold">
-            EliteEstate
-          </Typography>
-          <Button variant="outlined" className="border-black text-black">
-            Logout
-          </Button>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <IconButton
+              size="sm"
+              color="black"
+              className="md:hidden"
+              onClick={toggleSidebar}
+            >
+              <HiMenuAlt3 size={24} />
+            </IconButton>
+            <Typography variant="h4" className="font-semibold">
+              EliteEstate
+            </Typography>
+          </div>
+          <Button variant="gradient">Logout</Button>
         </div>
       </main>
     </div>

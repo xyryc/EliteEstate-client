@@ -68,7 +68,7 @@ const Properties = () => {
         {/* search */}
         <div className="flex p-1 overflow-hidden rounded-lg outline-1 outline">
           <input
-            className="px-6 py-1 outline-none"
+            className="px-4 py-1 outline-none"
             type="text"
             name="search"
             placeholder="Search by Location"
