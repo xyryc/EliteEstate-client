@@ -21,7 +21,7 @@ const FeaturedProperties = () => {
     <div>
       <Header
         title={"Featured Properties"}
-        description={"Explore Our Top Picks in Real Estate."}
+        description={"Explore Our Top Picks in Real Estate for the Best Homes and Investments."}
       />
 
       <div className="flex flex-wrap justify-center gap-6">

@@ -1,3 +1,4 @@
+import { CustomAccordion } from "../pages/home/Accordion/CustomAccordion";
 import FeaturedProperties from "../pages/home/FeaturedProperties/FeaturedProperties";
 import LatestReviews from "../pages/home/LatestReviews/LatestReviews";
 import Slider from "../pages/home/Slider/Slider";
@@ -11,6 +12,8 @@ const HomeLayout = () => {
         <FeaturedProperties />
 
         <LatestReviews />
+
+        <CustomAccordion/>
       </div>
     </div>
   );

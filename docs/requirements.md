@@ -18,7 +18,7 @@ You must develop a **Real estate Platform (an online platform where people can a
 - Make it responsive for all devices. You need to make it responsive for mobile, tablet and desktop views. Make the dashboard responsive as well. ✅
 - After reloading the page of a private route, the user should not be redirected to the login page. ✅
 - Use the Environment variable to hide the Firebase config keys and Mongodb credentials. ✅
-- Don’t use any Lorem ipsum text in your website.
+- Don’t use any Lorem ipsum text in your website. 
 - Show sweet alert/toast/notification for all the crud operations, successful authentication login, and sign-up. Don’t use the default browser alert. ✅
 
 **Main Tasks**
@@ -27,22 +27,22 @@ You must develop a **Real estate Platform (an online platform where people can a
 
 1. ## **Home-Page**
 
-Home page will have a navbar, banner/slider, Advertisement section,Latest User review section and a footer.
+Home page will have a navbar, banner/slider, Advertisement section,Latest User review section and a footer. ✅
 
-**Advertisement section:** In this section there will be at least 4 cards which will contain
+**Advertisement section:** In this section there will be at least 4 cards which will contain ✅
 
-- property image.
-- Property location.
-- price range.
-- verification status.
-- Details button.(clicking on the details button will redirect the user to the property details page.See requirement 6\)
+- property image. ✅
+- Property location. ✅
+- price range. ✅
+- verification status. ✅
+- Details button.(clicking on the details button will redirect the user to the property details page.See requirement 6\) ✅
 
-**Latest User review:** In this section there will be at least 3 latest(recently added) user reviews which will contain:
+**Latest User review:** In this section there will be at least 3 latest(recently added) user reviews which will contain: ✅
 
-- Reviewer name.
-- Reviewer Image.
-- Review description.
-- property title.
+- Reviewer name. ✅
+- Reviewer Image. ✅
+- Review description. ✅
+- property title. ✅
 
 2. ## **Navbar**
 
