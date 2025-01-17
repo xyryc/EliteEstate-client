@@ -1,6 +1,3 @@
-import { Footer } from "../components/Shared/Footer";
-// import LatestReviews from "../pages/home/LatestReviews/LatestReviews";
-
 import Slider from "../pages/home/Slider/Slider";
 
 const HomeLayout = () => {
@@ -12,7 +9,7 @@ const HomeLayout = () => {
 
       {/* <LatestReviews /> */}
 
-      <Footer />
+ 
     </div>
   );
 };
