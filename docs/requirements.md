@@ -294,7 +294,7 @@ Use Tanstack Query forwith mutation for data fetching and posting. ✅
 
 ## **Challenges task:**
 
-1\. Add a search functionality on the “All properties” page based on the property location. 
+1\. Add a search functionality on the “All properties” page based on the property location.  ✅
 
 2\. Implement a sort functionality based on the price range on the “All properties” page.
 

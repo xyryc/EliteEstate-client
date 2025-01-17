@@ -11,13 +11,17 @@ import { Button } from "@material-tailwind/react";
 const Properties = () => {
   const axiosSecure = useAxiosSecure();
   const [search, setSearch] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   const { data: verifiedProperties = [], isLoading } = useQuery({
-    queryKey: ["verifiedProperties", search],
+    queryKey: ["verifiedProperties", search, minPrice, maxPrice],
     queryFn: async () => {
       // fetch verified properties
       const { data } = await axiosSecure.get(
-        `${import.meta.env.VITE_API_URL}/verifiedProperties?search=${search}`
+        `${
+          import.meta.env.VITE_API_URL
+        }/verifiedProperties?search=${search}&min=${minPrice}&max=${maxPrice}`
       );
       return data;
     },
@@ -27,7 +31,7 @@ const Properties = () => {
     setSearch("");
   };
 
-  console.log(search);
+  console.log(minPrice, maxPrice);
 
   return (
     <div>
@@ -36,16 +40,33 @@ const Properties = () => {
         description={"Browse through all our best and verified properties"}
       />
 
-      {/* search */}
+      {/* search, sort, filter */}
       <div className="flex flex-col md:flex-row justify-center items-center gap-5 my-6">
+        {/* price range filter */}
+        <div className="flex flex-col sm:flex-row items-center gap-2 ">
+          <input
+            onChange={(e) => setMinPrice(e.target.value)}
+            type="text"
+            placeholder="Min Price"
+            className="px-4 p-2 outline-1 outline rounded-lg w-36"
+          />
+
+          <input
+            onChange={(e) => setMaxPrice(e.target.value)}
+            type="text"
+            placeholder="Max Price"
+            className="px-4 p-2 outline-1 outline rounded-lg w-36"
+          />
+        </div>
+
         {/* search */}
         <div className="flex p-1 overflow-hidden rounded-lg outline-1 outline">
           <input
             className="px-6 py-1 outline-none"
             type="text"
             name="search"
-            placeholder="Search by Property location"
-            aria-label="Search by Property location"
+            placeholder="Search by Location"
+            aria-label="Search by Location"
             onChange={(e) => {
               setSearch(e.target.value);
             }}
