@@ -10,8 +10,8 @@ const SoldProperties = () => {
     "Property Title",
     "Location",
     "Buyer Email",
-    "Buyer Name",
-    "Sold Price",
+    "Buyer",
+    "Sold",
     "Transaction ID",
     "Transaction Date",
   ];
@@ -37,14 +37,26 @@ const SoldProperties = () => {
     return <p>Failed to load sold properties. Please try again later.</p>;
   }
 
+  // Calculate the total sold amount
+  const totalSoldAmount = soldProperties.reduce(
+    (sum, property) => sum + (property.offeredPrice || 0),
+    0
+  );
+
   return (
     <div>
-      <div className="p-2 sm:p-6">
+      <div className="p-2 sm:p-6 flex flex-col sm:flex-row justify-between">
+        <div>
+          <Typography variant="lead" color="blue-gray" className="font-bold">
+            Sold Properties
+          </Typography>
+          <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
+            List of properties sold by you
+          </Typography>
+        </div>
+
         <Typography variant="lead" color="blue-gray" className="font-bold">
-          Sold Properties
-        </Typography>
-        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-          List of properties sold by you
+          Revenue: ${totalSoldAmount}
         </Typography>
       </div>
 
