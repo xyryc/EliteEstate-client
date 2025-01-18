@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { imageUpload } from "../../../api/utils";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
 
 const UpdateProperty = () => {
   const { id } = useParams();
@@ -77,14 +78,15 @@ const UpdateProperty = () => {
         shadow={false}
         className="max-w-lg rounded-lg bg-white shadow-none"
       >
-        <Typography variant="h4" color="blue-gray">
-          Add Property
-        </Typography>
-        <Typography color="gray" className="mt-1 font-normal">
-          Nice to meet you! Enter your details to register.
-        </Typography>
+        <DashboardHeader
+          title={"Update Property Details"}
+          description={
+            "Easily update your property details and keep listings current"
+          }
+        ></DashboardHeader>
+
         <form
-          className="mt-8 mb-2 max-w-screen-lg space-y-3"
+          className="max-w-screen-lg space-y-2 sm:px-6"
           onSubmit={handleSubmit}
         >
           {/* title */}

@@ -68,7 +68,10 @@ export default function AddedProperties() {
 
   return (
     <div>
-      <DashboardHeader title={"Added Properties"} description={"View and manage properties you've successfully added"}/>
+      <DashboardHeader
+        title={"Added Properties"}
+        description={"View and manage properties you've successfully added"}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 justify-items-center place-items-center gap-6 px-4">
         {properties?.map((item) => (
@@ -102,10 +105,14 @@ export default function AddedProperties() {
                 ""
               ) : (
                 <Link to={`/dashboard/addedProperties/update/${item._id}`}>
-                  <Button>Update</Button>
+                  <Button size="sm">Update</Button>
                 </Link>
               )}
-              <Button onClick={() => handleDeleteProperty(item._id)}>
+              <Button
+                size="sm"
+                color="red"
+                onClick={() => handleDeleteProperty(item._id)}
+              >
                 Delete
               </Button>
             </CardFooter>

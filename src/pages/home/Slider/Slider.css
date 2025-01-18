@@ -10,7 +10,7 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 40px 60px;
-  height: 80vh;
+  height: 82vh;
 }
 
 .parallax-bg {
@@ -46,7 +46,7 @@
 
 .swiper-slide .text {
   font-size: 20px;
-  max-width: 900px;
+  max-width: 800px;
   line-height: 1.3;
 }
 

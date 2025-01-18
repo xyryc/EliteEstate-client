@@ -25,12 +25,13 @@ import ErrorPage from "../pages/shared/ErrorPage";
 import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import AdvertiseProperty from "../pages/dashboard/admin/AdvertiseProperty";
+import CustomerRoute from "./CustomerRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -69,7 +70,7 @@ export const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <DashboardLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "myProfile",
@@ -79,11 +80,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      // customer route
       {
         path: "wishlist",
         element: (
           <PrivateRoute>
-            <Wishlist />
+            <CustomerRoute>
+              <Wishlist />
+            </CustomerRoute>
           </PrivateRoute>
         ),
       },
@@ -91,7 +96,9 @@ export const router = createBrowserRouter([
         path: "wishlist/offer/:id",
         element: (
           <PrivateRoute>
-            <MakeOffer />
+            <CustomerRoute>
+              <MakeOffer />
+            </CustomerRoute>
           </PrivateRoute>
         ),
       },
@@ -99,7 +106,9 @@ export const router = createBrowserRouter([
         path: "propertyBought",
         element: (
           <PrivateRoute>
-            <PropertyBought />
+            <CustomerRoute>
+              <PropertyBought />
+            </CustomerRoute>
           </PrivateRoute>
         ),
       },
@@ -107,7 +116,9 @@ export const router = createBrowserRouter([
         path: "propertyBought/pay/:id",
         element: (
           <PrivateRoute>
-            <Payment />
+            <CustomerRoute>
+              <Payment />
+            </CustomerRoute>
           </PrivateRoute>
         ),
       },
@@ -115,7 +126,9 @@ export const router = createBrowserRouter([
         path: "reviews",
         element: (
           <PrivateRoute>
-            <MyReviews />
+            <CustomerRoute>
+              <MyReviews />
+            </CustomerRoute>
           </PrivateRoute>
         ),
       },
@@ -124,41 +137,51 @@ export const router = createBrowserRouter([
       {
         path: "addProperty",
         element: (
-          <AgentRoute>
-            <AddProperty />
-          </AgentRoute>
+          <PrivateRoute>
+            <AgentRoute>
+              <AddProperty />
+            </AgentRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "addedProperties",
         element: (
-          <AgentRoute>
-            <AddedProperties />
-          </AgentRoute>
+          <PrivateRoute>
+            <AgentRoute>
+              <AddedProperties />
+            </AgentRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "addedProperties/update/:id",
         element: (
-          <AgentRoute>
-            <UpdateProperty />
-          </AgentRoute>
+          <PrivateRoute>
+            <AgentRoute>
+              <UpdateProperty />
+            </AgentRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "soldProperties",
         element: (
-          <AgentRoute>
-            <SoldProperties />
-          </AgentRoute>
+          <PrivateRoute>
+            <AgentRoute>
+              <SoldProperties />
+            </AgentRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "requestedProperties",
         element: (
-          <AgentRoute>
-            <RequestedProperties />
-          </AgentRoute>
+          <PrivateRoute>
+            <AgentRoute>
+              <RequestedProperties />
+            </AgentRoute>
+          </PrivateRoute>
         ),
       },
 
@@ -166,33 +189,41 @@ export const router = createBrowserRouter([
       {
         path: "manageProperties",
         element: (
-          <AdminRoute>
-            <ManageProperties />
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageProperties />
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "manageUsers",
         element: (
-          <AdminRoute>
-            <ManageUsers />
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "manageReviews",
         element: (
-          <AdminRoute>
-            <ManageReviews />
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageReviews />
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "advertiseProperty",
         element: (
-          <AdminRoute>
-            <AdvertiseProperty />
-          </AdminRoute>
+          <PrivateRoute>
+            <AdminRoute>
+              <AdvertiseProperty />
+            </AdminRoute>
+          </PrivateRoute>
         ),
       },
     ],

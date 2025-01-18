@@ -111,6 +111,19 @@ const Details = () => {
     }
   };
 
+  const isValidImageUrl = (url) => {
+    try {
+      // Check if the URL is a valid string and ends with common image file extensions
+      return (
+        typeof url === "string" &&
+        (url.startsWith("http://") || url.startsWith("https://")) &&
+        /\.(jpg|jpeg|png|webp|gif|bmp)$/i.test(url)
+      );
+    } catch {
+      return false;
+    }
+  };
+
   return (
     <div className="container mx-auto p-4 sm:p-6">
       {/* detail */}
@@ -151,8 +164,9 @@ const Details = () => {
           <div className="flex items-center gap-4">
             <img
               src={
-                agent?.image ||
-                "https://i.ibb.co.com/rQmdnVw/IMG-2268-cropped-prev-ui.png"
+                isValidImageUrl(agent?.image)
+                  ? agent?.image
+                  : "https://i.ibb.co/2Z0VHgk/miriyam.jpg"
               }
               alt={agent?.name}
               className="h-16 w-16 object-cover rounded-full"
@@ -175,11 +189,13 @@ const Details = () => {
         </div>
       </div>
 
-
-
       {/* Reviews Section */}
       <div className="my-10">
-        <Button onClick={handleOpen} className="mb-10"  disabled={role === "agent" || role === "admin"}>
+        <Button
+          onClick={handleOpen}
+          className="mb-10"
+          disabled={role === "agent" || role === "admin"}
+        >
           Add a review
         </Button>
         <h3 className="text-2xl font-bold mb-4">Reviews</h3>

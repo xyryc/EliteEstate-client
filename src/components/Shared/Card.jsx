@@ -14,8 +14,6 @@ const Card = ({ item }) => {
   const [role] = useRole();
   const { user } = useAuth();
 
-  console.log(item);
-
   // wishlist
   const { mutateAsync } = useMutation({
     mutationFn: async (wishlistData) => {
@@ -37,6 +35,19 @@ const Card = ({ item }) => {
     const { _id, ...rest } = item;
     const wishlistData = { ...rest, propertyId: item._id, email: user?.email };
     await mutateAsync(wishlistData);
+  };
+
+  const isValidImageUrl = (url) => {
+    try {
+      // Check if the URL is a valid string and ends with common image file extensions
+      return (
+        typeof url === "string" &&
+        (url.startsWith("http://") || url.startsWith("https://")) &&
+        /\.(jpg|jpeg|png|webp|gif|bmp)$/i.test(url)
+      );
+    } catch {
+      return false;
+    }
   };
 
   return (
@@ -71,11 +82,14 @@ const Card = ({ item }) => {
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src={item.agent.image}
+              src={
+                isValidImageUrl(item.agent?.image)
+                  ? item.agent.image
+                  : "https://i.ibb.co/2Z0VHgk/miriyam.jpg"
+              }
               alt={item.agent.name}
-              className="h-10  w-10 rounded-full object-cover"
+              className="h-10 w-10 rounded-full object-cover"
             />
-
             <p className="text-lg font-bold opacity-70">{item.agent.name}</p>
           </div>
 

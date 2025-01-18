@@ -63,7 +63,7 @@ export function CustomNavbar() {
     <Navbar className="mx-auto px-4 py-2 shadow-none">
       <div className="flex items-center justify-between text-blue-gray-900">
         <Typography variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2">
-          <NavLink to="/" className="flex items-center gap-1">
+          <NavLink to="/" className="flex items-center gap-1 text-xl font-poppins">
             <HiOutlineHomeModern /> EliteEstate
           </NavLink>
         </Typography>
