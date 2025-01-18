@@ -4,6 +4,7 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import EmptyPage from "../../../components/Shared/EmptyPage";
 
 const TABLE_HEAD = [
   "Property Name",
@@ -72,141 +73,161 @@ export default function ManageProperties() {
         description={"Oversee and maintain property listings on the platform."}
       />
 
-      
-      <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
-        <table className="w-full min-w-max table-auto text-left">
-          <thead>
-            <tr>
-              {TABLE_HEAD.map((head) => (
-                <th key={head} className="border-b border-gray-300 pb-4 pt-10">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-bold leading-none"
-                  >
-                    {head}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {properties.map(
-              (
-                { agent, title, location, max_price, min_price, _id, status },
-                index
-              ) => {
-                const isLast = index === properties.length - 1;
-                const classes = isLast
-                  ? "py-4"
-                  : "py-4 border-b border-gray-300";
-
-                return (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className={classes}>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : properties.length === 0 ? (
+        <>
+          <EmptyPage message={"No properties have been added yet!"} />
+        </>
+      ) : (
+        <>
+          <Card className="h-[70vh] w-full overflow-scroll border border-gray-300 px-6 ">
+            <table className="w-full min-w-max table-auto text-left">
+              <thead>
+                <tr>
+                  {TABLE_HEAD.map((head) => (
+                    <th
+                      key={head}
+                      className="border-b border-gray-300 pb-4 pt-10"
+                    >
                       <Typography
                         variant="small"
                         color="blue-gray"
-                        className="font-bold"
+                        className="font-bold leading-none"
                       >
-                        {title}
+                        {head}
                       </Typography>
-                    </td>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {properties.map(
+                  (
+                    {
+                      agent,
+                      title,
+                      location,
+                      max_price,
+                      min_price,
+                      _id,
+                      status,
+                    },
+                    index
+                  ) => {
+                    const isLast = index === properties.length - 1;
+                    const classes = isLast
+                      ? "py-4"
+                      : "py-4 border-b border-gray-300";
 
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {location}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {agent?.name}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {agent?.email}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        ${min_price} - ${max_price}
-                      </Typography>
-                    </td>
-
-                    {status === "Pending" ? (
-                      <>
+                    return (
+                      <tr key={index} className="hover:bg-gray-50">
                         <td className={classes}>
-                          <Button
-                            size="sm"
-                            color="teal"
-                            onClick={() => handleStatus(_id, "Verified")}
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-bold"
                           >
-                            Verify
-                          </Button>
+                            {title}
+                          </Typography>
                         </td>
 
                         <td className={classes}>
-                          <Button
-                            size="sm"
-                            className=" bg-red-500"
-                            onClick={() => handleStatus(_id, "Rejected")}
+                          <Typography
+                            variant="small"
+                            className="font-normal text-gray-600"
                           >
-                            Reject
-                          </Button>
+                            {location}
+                          </Typography>
                         </td>
-                      </>
-                    ) : (
-                      <>
+
                         <td className={classes}>
-                          <Button
-                            size="sm"
-                            className={`${
-                              status === "Verified" && "bg-green-500"
-                            } ${status === "Rejected" && "bg-red-500"}
+                          <Typography
+                            variant="small"
+                            className="font-normal text-gray-600"
+                          >
+                            {agent?.name}
+                          </Typography>
+                        </td>
+
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            className="font-normal text-gray-600"
+                          >
+                            {agent?.email}
+                          </Typography>
+                        </td>
+
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            className="font-normal text-gray-600"
+                          >
+                            ${min_price} - ${max_price}
+                          </Typography>
+                        </td>
+
+                        {status === "Pending" ? (
+                          <>
+                            <td className={classes}>
+                              <Button
+                                size="sm"
+                                color="teal"
+                                onClick={() => handleStatus(_id, "Verified")}
+                              >
+                                Verify
+                              </Button>
+                            </td>
+
+                            <td className={classes}>
+                              <Button
+                                size="sm"
+                                className=" bg-red-500"
+                                onClick={() => handleStatus(_id, "Rejected")}
+                              >
+                                Reject
+                              </Button>
+                            </td>
+                          </>
+                        ) : (
+                          <>
+                            <td className={classes}>
+                              <Button
+                                size="sm"
+                                className={`${
+                                  status === "Verified" && "bg-green-500"
+                                } ${status === "Rejected" && "bg-red-500"}
                  
                         `}
-                          >
-                            {status}
-                          </Button>
-                        </td>
+                              >
+                                {status}
+                              </Button>
+                            </td>
 
-                        <td className={classes}>
-                          <Button
-                            size="sm"
-                            className={`${
-                              status === "Verified" && "bg-green-500"
-                            } ${status === "Rejected" && "bg-red-500"}
+                            <td className={classes}>
+                              <Button
+                                size="sm"
+                                className={`${
+                                  status === "Verified" && "bg-green-500"
+                                } ${status === "Rejected" && "bg-red-500"}
                  
                         `}
-                          >
-                            {status}
-                          </Button>
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                );
-              }
-            )}
-          </tbody>
-        </table>
-      </Card>
+                              >
+                                {status}
+                              </Button>
+                            </td>
+                          </>
+                        )}
+                      </tr>
+                    );
+                  }
+                )}
+              </tbody>
+            </table>
+          </Card>
+        </>
+      )}
     </section>
   );
 }

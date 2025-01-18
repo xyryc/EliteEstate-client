@@ -3,6 +3,9 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import toast from "react-hot-toast";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import EmptyPage from "../../../components/Shared/EmptyPage";
+import { Link } from "react-router-dom";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 
 const AdvertiseProperty = () => {
   const axiosSecure = useAxiosSecure();
@@ -14,7 +17,11 @@ const AdvertiseProperty = () => {
     "Advertise",
   ];
 
-  const { data: verifiedProps = [], refetch } = useQuery({
+  const {
+    data: verifiedProps = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["verifiedProps"],
 
     queryFn: async () => {
@@ -61,97 +68,111 @@ const AdvertiseProperty = () => {
         }
       />
 
-      <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
-        <table className="w-full min-w-max table-auto text-left">
-          <thead>
-            <tr>
-              {TABLE_HEAD.map((head) => (
-                <th key={head} className="border-b border-gray-300 pb-4 pt-10">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-bold leading-none"
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : verifiedProps.length === 0 ? (
+        <>
+          <EmptyPage message={"No verified properties yet"} />
+          <Link to="/">
+            <Button className="block mx-auto">Home</Button>
+          </Link>
+        </>
+      ) : (
+        <Card className="h-[70vh] w-full overflow-scroll border border-gray-300 px-6">
+          <table className="w-full min-w-max table-auto text-left">
+            <thead>
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="border-b border-gray-300 pb-4 pt-10"
                   >
-                    {head}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {verifiedProps.map(
-              (
-                { agent, title, max_price, min_price, image, _id, advertise },
-                index
-              ) => {
-                const isLast = index === verifiedProps.length - 1;
-                const classes = isLast
-                  ? "py-4"
-                  : "py-4 border-b border-gray-300";
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-bold leading-none"
+                    >
+                      {head}
+                    </Typography>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {verifiedProps.map(
+                (
+                  { agent, title, max_price, min_price, image, _id, advertise },
+                  index
+                ) => {
+                  const isLast = index === verifiedProps.length - 1;
+                  const classes = isLast
+                    ? "py-4"
+                    : "py-4 border-b border-gray-300";
 
-                return (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className={classes}>
-                      <img
-                        src={image}
-                        alt={title}
-                        className="h-20 rounded-md"
-                      />
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-bold"
-                      >
-                        {title}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        ${min_price} - ${max_price}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {agent?.name}
-                      </Typography>
-                    </td>
-
-                    {advertise ? (
+                  return (
+                    <tr key={index} className="hover:bg-gray-50">
                       <td className={classes}>
-                        <Button size="sm" variant="gradient" color="green">
-                          Advertising
-                        </Button>
+                        <img
+                          src={image}
+                          alt={title}
+                          className="h-20 rounded-md"
+                        />
                       </td>
-                    ) : (
+
                       <td className={classes}>
-                        <Button
-                          size="sm"
-                          variant="gradient"
-                          color="teal"
-                          onClick={() => handleAdvertisement(_id)}
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-bold"
                         >
-                          Advertise
-                        </Button>
+                          {title}
+                        </Typography>
                       </td>
-                    )}
-                  </tr>
-                );
-              }
-            )}
-          </tbody>
-        </table>
-      </Card>
+
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
+                        >
+                          ${min_price} - ${max_price}
+                        </Typography>
+                      </td>
+
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
+                        >
+                          {agent?.name}
+                        </Typography>
+                      </td>
+
+                      {advertise ? (
+                        <td className={classes}>
+                          <Button size="sm" variant="gradient" color="green">
+                            Advertising
+                          </Button>
+                        </td>
+                      ) : (
+                        <td className={classes}>
+                          <Button
+                            size="sm"
+                            variant="gradient"
+                            color="teal"
+                            onClick={() => handleAdvertisement(_id)}
+                          >
+                            Advertise
+                          </Button>
+                        </td>
+                      )}
+                    </tr>
+                  );
+                }
+              )}
+            </tbody>
+          </table>
+        </Card>
+      )}
     </section>
   );
 };

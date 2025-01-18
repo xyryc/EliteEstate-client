@@ -4,6 +4,8 @@ import { Button, Typography } from "@material-tailwind/react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import { Link } from "react-router-dom";
+import EmptyPage from "../../../components/Shared/EmptyPage";
 
 const ManageReviews = () => {
   const axiosSecure = useAxiosSecure();
@@ -75,10 +77,17 @@ const ManageReviews = () => {
         }
       />
 
-      {allReviews.length === 0 ? (
-        <p>No reviews found!</p>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : allReviews.length === 0 ? (
+        <>
+          <EmptyPage message={"No reviews yet!"} />
+          <Link to="/">
+            <Button className="block mx-auto">Home</Button>
+          </Link>
+        </>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4">
+        <div className="h-[70vh] overflow-scroll grid grid-cols-1 lg:grid-cols-2 gap-6 px-4">
           {allReviews.map((review) => (
             <div
               key={review._id}
@@ -102,7 +111,9 @@ const ManageReviews = () => {
                   </div>
                 </div>
 
-                <Typography variant="small"  className="mt-3">{review.reviewDescription}</Typography>
+                <Typography variant="small" className="mt-3">
+                  {review.reviewDescription}
+                </Typography>
               </div>
 
               {/* delete button */}

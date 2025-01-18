@@ -2,7 +2,6 @@ import axios from "axios";
 import Header from "../../../components/Shared/Header";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
 import CardPublic from "../../../components/Shared/CardPublic";
 import { useRef } from "react";
 import "./FeaturedProperties.css";

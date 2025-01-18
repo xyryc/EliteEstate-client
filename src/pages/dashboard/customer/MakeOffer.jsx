@@ -26,6 +26,7 @@ const MakeOffer = () => {
 
   const handleOfferSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const form = e.target;
     const offeredPrice = form.offered_price.value;

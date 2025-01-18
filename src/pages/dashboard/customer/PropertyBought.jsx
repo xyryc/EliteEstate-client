@@ -8,13 +8,15 @@ import { CgSearchLoading } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { LuCreditCard } from "react-icons/lu";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import EmptyPage from "../../../components/Shared/EmptyPage";
 
 const PropertyBought = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   // Fetch user offered properties
-  const { data: offered = [] } = useQuery({
+  const { data: offered = [], isLoading } = useQuery({
     queryKey: ["property"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -32,85 +34,94 @@ const PropertyBought = () => {
         }
       />
 
-      {offered.length === 0 ? (
-        <Typography color="gray" className="text-center text-lg">
-          You have not offered on any properties yet.
-        </Typography>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : offered.length === 0 ? (
+        <>
+          <EmptyPage message={"Nothing bought yet"} />
+          <Link to="/properties">
+            <Button className="block mx-auto">Go To Properties</Button>
+          </Link>
+        </>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {offered.map((property) => (
-            <Card
-              key={property._id}
-              shadow={true}
-              className="rounded-lg border border-gray-400 hover:shadow-xl transition-all ease-in-out duration-300"
-            >
-              {/* Image Section */}
-              <div className="w-full h-40 bg-gray-100 rounded-t-lg overflow-hidden">
-                <img
-                  src={property.propertyImage}
-                  alt={property.propertyTitle}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Card Body Section */}
-              <CardBody className="p-4">
-                <Typography className="font-bold capitalize" variant="h5">
-                  {property.propertyTitle}
-                </Typography>
-
-                <div className="flex items-center text-sm text-gray-600">
-                  <MdLocationOn className="text-blue-500 mr-2" />
-                  <Typography className="font-medium">
-                    {property.propertyLocation}
-                  </Typography>
-                </div>
-                <div className="flex items-center text-sm text-gray-600 capitalize">
-                  <FaUserAlt className="text-yellow-500 mr-2" />
-                  <Typography>Agent: {property.agent.name}</Typography>
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <MdAttachMoney className="text-green-500 mr-2" />
-                  <Typography>
-                    Offered:{" "}
-                    <span className="font-semibold text-blue-600">
-                      ${property.offeredPrice}
-                    </span>
-                  </Typography>
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <CgSearchLoading className="text-purple-500 mr-2" />
-                  <Typography
-                    variant="small"
-                    className="font-medium capitalize"
-                  >
-                    Status: {property.offerStatus}
-                  </Typography>
+        <div className="h-[70vh] overflow-y-scroll px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {offered.map((property) => (
+              <Card
+                key={property._id}
+                shadow={true}
+                className="rounded-lg border border-gray-400 hover:shadow-xl transition-all ease-in-out duration-300"
+              >
+                {/* Image Section */}
+                <div className="w-full h-40 bg-gray-100 rounded-t-lg overflow-hidden">
+                  <img
+                    src={property.propertyImage}
+                    alt={property.propertyTitle}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                {property?.paymentInfo?.transactionId && (
+                {/* Card Body Section */}
+                <CardBody className="p-4">
+                  <Typography className="font-bold capitalize" variant="h5">
+                    {property.propertyTitle}
+                  </Typography>
+
                   <div className="flex items-center text-sm text-gray-600">
-                    <LuCreditCard className="text-red-500 mr-2" />
+                    <MdLocationOn className="text-blue-500 mr-2" />
+                    <Typography className="font-medium">
+                      {property.propertyLocation}
+                    </Typography>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600 capitalize">
+                    <FaUserAlt className="text-yellow-500 mr-2" />
+                    <Typography>Agent: {property.agent.name}</Typography>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <MdAttachMoney className="text-green-500 mr-2" />
+                    <Typography>
+                      Offered:{" "}
+                      <span className="font-semibold text-blue-600">
+                        ${property.offeredPrice}
+                      </span>
+                    </Typography>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <CgSearchLoading className="text-purple-500 mr-2" />
                     <Typography
                       variant="small"
                       className="font-medium capitalize"
                     >
-                      Txn Id: {property?.paymentInfo?.transactionId}
+                      Status: {property.offerStatus}
                     </Typography>
                   </div>
-                )}
 
-                <div className="mt-2">
-                  {/* Pay Button (if offer is accepted) */}
-                  {property.offerStatus === "accepted" && (
-                    <Link to={`/dashboard/propertyBought/pay/${property._id}`}>
-                      <Button size="sm">Pay Now</Button>
-                    </Link>
+                  {property?.paymentInfo?.transactionId && (
+                    <div className="flex items-center text-sm text-gray-600">
+                      <LuCreditCard className="text-red-500 mr-2" />
+                      <Typography
+                        variant="small"
+                        className="font-medium capitalize"
+                      >
+                        Txn Id: {property?.paymentInfo?.transactionId}
+                      </Typography>
+                    </div>
                   )}
-                </div>
-              </CardBody>
-            </Card>
-          ))}
+
+                  <div className="mt-2">
+                    {/* Pay Button (if offer is accepted) */}
+                    {property.offerStatus === "accepted" && (
+                      <Link
+                        to={`/dashboard/propertyBought/pay/${property._id}`}
+                      >
+                        <Button size="sm">Pay Now</Button>
+                      </Link>
+                    )}
+                  </div>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -5,6 +5,9 @@ import { Button } from "@material-tailwind/react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import EmptyPage from "../../../components/Shared/EmptyPage";
+import { Link } from "react-router-dom";
 
 const MyReviews = () => {
   const axiosSecure = useAxiosSecure();
@@ -69,8 +72,6 @@ const MyReviews = () => {
     ));
   };
 
-  if (isLoading) return <p>Loading...</p>;
-
   return (
     <div>
       <DashboardHeader
@@ -78,10 +79,17 @@ const MyReviews = () => {
         description={"Manage and reflect on your feedback history"}
       />
 
-      {myReviews.length === 0 ? (
-        <p>No reviews yet. Start adding reviews to see them here!</p>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : myReviews.length === 0 ? (
+        <>
+          <EmptyPage message={"Not reviewed any properties yet"} />
+          <Link to="/properties">
+            <Button className="block mx-auto">Go To Properties</Button>
+          </Link>
+        </>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 h-[70vh] overflow-scroll px-4">
           {myReviews.map((review) => (
             <div
               key={review._id}

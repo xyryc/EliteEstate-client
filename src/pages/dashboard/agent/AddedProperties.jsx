@@ -14,6 +14,10 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import EmptyPage from "../../../components/Shared/EmptyPage";
+import { MdLocationOn, MdAttachMoney } from "react-icons/md";
+import { AiOutlineUser } from "react-icons/ai";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 export default function AddedProperties() {
   const { user } = useAuth();
@@ -73,52 +77,90 @@ export default function AddedProperties() {
         description={"View and manage properties you've successfully added"}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 justify-items-center place-items-center gap-6 px-4">
-        {properties?.map((item) => (
-          <Card className="mt-6" key={item._id}>
-            <CardHeader color="blue-gray" className="relative h-56 min-w-80">
-              <img
-                className="h-full w-full object-cover"
-                src={item.image}
-                alt={item.title}
-              />
-            </CardHeader>
-            <CardBody>
-              <Typography variant="h5" color="blue-gray" className="mb-2">
-                {item.title}
-              </Typography>
-              <Typography variant="lead">{item.location}</Typography>
-              <div className="flex gap-2">
-                <Typography>Min Price: ${item.min_price}</Typography>
-                <Typography>Max Price: ${item.max_price}</Typography>
-              </div>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : properties.length === 0 ? (
+        <>
+          <EmptyPage message={"No added properties yet!"} />
+          <Link to="/properties">
+            <Button className="block mx-auto">Home</Button>
+          </Link>
+        </>
+      ) : (
+        <div className="h-[70vh] p-4 overflow-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {properties?.map((item) => (
+            <Card className="mt-4 shadow-lg" key={item._id}>
+              {/* Card Header with Image */}
+              <CardHeader className="relative h-48">
+                <img
+                  className="h-full w-full object-cover"
+                  src={item.image}
+                  alt={item.title}
+                />
+              </CardHeader>
 
-              <Typography>
-                Agent Info: <Avatar src={item.agent.image} alt="avatar" /> (
-                {item.agent.name})
-              </Typography>
+              {/* Card Body */}
+              <CardBody>
+                <Typography
+                  variant="h6"
+                  className="font-semibold text-blue-gray-800"
+                >
+                  {item.title}
+                </Typography>
+                <div className="flex items-center text-sm text-gray-600 mt-1">
+                  <MdLocationOn className="mr-1" />
+                  {item.location}
+                </div>
+                <div className="flex items-center text-sm text-gray-600 mt-2">
+                  <MdAttachMoney className="mr-1" />
+                  {item.min_price} - {item.max_price}
+                </div>
+                <div className="flex items-center text-sm text-gray-600 mt-2">
+                  <AiOutlineUser className="mr-1" />
+                  <Avatar
+                    src={item.agent.image}
+                    alt={item.agent.name}
+                    size="xs"
+                    className="mr-2"
+                  />
+                  {item.agent.name}
+                </div>
+                <Typography
+                  variant="small"
+                  className={`mt-2 text-sm ${
+                    item.status === "Rejected"
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >
+                  Status: {item.status}
+                </Typography>
+              </CardBody>
 
-              <Typography>Status: {item.status}</Typography>
-            </CardBody>
-            <CardFooter className="flex gap-2">
-              {item.status === "Rejected" ? (
-                ""
-              ) : (
-                <Link to={`/dashboard/addedProperties/update/${item._id}`}>
-                  <Button size="sm">Update</Button>
-                </Link>
-              )}
-              <Button
-                size="sm"
-                color="red"
-                onClick={() => handleDeleteProperty(item._id)}
-              >
-                Delete
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+              {/* Card Footer */}
+              <CardFooter className="flex justify-between items-center gap-2 p-4">
+                {item.status !== "Rejected" && (
+                  <Link to={`/dashboard/addedProperties/update/${item._id}`}>
+                    <Button size="sm" className="flex items-center gap-1">
+                      <FaEdit />
+                      Update
+                    </Button>
+                  </Link>
+                )}
+                <Button
+                  size="sm"
+                  color="red"
+                  className="flex items-center gap-1"
+                  onClick={() => handleDeleteProperty(item._id)}
+                >
+                  <FaTrash />
+                  Delete
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

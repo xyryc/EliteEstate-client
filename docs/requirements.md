@@ -345,13 +345,15 @@ You can try to implement these features:
 - fix private route issues ✅
 - change favicon ✅
 - 1 more sections in homepage ✅
-- wishlist remove button 
+- wishlist remove button
 - password error message improvement
 - card UI update --> bought property: user, added property: agent
 - fix dashboard sidebar
-- delete from firebase 
-- add readme 
-
+- delete from firebase
+- banner text fix
+- add readme
+- handle no data
+- add chip for roles, status
 
 <!-- creds -->
 admin@gmail.com

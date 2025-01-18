@@ -3,7 +3,7 @@ import { Typography } from "@material-tailwind/react";
 
 const DashboardHeader = ({ title, description }) => {
   return (
-    <div className="p-2 sm:p-6">
+    <div className="sm:p-6">
       <Typography variant="lead" color="blue-gray" className="font-bold capitalize">
         {title}
       </Typography>

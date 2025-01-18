@@ -6,6 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import moment from "moment";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import EmptyPage from "../../../components/Shared/EmptyPage";
+import { Link } from "react-router-dom";
 
 const TABLE_HEAD = [
   "Name",
@@ -149,132 +151,146 @@ export default function ManageUsers() {
         description={"Administer user accounts and permissions effectively."}
       />
 
-      <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
-        <table className="w-full min-w-max table-auto text-left ">
-          <thead>
-            <tr>
-              {TABLE_HEAD.map((head) => (
-                <th key={head} className="border-b border-gray-300 pb-4 pt-10">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-bold leading-none"
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : users.length === 0 ? (
+        <>
+          <EmptyPage message={"No users yet"} />
+          <Link to="/">
+            <Button className="block mx-auto">Home</Button>
+          </Link>
+        </>
+      ) : (
+        <Card className="h-[70vh] w-full overflow-scroll border border-gray-300 px-6">
+          <table className="w-full min-w-max table-auto text-left ">
+            <thead>
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="border-b border-gray-300 pb-4 pt-10"
                   >
-                    {head}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {users.map(
-              ({ name, role, email, timestamp, _id, fraud }, index) => {
-                const isLast = index === users.length - 1;
-                const classes = isLast
-                  ? "py-4"
-                  : "py-4 border-b border-gray-300";
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-bold leading-none"
+                    >
+                      {head}
+                    </Typography>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {users.map(
+                ({ name, role, email, timestamp, _id, fraud }, index) => {
+                  const isLast = index === users.length - 1;
+                  const classes = isLast
+                    ? "py-4"
+                    : "py-4 border-b border-gray-300";
 
-                return (
-                  <tr key={name} className="hover:bg-gray-50">
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-bold"
-                      >
-                        {name}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {email}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {moment(timestamp).format("DD/MM/YY")}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {role}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      {fraud ? (
-                        "Fraud"
-                      ) : (
-                        <Button
-                          size="sm"
-                          color="green"
-                          onClick={() => handleRole(_id, "admin")}
+                  return (
+                    <tr key={name} className="hover:bg-gray-50">
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-bold"
                         >
-                          Edit
-                        </Button>
-                      )}
-                    </td>
+                          {name}
+                        </Typography>
+                      </td>
 
-                    <td className={classes}>
-                      {fraud ? (
-                        "Fraud"
-                      ) : (
-                        <Button
-                          size="sm"
-                          color="teal"
-                          onClick={() => handleRole(_id, "agent")}
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
                         >
-                          Edit
-                        </Button>
-                      )}
-                    </td>
+                          {email}
+                        </Typography>
+                      </td>
 
-                    {role === "agent" ? (
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
+                        >
+                          {moment(timestamp).format("DD/MM/YY")}
+                        </Typography>
+                      </td>
+
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
+                        >
+                          {role}
+                        </Typography>
+                      </td>
+
                       <td className={classes}>
                         {fraud ? (
                           "Fraud"
                         ) : (
                           <Button
                             size="sm"
-                            className="bg-amber-500"
-                            onClick={() => handleFraud(email)}
+                            color="green"
+                            onClick={() => handleRole(_id, "admin")}
                           >
-                            Mark
+                            Edit
                           </Button>
                         )}
                       </td>
-                    ) : (
-                      <td className={classes}>-</td>
-                    )}
 
-                    <td className={classes}>
-                      <Button
-                        size="sm"
-                        className="bg-red-500"
-                        onClick={() => handleDeleteUser(_id)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              }
-            )}
-          </tbody>
-        </table>
-      </Card>
+                      <td className={classes}>
+                        {fraud ? (
+                          "Fraud"
+                        ) : (
+                          <Button
+                            size="sm"
+                            color="teal"
+                            onClick={() => handleRole(_id, "agent")}
+                          >
+                            Edit
+                          </Button>
+                        )}
+                      </td>
+
+                      {role === "agent" ? (
+                        <td className={classes}>
+                          {fraud ? (
+                            "Fraud"
+                          ) : (
+                            <Button
+                              size="sm"
+                              className="bg-amber-500"
+                              onClick={() => handleFraud(email)}
+                            >
+                              Mark
+                            </Button>
+                          )}
+                        </td>
+                      ) : (
+                        <td className={classes}>-</td>
+                      )}
+
+                      <td className={classes}>
+                        <Button
+                          size="sm"
+                          className="bg-red-500"
+                          onClick={() => handleDeleteUser(_id)}
+                        >
+                          Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                }
+              )}
+            </tbody>
+          </table>
+        </Card>
+      )}
     </section>
   );
 }

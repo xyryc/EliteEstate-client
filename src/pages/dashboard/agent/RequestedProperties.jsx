@@ -4,6 +4,8 @@ import useAuth from "../../../hooks/useAuth";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import { toast } from "react-hot-toast";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import EmptyPage from "../../../components/Shared/EmptyPage";
 
 const RequestedProperties = () => {
   const { user } = useAuth();
@@ -14,13 +16,16 @@ const RequestedProperties = () => {
     "Buyer Email",
     "Buyer Name",
     "Offered Price",
-    "Status",
     "Accept",
     "Reject",
   ];
 
   // Fetch offered properties
-  const { data: offered = [], refetch } = useQuery({
+  const {
+    data: offered = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["offered"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -72,145 +77,150 @@ const RequestedProperties = () => {
 
   return (
     <div>
-  
+      <DashboardHeader
+        title={"Requested Properties"}
+        description={"Manage property inquiries and requests effortlessly"}
+      />
 
-      <DashboardHeader title={"Requested Properties"} description={"Manage property inquiries and requests effortlessly"}/>
-
-      <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
-        <table className="w-full min-w-max table-auto text-left ">
-          <thead>
-            <tr>
-              {TABLE_HEAD.map((head) => (
-                <th key={head} className="border-b border-gray-300 pb-4 pt-10">
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-bold leading-none"
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : offered.length === 0 ? (
+        <EmptyPage message={"No request yet!"}  />
+      ) : (
+        <Card className="h-[70vh] w-full overflow-scroll border border-gray-300 px-6">
+          <table className="w-full min-w-max table-auto text-left ">
+            <thead>
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="border-b border-gray-300 pb-4 pt-10"
                   >
-                    {head}
-                  </Typography>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {offered.map(
-              (
-                {
-                  propertyTitle,
-                  propertyLocation,
-                  offeredPrice,
-                  buyer,
-                  offerStatus,
-                  _id,
-                },
-                index
-              ) => {
-                const isLast = index === offered.length - 1;
-                const classes = isLast
-                  ? "py-4"
-                  : "py-4 border-b border-gray-300";
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-bold leading-none"
+                    >
+                      {head}
+                    </Typography>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {offered.map(
+                (
+                  {
+                    propertyTitle,
+                    propertyLocation,
+                    offeredPrice,
+                    buyer,
+                    offerStatus,
+                    _id,
+                  },
+                  index
+                ) => {
+                  const isLast = index === offered.length - 1;
+                  const classes = isLast
+                    ? "py-4"
+                    : "py-4 border-b border-gray-300";
 
-                return (
-                  <tr key={index} className="hover:bg-gray-50">
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-bold"
-                      >
-                        {propertyTitle}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {propertyLocation}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {buyer?.email}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        {buyer?.name}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600"
-                      >
-                        ${offeredPrice}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-gray-600 capitalize"
-                      >
-                        {offerStatus}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      {offerStatus === "pending" ? (
-                        <Button
-                          size="sm"
-                          color="green"
-                          onClick={() => handleStatus(_id, "accepted")}
-                        >
-                          Accept
-                        </Button>
-                      ) : (
+                  return (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className={classes}>
                         <Typography
                           variant="small"
-                          className="font-normal text-gray-600 capitalize"
+                          color="blue-gray"
+                          className="font-bold"
                         >
-                          {offerStatus}
+                          {propertyTitle}
                         </Typography>
-                      )}
-                    </td>
+                      </td>
 
-                    <td className={classes}>
-                      {offerStatus === "pending" ? (
-                        <Button
-                          size="sm"
-                          color="red"
-                          onClick={() => handleStatus(_id, "rejected")}
-                        >
-                          Reject
-                        </Button>
-                      ) : (
+                      <td className={classes}>
                         <Typography
                           variant="small"
-                          className="font-normal text-gray-600 capitalize"
+                          className="font-normal text-gray-600"
                         >
-                          {offerStatus}
+                          {propertyLocation}
                         </Typography>
-                      )}
-                    </td>
-                  </tr>
-                );
-              }
-            )}
-          </tbody>
-        </table>
-      </Card>
+                      </td>
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
+                        >
+                          {buyer?.email}
+                        </Typography>
+                      </td>
+
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
+                        >
+                          {buyer?.name}
+                        </Typography>
+                      </td>
+
+                      <td className={classes}>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-gray-600"
+                        >
+                          ${offeredPrice}
+                        </Typography>
+                      </td>
+
+                      <td className={classes}>
+                        {offerStatus === "pending" ? (
+                          <Button
+                            size="sm"
+                            color="green"
+                            onClick={() => handleStatus(_id, "accepted")}
+                          >
+                            Accept
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            color={`${
+                              offerStatus === "accepted" ? "green" : "red"
+                            }`}
+                          >
+                            {offerStatus}
+                          </Button>
+                        )}
+                      </td>
+
+                      <td className={classes}>
+                        {offerStatus === "pending" ? (
+                          <Button
+                            size="sm"
+                            color="red"
+                            onClick={() => handleStatus(_id, "rejected")}
+                          >
+                            Reject
+                          </Button>
+                        ) : (
+                          <Button
+                            size="sm"
+                            color={`${
+                              offerStatus === "accepted" ? "green" : "red"
+                            }`}
+                          >
+                            {offerStatus}
+                          </Button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                }
+              )}
+            </tbody>
+          </table>
+        </Card>
+      )}
     </div>
   );
 };

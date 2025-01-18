@@ -5,6 +5,7 @@ import Header from "../../components/Shared/Header";
 import { useState } from "react";
 import { Button } from "@material-tailwind/react";
 import Card from "../../components/Shared/Card";
+import EmptyPage from "../../components/Shared/EmptyPage";
 
 const Properties = () => {
   const axiosSecure = useAxiosSecure();
@@ -105,17 +106,10 @@ const Properties = () => {
 
       {isLoading ? (
         <LoadingSpinner />
-      ) : !verifiedProperties?.length ? (
-        <p>
-          <img
-            src="https://i.ibb.co.com/8zMhZ9d/no-result.png"
-            className="mx-auto"
-            alt="no result"
-          />
-          <p className="text-3xl font-bold text-center py-10">
-            No result found!
-          </p>
-        </p>
+      ) : verifiedProperties.length === 0 ? (
+        <>
+          <EmptyPage message={"No data found"} />
+        </>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {verifiedProperties?.map((item) => (
