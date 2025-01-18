@@ -16,6 +16,19 @@ const LatestReviews = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
+  const isValidImageUrl = (url) => {
+    try {
+      // Check if the URL is a valid string and ends with common image file extensions
+      return (
+        typeof url === "string" &&
+        (url.startsWith("http://") || url.startsWith("https://")) &&
+        /\.(jpg|jpeg|png|webp|gif|bmp)$/i.test(url)
+      );
+    } catch {
+      return false;
+    }
+  };
+
   return (
     <div className="latest-reviews">
       <Header
@@ -29,18 +42,24 @@ const LatestReviews = () => {
         {reviews.map((review) => (
           <div
             key={review._id}
-            className="review-card border p-4 rounded-lg shadow-sm"
+            className="review-card border p-4 rounded-lg shadow-sm border-gray-300 bg-gray-100"
           >
             <div className="flex flex-col items-center justify-center">
               <img
-                src={review.reviewerImage}
+                src={
+                  isValidImageUrl(review.reviewerImage)
+                    ? review.reviewerImage
+                    : "https://i.ibb.co/2Z0VHgk/miriyam.jpg"
+                }
                 alt={review.reviewerName}
                 className="h-12 w-12 rounded-full object-cover"
               />
               <h3 className="text-lg font-semibold">{review.reviewerName}</h3>
             </div>
             <h4 className="text-md font-bold mb-2">{review.propertyTitle}</h4>
-            <p className="text-gray-600 text-sm">{review.reviewDescription}</p>
+            <p className="text-gray-600">
+              "{review.reviewDescription.slice(0, 240)}..."
+            </p>
           </div>
         ))}
       </div>

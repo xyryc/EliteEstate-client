@@ -342,9 +342,11 @@ You can try to implement these features:
 - update private route for admin, agent ✅
 - homepage reviews ✅
 - advertisement section ✅
-- delete user from firebase 
 - fix private route issues ✅
 - change favicon ✅
+- 1 more sections in homepage ✅
 - wishlist remove button 
-- 1 more sections in homepage 
-- add readme
+- card UI update --> bought property: user, added property: agent
+- fix dashboard sidebar
+- delete from firebase 
+- add readme 

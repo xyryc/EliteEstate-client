@@ -25,7 +25,6 @@ const Login = () => {
     try {
       //User Login
       const data = await signIn(email, password);
-      console.log(data?.user);
 
       // save user info in db if user is new
       await saveUser(data?.user);
@@ -45,7 +44,6 @@ const Login = () => {
     try {
       //User Registration using google
       const data = await signInWithGoogle();
-      console.log(data?.user);
 
       // save user info in db if user is new
       await saveUser(data?.user);

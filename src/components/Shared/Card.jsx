@@ -90,7 +90,7 @@ const Card = ({ item }) => {
               alt={item.agent.name}
               className="h-10 w-10 rounded-full object-cover"
             />
-            <p className="text-lg font-bold opacity-70">{item.agent.name}</p>
+            <p className="capitalize opacity-70">{item.agent.name}</p>
           </div>
 
           <IconButton

@@ -69,20 +69,25 @@ export default function ManageUsers() {
     ));
   };
 
+  // delete user
   const handleDeleteUser = (id) => {
     toast((t) => (
       <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
-        <Typography>Delete user?</Typography>
+        <Typography>Delete this user?</Typography>
         <div className="space-x-2">
           <Button
             size="sm"
             className="bg-green-500"
             onClick={async () => {
               toast.dismiss(t.id);
-              const res = await axiosSecure.delete(`/users/${id}`);
-              if (res.data.deletedCount > 0) {
-                toast.success("User deleted!");
-                refetch();
+
+              // Delete user from MongoDB
+              const mongoRes = await axiosSecure.delete(`/users/${id}`);
+              if (mongoRes.data.deletedCount > 0) {
+                toast.success("User deleted successfully!");
+                refetch(); // Refresh the data if needed
+              } else {
+                toast.error("Failed to delete the user from MongoDB!");
               }
             }}
           >
@@ -139,7 +144,10 @@ export default function ManageUsers() {
 
   return (
     <section className="w-full bg-white">
-     <DashboardHeader title={"Team Members and Roles"} description={"Administer user accounts and permissions effectively."}/>
+      <DashboardHeader
+        title={"Team Members and Roles"}
+        description={"Administer user accounts and permissions effectively."}
+      />
 
       <Card className="h-full w-full overflow-scroll border border-gray-300 px-6">
         <table className="w-full min-w-max table-auto text-left ">
@@ -211,7 +219,7 @@ export default function ManageUsers() {
                       ) : (
                         <Button
                           size="sm"
-                         color="green"
+                          color="green"
                           onClick={() => handleRole(_id, "admin")}
                         >
                           Edit
@@ -225,7 +233,7 @@ export default function ManageUsers() {
                       ) : (
                         <Button
                           size="sm"
-                         color="teal"
+                          color="teal"
                           onClick={() => handleRole(_id, "agent")}
                         >
                           Edit

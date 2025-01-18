@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { Button, Typography } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { NavLink } from "react-router-dom";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
 
 const Wishlist = () => {
   const { user } = useAuth();
@@ -21,14 +22,10 @@ const Wishlist = () => {
 
   return (
     <div>
-      <div className="p-6">
-        <Typography variant="lead" color="blue-gray" className="font-bold">
-          Wishlited Properties
-        </Typography>
-        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-          List of Properties you have wishlisted
-        </Typography>
-      </div>
+      <DashboardHeader
+        title={"My Wishlist"}
+        description={"Your curated list of favorite properties at a glance"}
+      />
 
       <div className="space-y-4 px-4">
         {wishlistData.map((item) => (

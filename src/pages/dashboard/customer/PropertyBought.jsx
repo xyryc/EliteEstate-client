@@ -7,6 +7,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { CgSearchLoading } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { LuCreditCard } from "react-icons/lu";
+import DashboardHeader from "../../../components/Shared/DashboardHeader";
 
 const PropertyBought = () => {
   const { user } = useAuth();
@@ -23,22 +24,20 @@ const PropertyBought = () => {
   });
 
   return (
-    <div className="max-w-screen-xl mx-auto">
-      <div className="p-6">
-        <Typography variant="lead" color="blue-gray" className="font-bold">
-          Properties you have brought/offered
-        </Typography>
-        <Typography className="mb-4 w-80 font-normal text-gray-600 md:w-full">
-          List of properties you have brought/offered
-        </Typography>
-      </div>
+    <div>
+      <DashboardHeader
+        title={"My Bought Properties & Transactions"}
+        description={
+          "Review the properties you've acquired or bid on with ease"
+        }
+      />
 
       {offered.length === 0 ? (
         <Typography color="gray" className="text-center text-lg">
           You have not offered on any properties yet.
         </Typography>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {offered.map((property) => (
             <Card
               key={property._id}
