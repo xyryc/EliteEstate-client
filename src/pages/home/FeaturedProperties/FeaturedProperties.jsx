@@ -1,9 +1,9 @@
 import axios from "axios";
 import Header from "../../../components/Shared/Header";
 import { useQuery } from "@tanstack/react-query";
-import Card from "../../../components/Shared/Card";
 import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import CardPublic from "../../../components/Shared/CardPublic";
 
 const FeaturedProperties = () => {
   const { data: advertise = [] } = useQuery({
@@ -21,12 +21,14 @@ const FeaturedProperties = () => {
     <div>
       <Header
         title={"Featured Properties"}
-        description={"Explore Our Top Picks in Real Estate for the Best Homes and Investments."}
+        description={
+          "Explore Our Top Picks in Real Estate for the Best Homes and Investments."
+        }
       />
 
       <div className="flex flex-wrap justify-center gap-6">
         {advertise?.map((item) => (
-          <Card key={item._id} item={item} />
+          <CardPublic key={item._id} item={item} />
         ))}
       </div>
 

@@ -50,7 +50,7 @@ The navbar will have a website name with the logo, Home, All properties, Dashboa
 
 3. ## **Unique Extra Section**
 
-Add two extra sections to the home page in addition to the sections mentioned above.
+Add two extra sections to the home page in addition to the sections mentioned above. ✅
 
 4. ## **All properties page 🔒:**
 
