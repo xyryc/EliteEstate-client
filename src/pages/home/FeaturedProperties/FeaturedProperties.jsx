@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import CardPublic from "../../../components/Shared/CardPublic";
+import { useRef } from "react";
+import "./FeaturedProperties.css";
 
 const FeaturedProperties = () => {
   const { data: advertise = [] } = useQuery({
@@ -17,8 +19,22 @@ const FeaturedProperties = () => {
     },
   });
 
+  const scrollContainer = useRef(null);
+
+  const scrollNext = () => {
+    if (scrollContainer.current) {
+      scrollContainer.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
+  };
+
+  const scrollPrev = () => {
+    if (scrollContainer.current) {
+      scrollContainer.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
+  };
+
   return (
-    <div>
+    <div className="pb-20">
       <Header
         title={"Featured Properties"}
         description={
@@ -26,17 +42,36 @@ const FeaturedProperties = () => {
         }
       />
 
-      <div className="flex flex-wrap justify-center gap-6">
-        {advertise?.map((item) => (
-          <CardPublic key={item._id} item={item} />
-        ))}
-      </div>
+      <div className="relative border p-4">
+        {/* Scrollable container */}
+        <div
+          ref={scrollContainer}
+          className="grid grid-flow-col gap-6 overflow-x-auto scroll-smooth no-scrollbar"
+          style={{ gridAutoColumns: "minmax(300px, 1fr)" }}
+        >
+          {advertise?.map((item) => (
+            <CardPublic key={item._id} item={item} />
+          ))}
+        </div>
 
-      <Link to="/properties">
-        <Button variant="gradient" className="mt-6 block mx-auto">
-          Sell All
-        </Button>
-      </Link>
+        {/* Navigation buttons in the top-right */}
+        <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex gap-2">
+          <Button
+            onClick={scrollPrev}
+            size="sm"
+            variant="gradient"
+          >
+            Prev
+          </Button>
+          <Button
+            onClick={scrollNext}
+           size="sm"
+            variant="gradient"
+          >
+            Next
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,19 +3,6 @@ import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const CardPublic = ({ item }) => {
-  const isValidImageUrl = (url) => {
-    try {
-      // Check if the URL is a valid string and ends with common image file extensions
-      return (
-        typeof url === "string" &&
-        (url.startsWith("http://") || url.startsWith("https://")) &&
-        /\.(jpg|jpeg|png|webp|gif|bmp)$/i.test(url)
-      );
-    } catch {
-      return false;
-    }
-  };
-
   return (
     <Link
       to={`/properties/details/${item._id}`}
@@ -48,11 +35,7 @@ const CardPublic = ({ item }) => {
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src={
-                isValidImageUrl(item.agent?.image)
-                  ? item.agent.image
-                  : "https://i.ibb.co/2Z0VHgk/miriyam.jpg"
-              }
+              src={item.agent.image}
               alt={item.agent.name}
               className="h-10 w-10 rounded-full object-cover"
             />

@@ -16,19 +16,6 @@ const LatestReviews = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  const isValidImageUrl = (url) => {
-    try {
-      // Check if the URL is a valid string and ends with common image file extensions
-      return (
-        typeof url === "string" &&
-        (url.startsWith("http://") || url.startsWith("https://")) &&
-        /\.(jpg|jpeg|png|webp|gif|bmp)$/i.test(url)
-      );
-    } catch {
-      return false;
-    }
-  };
-
   return (
     <div className="latest-reviews">
       <Header
@@ -46,11 +33,7 @@ const LatestReviews = () => {
           >
             <div className="flex flex-col items-center justify-center">
               <img
-                src={
-                  isValidImageUrl(review.reviewerImage)
-                    ? review.reviewerImage
-                    : "https://i.ibb.co/2Z0VHgk/miriyam.jpg"
-                }
+                src={review.reviewerImage}
                 alt={review.reviewerName}
                 className="h-12 w-12 rounded-full object-cover"
               />

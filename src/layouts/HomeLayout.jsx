@@ -10,7 +10,7 @@ const HomeLayout = () => {
     <div>
       <Slider />
 
-      <div className="container mx-auto px-4 space-y-20 my-20">
+      <div className="container mx-auto px-4 space-y-32 my-32">
         <Stats />
 
         <FeaturedProperties />
@@ -20,7 +20,7 @@ const HomeLayout = () => {
 
       <Partners />
 
-      <div className="container mx-auto px-4 space-y-20 my-20">
+      <div className="container mx-auto px-4 space-y-32 my-32">
         <CustomAccordion />
       </div>
     </div>
