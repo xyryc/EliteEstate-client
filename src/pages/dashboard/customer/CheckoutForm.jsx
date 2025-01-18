@@ -102,7 +102,7 @@ const CheckoutForm = () => {
         );
 
         if (response?.data?.modifiedCount > 0) {
-          toast.success("Payment successful and offer updated!");
+          toast.success("Payment successful!");
         } else {
           toast.error("Failed to save transaction info");
         }

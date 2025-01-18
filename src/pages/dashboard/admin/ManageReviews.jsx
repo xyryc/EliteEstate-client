@@ -90,7 +90,7 @@ const ManageReviews = () => {
                   <img
                     src={review.reviewerImage}
                     alt={review.reviewerName || "Anonymous"}
-                    className="w-12 h-12 rounded-full"
+                    className="w-12 h-12 rounded-full object-cover"
                   />
                   <div>
                     <h3 className="font-bold text-lg">

@@ -139,7 +139,7 @@ const SignUp = () => {
             {loading ? (
               <div className="flex items-center justify-center gap-2">
                 <AiOutlineLoading className="animate-spin" />
-                <p>Signin In...</p>
+                <p>Signing In...</p>
               </div>
             ) : (
               "Sign In"

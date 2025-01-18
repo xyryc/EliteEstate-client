@@ -346,7 +346,17 @@ You can try to implement these features:
 - change favicon ✅
 - 1 more sections in homepage ✅
 - wishlist remove button 
+- password error message improvement
 - card UI update --> bought property: user, added property: agent
 - fix dashboard sidebar
 - delete from firebase 
 - add readme 
+
+
+<!-- creds -->
+admin@gmail.com
+Admin@elite123
+
+agent@gmail.com
+agent2@gmail.com
+Agent@elite123
