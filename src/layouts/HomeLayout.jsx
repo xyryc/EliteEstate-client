@@ -4,6 +4,7 @@ import LatestReviews from "../pages/home/LatestReviews/LatestReviews";
 import Slider from "../pages/home/Slider/Slider";
 import Partners from "../pages/home/Partners/Partners";
 import Stats from "../pages/home/Stats/Stats";
+import ContactUs from "../pages/home/ContactUs/ContactUs";
 
 const HomeLayout = () => {
   return (
@@ -22,6 +23,8 @@ const HomeLayout = () => {
 
       <div className="container mx-auto px-4 space-y-32 my-32">
         <CustomAccordion />
+
+        <ContactUs />
       </div>
     </div>
   );

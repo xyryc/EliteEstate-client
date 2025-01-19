@@ -41,7 +41,7 @@ const FeaturedProperties = () => {
         }
       />
 
-      <div className="relative border p-4">
+      <div className="relative p-4">
         {/* Scrollable container */}
         <div
           ref={scrollContainer}
@@ -57,14 +57,14 @@ const FeaturedProperties = () => {
         <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex gap-2">
           <Button
             onClick={scrollPrev}
-            size="sm"
+       
             variant="gradient"
           >
             Prev
           </Button>
           <Button
             onClick={scrollNext}
-           size="sm"
+        
             variant="gradient"
           >
             Next

@@ -19,14 +19,14 @@ export function CustomAccordion() {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Header
-        title={"Real Estate Insights"}
+        title={"Frequently Asked Questions"}
         description={
-          "Find Clarity on Real Estate with Our Comprehensive FAQ Section"
+          "Find Solutions to Your Real Estate Inquiries"
         }
       />
 
       <Accordion open={open === 1} animate={CUSTOM_ANIMATION}>
-        <AccordionHeader onClick={() => handleOpen(1)}>
+        <AccordionHeader className="text-black" onClick={() => handleOpen(1)}>
           What important factors should I consider when buying a property for
           investment?
         </AccordionHeader>
@@ -40,7 +40,7 @@ export function CustomAccordion() {
         </AccordionBody>
       </Accordion>
       <Accordion open={open === 2} animate={CUSTOM_ANIMATION}>
-        <AccordionHeader onClick={() => handleOpen(2)}>
+        <AccordionHeader className="text-black" onClick={() => handleOpen(2)}>
           How can I evaluate if a property is a good investment opportunity in
           the long run?
         </AccordionHeader>
@@ -55,7 +55,7 @@ export function CustomAccordion() {
         </AccordionBody>
       </Accordion>
       <Accordion open={open === 3} animate={CUSTOM_ANIMATION}>
-        <AccordionHeader onClick={() => handleOpen(3)}>
+        <AccordionHeader className="text-black" onClick={() => handleOpen(3)}>
           Can I schedule a property viewing directly through your website or do
           I need to call first?
         </AccordionHeader>
