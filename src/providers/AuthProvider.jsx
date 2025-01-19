@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -51,7 +50,6 @@ const AuthProvider = ({ children }) => {
     });
   };
 
- 
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -90,7 +88,6 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
-
   };
 
   return (

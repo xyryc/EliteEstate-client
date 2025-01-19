@@ -20,11 +20,22 @@ const Partners = () => {
         }
       />
 
-      <Marquee>
-        {partners.map((partner) => (
+      <Marquee className="mb-10">
+        {partners.slice(0, 7).map((partner) => (
           <img
             key={partner.id}
-            className="h-32 px-10"
+            className="h-32 px-10 w-full object-cover"
+            src={partner.image}
+            alt={partner.name}
+          />
+        ))}
+      </Marquee>
+
+      <Marquee direction="right">
+        {partners.slice(7, 13).map((partner) => (
+          <img
+            key={partner.id}
+            className="h-32 px-10 w-full object-cover"
             src={partner.image}
             alt={partner.name}
           />

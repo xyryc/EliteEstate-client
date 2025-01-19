@@ -87,7 +87,8 @@ const MyReviews = () => {
           </Link>
         </>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3 h-[70vh] overflow-scroll px-4">
+       <div className="h-[70vh] overflow-scroll">
+         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-3  px-4">
           {myReviews.map((review) => (
             <div
               key={review._id}
@@ -116,6 +117,7 @@ const MyReviews = () => {
             </div>
           ))}
         </div>
+       </div>
       )}
     </div>
   );

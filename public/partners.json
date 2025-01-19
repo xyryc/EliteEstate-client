@@ -22,7 +22,7 @@
   {
     "id": 5,
     "name": "Partner#",
-    "image": "https://i.ibb.co.com/j8VqZ0P/pngwing-com.png"
+    "image": "https://i.ibb.co.com/mbJyGqc/cbre.png"
   },
   {
     "id": 6,
@@ -33,5 +33,36 @@
     "id": 7,
     "name": "Partner#",
     "image": "https://i.ibb.co.com/PQtyGYp/thomas.png"
+  },
+
+  {
+    "id": 8,
+    "name": "Partner#",
+    "image": "https://i.ibb.co.com/j8VqZ0P/pngwing-com.png"
+  },
+  {
+    "id": 9,
+    "name": "Partner#",
+    "image": "https://i.ibb.co.com/5r4RdJ6/klipartz-com-1.png"
+  },
+  {
+    "id": 10,
+    "name": "Partner#",
+    "image": "https://i.ibb.co.com/qj2SxLh/klipartz-com-2.png"
+  },
+  {
+    "id": 11,
+    "name": "Partner#",
+    "image": "https://i.ibb.co.com/7Vts49Y/klipartz-com.png"
+  },
+  {
+    "id": 12,
+    "name": "Partner#",
+    "image": "https://i.ibb.co.com/HF0fy78/wutama.png"
+  },
+  {
+    "id": 13,
+    "name": "Partner#",
+    "image": "https://i.ibb.co.com/zN74TY8/zillow.png"
   }
 ]

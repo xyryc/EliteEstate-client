@@ -125,15 +125,17 @@ export default function AddedProperties() {
                   />
                   {item.agent.name}
                 </div>
-                <Typography
-                  variant="small"
-                  className={`mt-2 text-sm ${
-                    item.status === "Rejected"
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  Status: {item.status}
+                <Typography variant="small" className={`mt-2 text-sm`}>
+                  Status:{" "}
+                  <span
+                    className={`font-bold ${
+                      (item.status === "Rejected" && "text-red-500") ||
+                      (item.status === "Pending" && "text-amber-500") ||
+                      (item.status === "Verified" && "text-green-500")
+                    }`}
+                  >
+                    {item.status}
+                  </span>
                 </Typography>
               </CardBody>
 

@@ -5,6 +5,7 @@ import { Button } from "@material-tailwind/react";
 import CardPublic from "../../../components/Shared/CardPublic";
 import { useRef } from "react";
 import "./FeaturedProperties.css";
+import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 
 const FeaturedProperties = () => {
   const { data: advertise = [] } = useQuery({
@@ -55,19 +56,12 @@ const FeaturedProperties = () => {
 
         {/* Navigation buttons in the top-right */}
         <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex gap-2">
-          <Button
-            onClick={scrollPrev}
-       
-            variant="gradient"
-          >
-            Prev
+          <Button onClick={scrollPrev} className="flex items-center gap-2">
+            <LuArrowLeft /> Prev
           </Button>
-          <Button
-            onClick={scrollNext}
-        
-            variant="gradient"
-          >
+          <Button onClick={scrollNext} className="flex items-center gap-2">
             Next
+            <LuArrowRight />
           </Button>
         </div>
       </div>
