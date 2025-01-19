@@ -349,8 +349,8 @@ You can try to implement these features:
 - fix dashboard sidebar ✅
 - add readme ✅
 - handle no data ✅
-- banner text fix
-- wishlist remove button
+- banner text fix ✅
+- wishlist remove button ✅
 - delete from firebase
 - scroll to top
 

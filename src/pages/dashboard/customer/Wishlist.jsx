@@ -1,17 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link, NavLink } from "react-router-dom";
 import DashboardHeader from "../../../components/Shared/DashboardHeader";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import EmptyPage from "../../../components/Shared/EmptyPage";
+import { toast } from "react-hot-toast";
 
 const Wishlist = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: wishlistData = [], isLoading } = useQuery({
+  const {
+    data: wishlistData = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["wishlistData"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -21,7 +26,42 @@ const Wishlist = () => {
     },
   });
 
-  
+  // delete wishlist
+  const handleDeleteWishlist = (id) => {
+    toast((t) => (
+      <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
+        <Typography>Remove from wishlist?</Typography>
+        <div className="space-x-2">
+          <Button
+            size="sm"
+            className="bg-green-500"
+            onClick={async () => {
+              toast.dismiss(t.id);
+
+              // Delete user from MongoDB
+              const res = await axiosSecure.delete(`/wishlist/${id}`);
+              if (res.data.deletedCount > 0) {
+                toast.success("Removed from wishlist!");
+
+                refetch();
+              } else {
+                toast.error("Failed to remove from wishlit");
+              }
+            }}
+          >
+            Confirm
+          </Button>
+          <Button
+            size="sm"
+            className="bg-red-500"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+    ));
+  };
 
   return (
     <div>
@@ -99,7 +139,11 @@ const Wishlist = () => {
                 <NavLink to={`/dashboard/wishlist/offer/${item._id}`}>
                   <Button size="sm">Offer</Button>
                 </NavLink>
-                <Button color="red" size="sm">
+                <Button
+                  onClick={() => handleDeleteWishlist(item._id)}
+                  color="red"
+                  size="sm"
+                >
                   Remove
                 </Button>
               </div>

@@ -22,7 +22,7 @@ const Slider = () => {
         clickable: true,
       }}
       autoplay={{
-        delay: 3500,
+        delay: 3000,
         disableOnInteraction: false,
       }}
       navigation={true}
@@ -40,13 +40,13 @@ const Slider = () => {
       ></div>
       <SwiperSlide>
         <div className="title" data-swiper-parallax="-300">
-          Discover Your Dream Home
+        Find Your Dream Home
         </div>
-    
+
         <div className="text font-inter" data-swiper-parallax="-100">
           <p>
-            Find the perfect property in your desired location with options that
-            cater to every lifestyle, budget, and future aspirations.
+            Find the perfect property in your desired location with options
+            catering to every lifestyle, budget, and aspirations.
           </p>
         </div>
       </SwiperSlide>
@@ -54,11 +54,10 @@ const Slider = () => {
         <div className="title" data-swiper-parallax="-300">
           Luxury Living Awaits
         </div>
-      
+
         <div className="text" data-swiper-parallax="-100">
           <p>
-            Step into a world of elegance with premium properties offering
-            state-of-the-art amenities and unparalleled comfort.
+          Step into elegance with premium properties offering modern amenities and comfort.
           </p>
         </div>
       </SwiperSlide>
@@ -66,11 +65,11 @@ const Slider = () => {
         <div className="title" data-swiper-parallax="-300">
           Invest in Your Future
         </div>
-     
+
         <div className="text" data-swiper-parallax="-100">
           <p>
-            Unlock incredible real estate opportunities and build lasting value
-            with properties you can trust and depend on.
+            Unlock real estate opportunities and build lasting value with
+            trusted properties.
           </p>
         </div>
       </SwiperSlide>
