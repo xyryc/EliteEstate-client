@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Typography, Button, IconButton } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import useRole from "../../hooks/useRole";
 
@@ -29,38 +29,50 @@ const Sidebar = () => {
           </IconButton>
         </div>
         <nav>
-          <ul className="space-y-4">
+          <ul className="space-y-6 text-center">
             {/* common */}
             <li>
-              <Link to="/dashboard/myProfile">
-                <Button fullWidth variant="text" className="text-white">
-                  My Profile
-                </Button>
-              </Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "bg-gray-900 px-16 py-3 rounded-lg" : ""
+                }
+                to="/dashboard/myProfile"
+              >
+                My Profile
+              </NavLink>
             </li>
 
             {role === "customer" && (
               <>
                 <li>
-                  <Link to="/dashboard/wishlist">
-                    <Button fullWidth variant="text" className="text-white">
-                      Wishlist
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-16 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/wishlist"
+                  >
+                    Wishlist
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/propertyBought">
-                    <Button fullWidth variant="text" className="text-white">
-                      Property Bought
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-10 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/propertyBought"
+                  >
+                    Property Bought
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/reviews">
-                    <Button fullWidth variant="text" className="text-white">
-                      My Reviews
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-14 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/reviews"
+                  >
+                    My Reviews
+                  </NavLink>
                 </li>
               </>
             )}
@@ -68,33 +80,45 @@ const Sidebar = () => {
             {role === "agent" && (
               <>
                 <li>
-                  <Link to="/dashboard/addProperty">
-                    <Button fullWidth variant="text" className="text-white">
-                      Add Property
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-14 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/addProperty"
+                  >
+                    Add Property
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/addedProperties">
-                    <Button fullWidth variant="text" className="text-white">
-                      Added Properties
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-10 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/addedProperties"
+                  >
+                    Added Properties
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/soldProperties">
-                    <Button fullWidth variant="text" className="text-white">
-                      Sold Properties
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-12 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/soldProperties"
+                  >
+                    Sold Properties
+                  </NavLink>
                 </li>
 
                 <li>
-                  <Link to="/dashboard/requestedProperties">
-                    <Button fullWidth variant="text" className="text-white">
-                      Requested Properties
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-6 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/requestedProperties"
+                  >
+                    Requested Properties
+                  </NavLink>
                 </li>
               </>
             )}
@@ -103,32 +127,44 @@ const Sidebar = () => {
               <>
                 {/* admin */}
                 <li>
-                  <Link to="/dashboard/manageProperties">
-                    <Button fullWidth variant="text" className="text-white">
-                      Manage Properties
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-8 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/manageProperties"
+                  >
+                    Manage Properties
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/manageUsers">
-                    <Button fullWidth variant="text" className="text-white">
-                      Manage Users
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-12 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/manageUsers"
+                  >
+                    Manage Users
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/manageReviews">
-                    <Button fullWidth variant="text" className="text-white">
-                      Manage Reviews
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-10 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/manageReviews"
+                  >
+                    Manage Reviews
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/advertiseProperty">
-                    <Button fullWidth variant="text" className="text-white">
-                      Advertise Property
-                    </Button>
-                  </Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-8 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/advertiseProperty"
+                  >
+                    Advertise Property
+                  </NavLink>
                 </li>
               </>
             )}

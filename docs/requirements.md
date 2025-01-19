@@ -324,7 +324,7 @@ You can try to implement these features:
 
 7. Use React hook form for any form related works.
 
-**What to Submit**
+**What to Submit** ✅
 
 1. **Assignment Category/variant:**
 2. **Admin email:**
@@ -345,17 +345,17 @@ You can try to implement these features:
 - fix private route issues ✅
 - change favicon ✅
 - 1 more sections in homepage ✅
-- wishlist remove button
-- password error message improvement
-- card UI update --> bought property: user, added property: agent
-- fix dashboard sidebar
-- delete from firebase
+- card UI update --> bought property: user, added property: agent ✅
+- fix dashboard sidebar ✅
+- add readme ✅
+- handle no data ✅
 - banner text fix
-- add readme
-- handle no data
-- add chip for roles, status
+- wishlist remove button
+- delete from firebase
+- scroll to top
 
 <!-- creds -->
+
 admin@gmail.com
 Admin@elite123
 

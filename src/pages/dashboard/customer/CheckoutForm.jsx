@@ -33,7 +33,6 @@ const CheckoutForm = () => {
       axiosSecure
         .post("/create-payment-intent", { price: payableData.offeredPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }

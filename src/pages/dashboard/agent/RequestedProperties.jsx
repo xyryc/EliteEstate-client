@@ -87,7 +87,7 @@ const RequestedProperties = () => {
       ) : offered.length === 0 ? (
         <EmptyPage message={"No request yet!"}  />
       ) : (
-        <Card className="h-[70vh] w-full overflow-scroll border border-gray-300 px-6">
+        <Card className="h-[70vh] md:w-[60vw] xl:w-full overflow-scroll border border-gray-300 px-6">
           <table className="w-full min-w-max table-auto text-left ">
             <thead>
               <tr>

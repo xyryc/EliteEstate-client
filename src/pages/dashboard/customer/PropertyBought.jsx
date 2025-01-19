@@ -45,15 +45,15 @@ const PropertyBought = () => {
         </>
       ) : (
         <div className="h-[70vh] overflow-y-scroll px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-6">
             {offered.map((property) => (
               <Card
                 key={property._id}
                 shadow={true}
-                className="rounded-lg border border-gray-400 hover:shadow-xl transition-all ease-in-out duration-300"
+                className="rounded-xl border border-gray-400 hover:shadow-xl transition-all ease-in-out duration-300"
               >
                 {/* Image Section */}
-                <div className="w-full h-40 bg-gray-100 rounded-t-lg overflow-hidden">
+                <div className="w-full h-40 bg-gray-100 rounded-t-xl overflow-hidden">
                   <img
                     src={property.propertyImage}
                     alt={property.propertyTitle}
@@ -63,47 +63,59 @@ const PropertyBought = () => {
 
                 {/* Card Body Section */}
                 <CardBody className="p-4">
-                  <Typography className="font-bold capitalize" variant="h5">
+                  <Typography
+                    className="font-bold capitalize text-black"
+                    variant="h5"
+                  >
                     {property.propertyTitle}
                   </Typography>
 
                   <div className="flex items-center text-sm text-gray-600">
-                    <MdLocationOn className="text-blue-500 mr-2" />
+                    <MdLocationOn className="mr-2" />
                     <Typography className="font-medium">
                       {property.propertyLocation}
                     </Typography>
                   </div>
                   <div className="flex items-center text-sm text-gray-600 capitalize">
-                    <FaUserAlt className="text-yellow-500 mr-2" />
+                    <FaUserAlt className="mr-2" />
                     <Typography>Agent: {property.agent.name}</Typography>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <MdAttachMoney className="text-green-500 mr-2" />
+                    <MdAttachMoney className="mr-2" />
                     <Typography>
                       Offered:{" "}
-                      <span className="font-semibold text-blue-600">
+                      <span className="font-semibold">
                         ${property.offeredPrice}
                       </span>
                     </Typography>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <CgSearchLoading className="text-purple-500 mr-2" />
-                    <Typography
-                      variant="small"
-                      className="font-medium capitalize"
-                    >
-                      Status: {property.offerStatus}
+                    <CgSearchLoading className="mr-2" />
+                    <Typography className={`font-medium capitalize`}>
+                      Status:{" "}
+                      <span
+                        className={`font-semibold ${
+                          (property.offerStatus === "bought" &&
+                            "text-green-500") ||
+                          (property.offerStatus === "pending" &&
+                            "text-amber-500") ||
+                          (property.offerStatus === "accepted" &&
+                            "text-blue-500") ||
+                          (property.offerStatus === "rejected" &&
+                            "text-red-500")
+                        }`}
+                      >
+                        {property.offerStatus}
+                      </span>
                     </Typography>
                   </div>
 
                   {property?.paymentInfo?.transactionId && (
                     <div className="flex items-center text-sm text-gray-600">
-                      <LuCreditCard className="text-red-500 mr-2" />
-                      <Typography
-                        variant="small"
-                        className="font-medium capitalize"
-                      >
-                        Txn Id: {property?.paymentInfo?.transactionId}
+                      <LuCreditCard className="mr-2" />
+                      <Typography className="font-medium capitalize">
+                        Txn Id:{" "}
+                        <span className="text-sm text-green-500">{property?.paymentInfo?.transactionId}</span>
                       </Typography>
                     </div>
                   )}

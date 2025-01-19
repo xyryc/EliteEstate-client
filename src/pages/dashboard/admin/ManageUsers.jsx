@@ -36,8 +36,6 @@ export default function ManageUsers() {
     },
   });
 
-  if (isLoading) return <LoadingSpinner />;
-
   const handleRole = (id, role) => {
     toast((t) => (
       <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
@@ -87,6 +85,7 @@ export default function ManageUsers() {
               const mongoRes = await axiosSecure.delete(`/users/${id}`);
               if (mongoRes.data.deletedCount > 0) {
                 toast.success("User deleted successfully!");
+
                 refetch(); // Refresh the data if needed
               } else {
                 toast.error("Failed to delete the user from MongoDB!");
@@ -161,7 +160,7 @@ export default function ManageUsers() {
           </Link>
         </>
       ) : (
-        <Card className="h-[70vh] w-full overflow-scroll border border-gray-300 px-6">
+        <Card className="h-[70vh] md:w-[60vw] xl:w-full overflow-scroll border border-gray-300 px-6">
           <table className="w-full min-w-max table-auto text-left ">
             <thead>
               <tr>
@@ -230,7 +229,9 @@ export default function ManageUsers() {
 
                       <td className={classes}>
                         {fraud ? (
-                          "Fraud"
+                          <Button size="sm" color="amber">
+                            Fraud
+                          </Button>
                         ) : (
                           <Button
                             size="sm"
@@ -244,7 +245,9 @@ export default function ManageUsers() {
 
                       <td className={classes}>
                         {fraud ? (
-                          "Fraud"
+                          <Button size="sm" color="amber">
+                            Fraud
+                          </Button>
                         ) : (
                           <Button
                             size="sm"
@@ -259,11 +262,13 @@ export default function ManageUsers() {
                       {role === "agent" ? (
                         <td className={classes}>
                           {fraud ? (
-                            "Fraud"
+                            <Button size="sm" color="amber">
+                              Fraud
+                            </Button>
                           ) : (
                             <Button
                               size="sm"
-                              className="bg-amber-500"
+                              color="amber"
                               onClick={() => handleFraud(email)}
                             >
                               Mark

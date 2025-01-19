@@ -21,6 +21,8 @@ const Wishlist = () => {
     },
   });
 
+  
+
   return (
     <div>
       <DashboardHeader
@@ -41,7 +43,7 @@ const Wishlist = () => {
         <div className="space-y-2 px-4 h-[70vh] overflow-scroll">
           {wishlistData.map((item) => (
             <div
-              className="flex flex-col xl:flex-row items-center border border-gray-300 rounded-lg p-4 gap-4"
+              className="flex flex-col lg:flex-row items-center border border-gray-300 rounded-lg p-4 gap-4"
               key={item._id}
             >
               {/* Property Image */}
@@ -93,7 +95,7 @@ const Wishlist = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2">
+              <div className="flex flex-row xl:flex-col items-center sm:items-start gap-3">
                 <NavLink to={`/dashboard/wishlist/offer/${item._id}`}>
                   <Button size="sm">Offer</Button>
                 </NavLink>

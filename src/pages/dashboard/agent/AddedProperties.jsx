@@ -138,7 +138,7 @@ export default function AddedProperties() {
               </CardBody>
 
               {/* Card Footer */}
-              <CardFooter className="flex justify-between items-center gap-2 p-4">
+              <CardFooter className="flex flex-row md:flex-col xl:flex-row justify-between items-center gap-2 p-4">
                 {item.status !== "Rejected" && (
                   <Link to={`/dashboard/addedProperties/update/${item._id}`}>
                     <Button size="sm" className="flex items-center gap-1">
