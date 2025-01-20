@@ -352,7 +352,8 @@ You can try to implement these features:
 - banner text fix ✅
 - wishlist remove button ✅
 - delete from firebase
-- scroll to top
+- scroll to top 
+- final test & deploy
 
 <!-- creds -->
 

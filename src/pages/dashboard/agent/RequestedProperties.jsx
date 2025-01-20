@@ -176,7 +176,7 @@ const RequestedProperties = () => {
                         {offerStatus === "pending" ? (
                           <Button
                             size="sm"
-                            color="green"
+                            color="teal"
                             onClick={() => handleStatus(_id, "accepted")}
                           >
                             Accept

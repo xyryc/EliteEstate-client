@@ -42,7 +42,7 @@ const Stats = () => {
 
         <div>
           <p className="text-[56px] font-bold">
-            {inView && <CountUp end={15} duration={3} suffix="+" />}
+            {inView && <CountUp end={15} duration={6} suffix="+" />}
           </p>
           <p className="text-lg">Years of Excellence</p>
         </div>

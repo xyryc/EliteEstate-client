@@ -13,7 +13,13 @@ const ContactUs = () => {
             }
           />
 
-          <Button>Contact Us</Button>
+          <Button
+            onClick={() =>
+              (window.location.href = "mailto:mdtalathunnabi@gmail.com")
+            }
+          >
+            Contact Us
+          </Button>
         </div>
       </div>
 
