@@ -48,6 +48,7 @@ const MakeOffer = () => {
       offeredPrice < property.min_price ||
       offeredPrice > property.max_price
     ) {
+      setLoading(false);
       toast.error("Please offer an amount within range!");
     } else {
       // save data in db

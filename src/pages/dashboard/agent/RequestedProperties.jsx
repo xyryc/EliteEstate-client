@@ -85,7 +85,7 @@ const RequestedProperties = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : offered.length === 0 ? (
-        <EmptyPage message={"No request yet!"}  />
+        <EmptyPage message={"No request yet!"} />
       ) : (
         <Card className="h-[70vh] md:w-[60vw] xl:w-full overflow-scroll border border-gray-300 px-6">
           <table className="w-full min-w-max table-auto text-left ">
@@ -185,7 +185,9 @@ const RequestedProperties = () => {
                           <Button
                             size="sm"
                             color={`${
-                              offerStatus === "accepted" ? "green" : "red"
+                              (offerStatus === "accepted" && "green") ||
+                              (offerStatus === "bought" && "blue") ||
+                              (offerStatus === "rejected" && "red")
                             }`}
                           >
                             {offerStatus}
@@ -206,7 +208,9 @@ const RequestedProperties = () => {
                           <Button
                             size="sm"
                             color={`${
-                              offerStatus === "accepted" ? "green" : "red"
+                              (offerStatus === "accepted" && "green") ||
+                              (offerStatus === "bought" && "blue") ||
+                              (offerStatus === "rejected" && "red")
                             }`}
                           >
                             {offerStatus}

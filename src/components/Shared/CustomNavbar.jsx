@@ -8,6 +8,7 @@ import {
   List,
   ListItem,
   Avatar,
+  Tooltip,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -63,7 +64,10 @@ export function CustomNavbar() {
     <Navbar className="mx-auto px-4 py-2 shadow-none">
       <div className="flex items-center justify-between text-blue-gray-900">
         <Typography variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2">
-          <NavLink to="/" className="flex items-center gap-1 text-xl font-poppins">
+          <NavLink
+            to="/"
+            className="flex items-center gap-1 text-xl font-poppins"
+          >
             <HiOutlineHomeModern /> EliteEstate
           </NavLink>
         </Typography>
@@ -74,15 +78,16 @@ export function CustomNavbar() {
 
         {user ? (
           <div className="space-x-2">
-            <Avatar
-              title={user?.displayName}
-              variant="circular"
-              size="sm"
-              alt={user?.displayName}
-              className="border border-gray-900 p-0.5"
-              src={user?.photoURL}
-              referrerPolicy="no-referrer"
-            />
+            <Tooltip content={user?.displayName} placement="left">
+              <Avatar
+                variant="circular"
+                size="sm"
+                alt={user?.displayName}
+                className="border border-gray-900 p-0.5"
+                src={user?.photoURL}
+                referrerPolicy="no-referrer"
+              />
+            </Tooltip>
             <Button size="sm" onClick={() => handleLogout()}>
               Log Out
             </Button>

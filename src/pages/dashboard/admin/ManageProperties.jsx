@@ -36,7 +36,7 @@ export default function ManageProperties() {
   const handleStatus = (id, status) => {
     toast((t) => (
       <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
-        <Typography>Confirm verify this property?</Typography>
+        <Typography>Are you sure?</Typography>
         <div className="space-x-4">
           <Button
             size="sm"

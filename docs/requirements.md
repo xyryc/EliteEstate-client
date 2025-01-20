@@ -86,7 +86,7 @@ When a user clicks on the Dashboard, he/she will be redirected to a page where t
 - My Profile. ✅
 - Wishlist. ✅
 - Property bought. ✅
-- My reviews.
+- My reviews. ✅
 
 **My Profile page:** On this page there will be some information about the logged in user.The information must include user name,user image,role(if the user is a regular user then don’t show anything).You can add other relevant information if you wish. ✅
 
@@ -100,7 +100,7 @@ When a user clicks on the Dashboard, he/she will be redirected to a page where t
 - verification status.✅
 - Price range.✅
 - Make an offer button.
-- remove button.
+- remove button. ✅
 
 Clicking the **“Make an offer”** button will navigate the user to a new page where there will be a form which will have some input fields. ✅
 
@@ -351,9 +351,14 @@ You can try to implement these features:
 - handle no data ✅
 - banner text fix ✅
 - wishlist remove button ✅
-- delete from firebase
-- scroll to top 
-- final test & deploy
+- delete from firebase 
+- scroll to top ✅
+- bug: offer button keep loading on failed offer ✅
+- manage property page, toast text on reject ✅
+- render image on update page
+- requested properties page --> bought button color fix ✅
+- add tooltip on navbar logged in user image ✅
+- final test & deploy ✅
 
 <!-- creds -->
 
