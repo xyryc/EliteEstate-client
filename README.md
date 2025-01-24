@@ -89,3 +89,45 @@ For testing the platform, use the following credentials:
 - **ImgBB**: Image management.
 - **Git & GitHub**: Version control.
 - **ESLint & Prettier**: Code quality tools.
+
+## How to Run Locally
+
+Follow these steps to set up and run the project locally:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/xyryc/EliteEstate-client.git
+   cd EliteEstate-client
+   ```
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Add Firebase configuration:**
+
+   - Create a `.env.local` file in the root directory and add your Firebase config keys:
+
+   ```bash
+    VITE_apiKey=your_api_key
+    VITE_authDomain=your_auth_domain
+    VITE_projectId=your_project_id
+    VITE_storageBucket=your_project_bucket
+    VITE_messagingSenderId=your_messaging_sender_id
+    VITE_appId=your_app_id
+    VITE_IMGBB_API_KEY=your_imgbb_api_key
+    VITE_Payment_Gateway_PK=your_payment_gateway_public_key
+    VITE_API_URL=your_backend_server_url
+   ```
+
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+5. **Open the app in your browser:**
+   ```bash
+   http://localhost:5173/
+   ```
+
+## Contribution
+
+Feel free to fork the repository, make improvements, and submit a pull request. For major changes, open an issue first to discuss the proposed changes.
