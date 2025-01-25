@@ -56,10 +56,10 @@ const FeaturedProperties = () => {
 
         {/* Navigation buttons in the top-right */}
         <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex gap-2">
-          <Button onClick={scrollPrev} className="flex items-center gap-2">
+          <Button size="sm" onClick={scrollPrev} className="flex items-center gap-2">
             <LuArrowLeft /> Prev
           </Button>
-          <Button onClick={scrollNext} className="flex items-center gap-2">
+          <Button size="sm" onClick={scrollNext} className="flex items-center gap-2">
             Next
             <LuArrowRight />
           </Button>

@@ -21,21 +21,21 @@ function NavList() {
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
       {" "}
       <NavLink to="/">
-        <Typography variant="small" color="blue-gray" className="font-medium">
+        <Typography as="span" variant="small" color="blue-gray" className="font-medium">
           <ListItem className="flex items-center gap-2 py-2 pr-4">
             Home
           </ListItem>
         </Typography>
       </NavLink>
       <NavLink to="/properties">
-        <Typography variant="small" color="blue-gray" className="font-medium">
+        <Typography as="span" variant="small" color="blue-gray" className="font-medium">
           <ListItem className="flex items-center gap-2 py-2 pr-4">
             Properties
           </ListItem>
         </Typography>
       </NavLink>
       <NavLink to="/dashboard/myProfile">
-        <Typography variant="small" color="blue-gray" className="font-medium">
+        <Typography as="span" variant="small" color="blue-gray" className="font-medium">
           <ListItem className="flex items-center gap-2 py-2 pr-4">
             Dashboard
           </ListItem>

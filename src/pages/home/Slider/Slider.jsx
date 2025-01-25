@@ -33,7 +33,7 @@ const Slider = () => {
         slot="container-start"
         className="parallax-bg"
         style={{
-          "background-image":
+          "backgroundImage":
             "url(https://i.ibb.co.com/x1gxs02/analog-landscape-city-with-buildings.jpg)",
         }}
         data-swiper-parallax="-23%"

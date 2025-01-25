@@ -114,8 +114,7 @@ const Details = () => {
   return (
     <div className="container mx-auto p-4 sm:p-6">
       {/* detail */}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 sm:gap-10">
         <div>
           <h1 className="text-4xl font-bold capitalize">{title}</h1>
           <div className="flex mt-2 mb-4 gap-3 items-center">
