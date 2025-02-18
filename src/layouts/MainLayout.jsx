@@ -6,7 +6,9 @@ import ScrollToTop from "../components/Shared/ScrollToTop";
 const MainLayout = () => {
   return (
     <div className="font-poppins">
-      <CustomNavbar />
+      <div className="h-14">
+        <CustomNavbar />
+      </div>
 
       <ScrollToTop />
       <div className="min-h-screen">

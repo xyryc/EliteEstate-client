@@ -33,14 +33,13 @@ const Slider = () => {
         slot="container-start"
         className="parallax-bg"
         style={{
-          "backgroundImage":
-            "url(https://i.ibb.co.com/x1gxs02/analog-landscape-city-with-buildings.jpg)",
+          backgroundImage: "url(/sliderImg.webp)",
         }}
         data-swiper-parallax="-23%"
       ></div>
       <SwiperSlide>
         <div className="title" data-swiper-parallax="-300">
-        Find Your Dream Home
+          Find Your Dream Home
         </div>
 
         <div className="text font-inter" data-swiper-parallax="-100">
@@ -57,7 +56,8 @@ const Slider = () => {
 
         <div className="text" data-swiper-parallax="-100">
           <p>
-          Step into elegance with premium properties offering modern amenities and comfort.
+            Step into elegance with premium properties offering modern amenities
+            and comfort.
           </p>
         </div>
       </SwiperSlide>
