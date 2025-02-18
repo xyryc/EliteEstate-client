@@ -12,6 +12,7 @@ function Profile() {
   const { user, logOut, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const [role] = useRole();
+  console.log(user);
 
   // edit name
   const [isEditing, setIsEditing] = useState(false);
@@ -67,91 +68,106 @@ function Profile() {
   };
 
   return (
-    <figure className="relative h-96 w-full">
+    <figure className="relative h-screen sm:h-[80vh] w-full">
       <img
         className="h-full w-full rounded-xl object-cover object-center"
         src="https://i.ibb.co.com/WcYpYnp/pexels-cottonbro-8572135.jpg"
         alt="nature image"
       />
-      <figcaption className="absolute bottom-8 left-2/4 flex flex-col gap-6 sm:flex-row w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-white/75 py-4 px-6 shadow-lg shadow-black/5 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
-          {/* Image Section */}
-          <div className="relative w-24 h-24">
-            <img
-              src={imagePreview}
-              alt={user?.displayName}
-              className="w-24 h-24 object-cover rounded-full"
-            />
-            <label
-              htmlFor="image-upload"
-              className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white opacity-0 hover:opacity-100 rounded-full cursor-pointer transition"
-            >
-              <LuHardDriveUpload />
-            </label>
-            <input
-              type="file"
-              id="image-upload"
-              className="hidden"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </div>
-
-          <div>
-            {/* username */}
-            <div className="flex items-center gap-4">
-              {isEditing ? (
-                <>
-                  <input
-                    type="text"
-                    value={tempName}
-                    onChange={(e) => setTempName(e.target.value)}
-                    className="border border-gray-300 rounded px-2 py-1 focus:outline-none"
-                  />
-                  <IconButton size="sm" onClick={handleSaveClick}>
-                    <LuSave />
-                  </IconButton>
-                  <IconButton size="sm" onClick={handleCancelClick}>
-                    <CgClose />
-                  </IconButton>
-                </>
-              ) : (
-                <>
-                  <Typography variant="h5">
-                    {name}
-                  </Typography>
-                  <Button size="sm" onClick={handleEditClick}>
-                    Edit
-                  </Button>
-                </>
-              )}
+      <figcaption className="absolute bottom-8 left-2/4 sm:flex-row w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-white/75 py-4 px-6 shadow-lg shadow-black/5 backdrop-blur-sm">
+        <div className="flex justify-between space-y-2">
+          {/* profile email */}
+          <div className="sm:flex items-center gap-4 space-y-2">
+            {/* Image Section */}
+            <div className="relative w-24 h-24">
+              <img
+                src={imagePreview}
+                alt={user?.displayName}
+                className="w-24 h-24 object-cover rounded-full"
+              />
+              <label
+                htmlFor="image-upload"
+                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white opacity-0 hover:opacity-100 rounded-full cursor-pointer transition"
+              >
+                <LuHardDriveUpload />
+              </label>
+              <input
+                type="file"
+                id="image-upload"
+                className="hidden"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
             </div>
 
-            {/* email */}
-            <Typography color="gray" className="mt-2 font-normal">
-              {user?.email}
-            </Typography>
+            <div>
+              {/* username */}
+              <div className="flex items-center gap-4">
+                {isEditing ? (
+                  <>
+                    <input
+                      type="text"
+                      value={tempName}
+                      onChange={(e) => setTempName(e.target.value)}
+                      className="border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                    />
+                    <IconButton size="sm" onClick={handleSaveClick}>
+                      <LuSave />
+                    </IconButton>
+                    <IconButton size="sm" onClick={handleCancelClick}>
+                      <CgClose />
+                    </IconButton>
+                  </>
+                ) : (
+                  <>
+                    <Typography variant="h5">{name}</Typography>
+                    <Button size="sm" onClick={handleEditClick}>
+                      Edit
+                    </Button>
+                  </>
+                )}
+              </div>
+
+              {/* email */}
+              <Typography variant="small" className="mt-2 font-normal">
+                {user?.email}
+              </Typography>
+            </div>
+          </div>
+
+          {/* logout */}
+          <div>
+            <Button
+              onClick={() => {
+                logOut();
+                navigate("/");
+              }}
+              size="sm"
+              variant="gradient"
+              className="border-gray-300"
+            >
+              Log Out
+            </Button>
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+
+        {/* more info */}
+        <div className="my-4 space-y-2">
           {role === "customer" ? (
             ""
           ) : (
-            <Button variant="outlined" size="sm" className="border-gray-300">
+            <Typography variant="small" className="capitalize">
               Role: {role}
-            </Button>
+            </Typography>
           )}
-          <Button
-            onClick={() => {
-              logOut();
-              navigate("/");
-            }}
-            size="sm"
-            variant="gradient"
-            className="border-gray-300"
-          >
-            Log Out
-          </Button>
+          <Typography variant="small">User Id: {user?.uid}</Typography>
+
+          <Typography variant="small">
+            Created at: {user?.metadata?.creationTime}
+          </Typography>
+          <Typography variant="small">
+            Last login at: {user?.metadata?.lastSignInTime}
+          </Typography>
         </div>
       </figcaption>
     </figure>

@@ -7,12 +7,12 @@ const CardPublic = ({ item }) => {
     <Link
       to={`/properties/details/${item._id}`}
       key={item._id}
-      className="border border-gray-400 rounded-xl"
+      className="border border-gray-400 rounded-xl overflow-hidden"
     >
       <img
         src={item.image}
         alt={item.title}
-        className="rounded-t-xl h-52 object-cover w-full"
+        className="rounded-t-lg h-52 object-cover w-full"
       />
 
       <div className="p-4">

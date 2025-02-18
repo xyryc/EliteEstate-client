@@ -35,13 +35,13 @@ const LatestReviews = () => {
               <img
                 src={review.reviewerImage}
                 alt={review.reviewerName}
-                className="h-12 w-12 rounded-full object-cover"
+                className="h-16 w-16 rounded-full object-cover"
               />
-              <h3 className="text-lg font-semibold">{review.reviewerName}</h3>
+              <h3 className="font-semibold mt-2">{review.reviewerName}</h3>
             </div>
             <h4 className="text-md font-bold mb-2">{review.propertyTitle}</h4>
-            <p className="text-gray-600">
-              "{review.reviewDescription.slice(0, 240)}..."
+            <p className="text-gray-800">
+            &quot;{review.reviewDescription.slice(0, 240)}...&quot;
             </p>
           </div>
         ))}

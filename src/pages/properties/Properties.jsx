@@ -44,7 +44,7 @@ const Properties = () => {
       />
 
       {/* search, sort, filter */}
-      <div className="flex flex-col md:flex-row justify-center items-center gap-5 my-6">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-5 my-6">
         {/* price range filter */}
         <div className="flex flex-col sm:flex-row items-center gap-2 ">
           <input
@@ -67,7 +67,7 @@ const Properties = () => {
         {/* search */}
         <div className="flex p-1 overflow-hidden rounded-lg outline-1 outline">
           <input
-            className="px-4 py-1 outline-none"
+            className="px-2 py-1 outline-none"
             type="text"
             name="search"
             placeholder="Search by Location"

@@ -351,18 +351,21 @@ You can try to implement these features:
 - handle no data ✅
 - banner text fix ✅
 - wishlist remove button ✅
-- delete from firebase 
+- delete from firebase
 - scroll to top ✅
 - bug: offer button keep loading on failed offer ✅
 - manage property page, toast text on reject ✅
 - requested properties page --> bought button color fix ✅
 - add tooltip on navbar logged in user image ✅
 - final test & deploy ✅
+- add map ✅
 
 - render image on update page
 - all routes on navbar
 - slider image update
 - sponsors update
+- card see more button
+- build and deploy
 
 <!-- creds -->
 
