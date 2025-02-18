@@ -355,10 +355,14 @@ You can try to implement these features:
 - scroll to top ✅
 - bug: offer button keep loading on failed offer ✅
 - manage property page, toast text on reject ✅
-- render image on update page
 - requested properties page --> bought button color fix ✅
 - add tooltip on navbar logged in user image ✅
 - final test & deploy ✅
+
+- render image on update page
+- all routes on navbar
+- slider image update
+- sponsors update
 
 <!-- creds -->
 

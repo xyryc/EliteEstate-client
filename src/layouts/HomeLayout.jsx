@@ -5,6 +5,7 @@ import Slider from "../pages/home/Slider/Slider";
 import Partners from "../pages/home/Partners/Partners";
 import Stats from "../pages/home/Stats/Stats";
 import ContactUs from "../pages/home/ContactUs/ContactUs";
+import { Location } from "../pages/home/Location/Location";
 
 const HomeLayout = () => {
   return (
@@ -25,6 +26,8 @@ const HomeLayout = () => {
         <CustomAccordion />
 
         <ContactUs />
+
+        <Location />
       </div>
     </div>
   );
