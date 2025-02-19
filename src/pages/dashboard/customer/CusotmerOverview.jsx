@@ -152,7 +152,7 @@ const CusotmerOverview = () => {
         {stats.map((stat, index) => (
           <Card
             key={index}
-            className={`p-2 flex items-center border border-black/30 rounded-lg hover:shadow-xl hover:bg-gray-200 duration-500`}
+            className={`p-2 flex items-center border border-black/20 bg-gray-100 rounded-lg hover:shadow-xl hover:bg-gray-200 duration-500`}
           >
             <div className="p-2 bg-white rounded-full">{stat.icon}</div>
             <div className="text-center">

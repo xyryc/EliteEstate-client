@@ -27,6 +27,7 @@ import AgentRoute from "./AgentRoute";
 import AdvertiseProperty from "../pages/dashboard/admin/AdvertiseProperty";
 import CustomerRoute from "./CustomerRoute";
 import CusotmerOverview from "../pages/dashboard/customer/CusotmerOverview";
+import AdminOverview from "../pages/dashboard/admin/AdminOverview";
 
 export const router = createBrowserRouter([
   {
@@ -97,7 +98,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
       {
         path: "wishlist",
         element: (
@@ -202,6 +202,16 @@ export const router = createBrowserRouter([
       },
 
       // admin routes
+      {
+        path: "adminOverview",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminOverview />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "manageProperties",
         element: (

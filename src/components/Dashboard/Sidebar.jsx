@@ -133,6 +133,16 @@ const Sidebar = () => {
                     className={({ isActive }) =>
                       isActive ? "bg-gray-900 px-8 py-3 rounded-lg" : ""
                     }
+                    to="/dashboard/adminOverview"
+                  >
+                    Admin Overview
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-8 py-3 rounded-lg" : ""
+                    }
                     to="/dashboard/manageProperties"
                   >
                     Manage Properties
