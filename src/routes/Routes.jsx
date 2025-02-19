@@ -26,6 +26,7 @@ import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import AdvertiseProperty from "../pages/dashboard/admin/AdvertiseProperty";
 import CustomerRoute from "./CustomerRoute";
+import CusotmerOverview from "../pages/dashboard/customer/CusotmerOverview";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,17 @@ export const router = createBrowserRouter([
       },
 
       // customer route
+      {
+        path: "overview",
+        element: (
+          <PrivateRoute>
+            <CustomerRoute>
+              <CusotmerOverview />
+            </CustomerRoute>
+          </PrivateRoute>
+        ),
+      },
+
       {
         path: "wishlist",
         element: (

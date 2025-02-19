@@ -111,7 +111,9 @@ export default function ManageUsers() {
 
     toast((t) => (
       <div className="flex flex-col items-center gap-3 drop-shadow-2xl">
-        <Typography>Mark as fraud?</Typography>
+        <Typography>
+          Mark this agent as fraud? All their added properties will be deleted.
+        </Typography>
         <div className="space-x-2">
           <Button
             size="sm"

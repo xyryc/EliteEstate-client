@@ -49,6 +49,17 @@ const Sidebar = () => {
                     className={({ isActive }) =>
                       isActive ? "bg-gray-900 px-16 py-3 rounded-lg" : ""
                     }
+                    to="/dashboard/overview"
+                  >
+                    Overview
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-16 py-3 rounded-lg" : ""
+                    }
                     to="/dashboard/wishlist"
                   >
                     Wishlist

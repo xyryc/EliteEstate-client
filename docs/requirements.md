@@ -365,6 +365,9 @@ You can try to implement these features:
 - slider image update
 - sponsors update
 - card see more button
+- profile section - more improvements ✅
+- dark mode
+- add animations
 - build and deploy
 
 <!-- creds -->
