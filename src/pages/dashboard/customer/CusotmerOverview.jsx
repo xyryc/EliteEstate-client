@@ -2,7 +2,7 @@ import DashboardHeader from "../../../components/Shared/DashboardHeader";
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { Card, CardBody, Typography } from "@material-tailwind/react";
+import { Card, Typography } from "@material-tailwind/react";
 import {
   PieChart,
   Pie,
@@ -16,7 +16,16 @@ import {
   Line,
   CartesianGrid,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
+import {
+  FaChartBar,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaHourglassHalf,
+  FaDollarSign,
+  FaCalculator,
+} from "react-icons/fa";
 
 const CusotmerOverview = () => {
   const { user } = useAuth();
@@ -53,6 +62,39 @@ const CusotmerOverview = () => {
   const averageOfferPrice =
     totalOffers > 0 ? (totalOfferedAmount / totalOffers).toFixed(2) : 0;
 
+  const stats = [
+    {
+      label: "Total Offers",
+      value: totalOffers,
+      icon: <FaChartBar className="text-red-500 text-2xl" />,
+    },
+    {
+      label: "Accepted",
+      value: acceptedOffers,
+      icon: <FaCheckCircle className="text-green-500 text-2xl" />,
+    },
+    {
+      label: "Rejected",
+      value: rejectedOffers,
+      icon: <FaTimesCircle className="text-red-500 text-2xl" />,
+    },
+    {
+      label: "Pending",
+      value: pendingOffers,
+      icon: <FaHourglassHalf className="text-yellow-500 text-2xl" />,
+    },
+    {
+      label: "Total Offered Amount",
+      value: `$${totalOfferedAmount}`,
+      icon: <FaDollarSign className="text-blue-500 text-2xl" />,
+    },
+    {
+      label: "Average Offer Price",
+      value: `$${averageOfferPrice}`,
+      icon: <FaCalculator className="text-purple-500 text-2xl" />,
+    },
+  ];
+
   // Offer Status Distribution (Pie Chart)
   const offerStatusData = [
     { name: "Accepted", value: acceptedOffers },
@@ -87,15 +129,15 @@ const CusotmerOverview = () => {
   }));
 
   return (
-    <div>
+    <div className="md:h-[90vh] overflow-scroll px-4">
       {/* header and time */}
-      <div className="flex justify-between items-center gap-4">
+      <div className="flex justify-between items-center">
         <DashboardHeader
           title={`Hello, ${user?.displayName}`}
           description={"Here's what's happening today."}
         />
 
-        <div>
+        <div className="hidden sm:block">
           <Typography variant="small">
             {new Date().toLocaleDateString("en-GB")}
           </Typography>
@@ -106,124 +148,93 @@ const CusotmerOverview = () => {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="p-4 text-center shadow-md">
-          <CardBody>
-            <Typography variant="h6">Total Offers</Typography>
-            <Typography variant="h4" className="font-bold">
-              {totalOffers}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="p-4 text-center shadow-md">
-          <CardBody>
-            <Typography variant="h6">Accepted</Typography>
-            <Typography variant="h4" className="text-green-500 font-bold">
-              {acceptedOffers}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="p-4 text-center shadow-md">
-          <CardBody>
-            <Typography variant="h6">Rejected</Typography>
-            <Typography variant="h4" className="text-red-500 font-bold">
-              {rejectedOffers}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="p-4 text-center shadow-md">
-          <CardBody>
-            <Typography variant="h6">Pending</Typography>
-            <Typography variant="h4" className="text-yellow-500 font-bold">
-              {pendingOffers}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="p-4 text-center shadow-md">
-          <CardBody>
-            <Typography variant="h6">Total Offered Amount</Typography>
-            <Typography variant="h4" className="font-bold">
-              ${totalOfferedAmount}
-            </Typography>
-          </CardBody>
-        </Card>
-        <Card className="p-4 text-center shadow-md">
-          <CardBody>
-            <Typography variant="h6">Average Offer Price</Typography>
-            <Typography variant="h4" className="font-bold">
-              ${averageOfferPrice}
-            </Typography>
-          </CardBody>
-        </Card>
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4">
+        {stats.map((stat, index) => (
+          <Card
+            key={index}
+            className={`p-2 flex items-center border border-black/30 rounded-lg hover:shadow-xl hover:bg-gray-200 duration-500`}
+          >
+            <div className="p-2 bg-white rounded-full">{stat.icon}</div>
+            <div className="text-center">
+              <Typography variant="h5">{stat.value}</Typography>
+              <p className="text-gray-600 text-sm">{stat.label}</p>
+            </div>
+          </Card>
+        ))}
       </div>
 
-      {/* Offer Status Pie Chart */}
-      <Card className="p-4 shadow-md mt-6">
-        <Typography variant="h6" className="mb-4">
-          Offer Status Distribution
-        </Typography>
-        <PieChart width={400} height={300}>
-          <Pie
-            data={offerStatusData}
-            cx="50%"
-            cy="50%"
-            outerRadius={100}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {offerStatusData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-        </PieChart>
-      </Card>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 my-4">
+        {/* Offer Status Pie Chart */}
+        <Card className="border p-4 flex flex-col items-center">
+          <h6 className="text-lg font-semibold mb-4">
+            Offer Status Distribution
+          </h6>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={offerStatusData}
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {offerStatusData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </Card>
 
-      {/* Offer Price Trends Line Chart */}
-      <Card className="p-4 shadow-md mt-6">
-        <Typography variant="h6" className="mb-4">
-          Offer Price Trends
-        </Typography>
-        <LineChart width={600} height={300} data={priceTrendsData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="price" stroke="#8884d8" />
-        </LineChart>
-      </Card>
+        {/* Offer Price Trends Line Chart */}
+        <Card className="border p-4 flex flex-col items-center">
+          <h6 className="text-lg font-semibold mb-4">Offer Price Trends</h6>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={priceTrendsData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="price" stroke="#8884d8" />
+            </LineChart>
+          </ResponsiveContainer>
+        </Card>
 
-      {/* Most Popular Locations Bar Chart */}
-      <Card className="p-4 shadow-md mt-6">
-        <Typography variant="h6" className="mb-4">
-          Most Popular Locations
-        </Typography>
-        <BarChart width={600} height={300} data={locationData}>
-          <XAxis dataKey="location" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="count" fill="#82ca9d" />
-        </BarChart>
-      </Card>
+        {/* Most Popular Locations Bar Chart */}
+        <Card className="border p-4 flex flex-col items-center">
+          <h6 className="text-lg font-semibold mb-4">Most Popular Locations</h6>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={locationData}>
+              <XAxis dataKey="location" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="count" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
 
-      {/* Agent Performance Bar Chart */}
-      <Card className="p-4 shadow-md mt-6">
-        <Typography variant="h6" className="mb-4">
-          Agent Performance
-        </Typography>
-        <BarChart width={600} height={300} data={agentData}>
-          <XAxis dataKey="agent" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="count" fill="#ffb74d" />
-        </BarChart>
-      </Card>
+        {/* Agent Performance Bar Chart */}
+        <Card className="border p-4 flex flex-col items-center">
+          <h6 className="text-lg font-semibold mb-4">Most Frequented Agents</h6>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={agentData}>
+              <XAxis dataKey="agent" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="count" fill="#ffb74d" />
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
+      </div>
     </div>
   );
 };

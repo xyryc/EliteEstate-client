@@ -30,18 +30,7 @@ const Sidebar = () => {
         </div>
         <nav>
           <ul className="space-y-6 text-center">
-            {/* common */}
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "bg-gray-900 px-16 py-3 rounded-lg" : ""
-                }
-                to="/dashboard/myProfile"
-              >
-                My Profile
-              </NavLink>
-            </li>
-
+            {/* customer */}
             {role === "customer" && (
               <>
                 <li>
@@ -88,6 +77,7 @@ const Sidebar = () => {
               </>
             )}
 
+            {/* agent */}
             {role === "agent" && (
               <>
                 <li>
@@ -134,6 +124,7 @@ const Sidebar = () => {
               </>
             )}
 
+            {/* admin */}
             {role === "admin" && (
               <>
                 {/* admin */}
@@ -180,6 +171,7 @@ const Sidebar = () => {
               </>
             )}
 
+            {/* common */}
             <li className="border-t-2 pt-4">
               <Link to="/">
                 <Button fullWidth variant="text" className="text-white">
@@ -187,6 +179,18 @@ const Sidebar = () => {
                 </Button>
               </Link>
             </li>
+
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "bg-gray-900 px-16 py-3 rounded-lg" : ""
+                }
+                to="/dashboard/myProfile"
+              >
+                My Profile
+              </NavLink>
+            </li>
+
             <li>
               <Link to="/properties">
                 <Button fullWidth variant="text" className="text-white">
