@@ -1,12 +1,12 @@
 import React from "react";
 import {
   Navbar,
-  MobileNav,
   Typography,
   Button,
   IconButton,
   Avatar,
   Tooltip,
+  Collapse,
 } from "@material-tailwind/react";
 import { NavLink } from "react-router-dom";
 import { HiOutlineHomeModern } from "react-icons/hi2";
@@ -14,6 +14,7 @@ import useAuth from "../../hooks/useAuth";
 
 export function CustomNavbar() {
   const { user, logOut } = useAuth();
+
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -49,7 +50,8 @@ export function CustomNavbar() {
           Properties
         </Typography>
       </NavLink>
-      <NavLink to="/dashboard/myProfile">
+
+      <NavLink to="/dashboard">
         <Typography
           as="span"
           variant="small"
@@ -144,7 +146,7 @@ export function CustomNavbar() {
           )}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         {navList}
         {!user && (
           <div className="flex flex-col gap-2">
@@ -160,7 +162,7 @@ export function CustomNavbar() {
             </NavLink>
           </div>
         )}
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }

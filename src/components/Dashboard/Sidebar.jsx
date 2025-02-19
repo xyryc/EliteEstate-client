@@ -202,6 +202,14 @@ const Sidebar = () => {
             </li>
 
             <li>
+              <Link to="/properties">
+                <Button fullWidth variant="text" className="text-white">
+                  Properties
+                </Button>
+              </Link>
+            </li>
+
+            <li>
               <NavLink
                 className={({ isActive }) =>
                   isActive ? "bg-gray-900 px-16 py-3 rounded-lg" : ""
@@ -210,14 +218,6 @@ const Sidebar = () => {
               >
                 My Profile
               </NavLink>
-            </li>
-
-            <li>
-              <Link to="/properties">
-                <Button fullWidth variant="text" className="text-white">
-                  Properties
-                </Button>
-              </Link>
             </li>
           </ul>
         </nav>

@@ -54,12 +54,6 @@ const AgentOverview = () => {
     0
   );
 
-  // Total offered price (sum of all offered prices)
-  const totalOfferedPrice = offered.reduce(
-    (sum, property) => sum + (property.offeredPrice || 0),
-    0
-  );
-
   const totalProperties = myProperties.length;
   const totalOfferedProperties = offered.length;
   const totalSoldProperties = soldProperties.length;
