@@ -28,6 +28,7 @@ import AdvertiseProperty from "../pages/dashboard/admin/AdvertiseProperty";
 import CustomerRoute from "./CustomerRoute";
 import CusotmerOverview from "../pages/dashboard/customer/CusotmerOverview";
 import AdminOverview from "../pages/dashboard/admin/AdminOverview";
+import AgentOverview from "../pages/dashboard/agent/AgentOverview";
 
 export const router = createBrowserRouter([
   {
@@ -150,6 +151,16 @@ export const router = createBrowserRouter([
       },
 
       // agent routes
+      {
+        path: "agentOverview",
+        element: (
+          <PrivateRoute>
+            <AgentRoute>
+              <AgentOverview />
+            </AgentRoute>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "addProperty",
         element: (

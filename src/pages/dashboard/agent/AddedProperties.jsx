@@ -87,7 +87,7 @@ export default function AddedProperties() {
           </Link>
         </>
       ) : (
-        <div className="h-[70vh] p-4 overflow-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="h-[70vh] py-4 overflow-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {properties?.map((item) => (
             <Card className="mt-4 shadow-lg" key={item._id}>
               {/* Card Header with Image */}

@@ -114,6 +114,7 @@ const CusotmerOverview = () => {
     locationCount[offer.propertyLocation] =
       (locationCount[offer.propertyLocation] || 0) + 1;
   });
+
   const locationData = Object.entries(locationCount).map(
     ([location, count]) => ({ location, count })
   );
@@ -123,6 +124,7 @@ const CusotmerOverview = () => {
   offered.forEach((offer) => {
     agentCount[offer.agent.name] = (agentCount[offer.agent.name] || 0) + 1;
   });
+  
   const agentData = Object.entries(agentCount).map(([agent, count]) => ({
     agent,
     count,

@@ -83,6 +83,17 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     className={({ isActive }) =>
+                      isActive ? "bg-gray-900 px-11 py-3 rounded-lg" : ""
+                    }
+                    to="/dashboard/agentOverview"
+                  >
+                    Agent Overview
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
                       isActive ? "bg-gray-900 px-14 py-3 rounded-lg" : ""
                     }
                     to="/dashboard/addProperty"
